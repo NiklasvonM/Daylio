@@ -34,7 +34,8 @@ shinyUI(
         ),
         dashboardBody(
             plotlyOutput("date_dots"),
-            valueBoxOutput("correlation")
+            valueBoxOutput("correlation"),
+            infoBoxOutput("avg_mood")
         )
     )
 )

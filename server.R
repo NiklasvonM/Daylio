@@ -37,9 +37,11 @@ shinyServer(function(input, output) {
     
     output$avg_mood <- renderInfoBox({
         activity <- cur_activity()
+        valWith <- round(mean(DATA[get(activity) == 1, Stimmung], na.rm = TRUE), 2)
+        valWithout <- round(mean(DATA[get(activity) == 0, Stimmung], na.rm = TRUE), 2)
         infoBox(
             title = "Durchschnittliche Stimmung mit/ohne Aktivität",
-            value = 0
+            value = paste(valWith, valWithout, sep = "/")
         )
     })
 
