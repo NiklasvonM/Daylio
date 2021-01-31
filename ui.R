@@ -23,19 +23,38 @@
 
 shinyUI(
     dashboardPage(
-        dashboardHeader(),
+        dashboardHeader(
+        ),
         dashboardSidebar(
+            sidebarMenu(
+                menuItem("Dashboard", tabName = "dashboard", icon = icon("dashboard")),
+                menuItem("Widgets", tabName = "widgets", icon = icon("th"))
+            ),
             selectInput(
                 inputId = "activity",
                 label = "Aktivitaet",
                 choices = ACTIVITIES,
                 multiple = FALSE
-            )
+            ),
+            downloadButton("download")
         ),
         dashboardBody(
-            plotlyOutput("date_dots"),
-            valueBoxOutput("correlation"),
-            infoBoxOutput("avg_mood")
+            tabItems(
+                # First tab content
+                tabItem(tabName = "dashboard",
+                    fluidPage(
+                        plotlyOutput("date_dots"),
+                        valueBoxOutput("correlation"),
+                        infoBoxOutput("avg_mood")
+                    )
+                ),
+                
+                # Second tab content
+                tabItem(tabName = "widgets",
+                    h2("Durchschnittliche Stimmung nach Jahrestag"),
+                    plotlyOutput("year_heatmap")
+                )
+            )
         )
     )
 )
