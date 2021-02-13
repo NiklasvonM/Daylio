@@ -1,7 +1,8 @@
 library(data.table)
 library(lubridate)
 
-dtOrig <- fread("daylio_export_2021_01_30.csv", encoding = "UTF-8")
+fileName <- "daylio_export_2021_02_13.csv"
+dtOrig <- fread(paste0("data/", fileName), encoding = "UTF-8")
 dt <- dtOrig[, .(
   Datum = as.Date(full_date),
   Wochentag = weekday,
@@ -26,4 +27,4 @@ for (activity in activities) {
 dt[, Activities := NULL]
 dt[, Schlafqualitaet := (-1 * Schlecht + 1 * Gut) / (Schlecht + Mäßig + Gut)]
 dt[, `Koerperliche Taetigkeiten` := Yoga + Sport + Laufen]
-fwrite(dt, file = paste0("Daten aufbereitet ", today(), ".csv"), sep = ";")
+fwrite(dt, file = paste0("data/Daten aufbereitet ", today(), ".csv"), sep = ";")

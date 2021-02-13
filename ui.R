@@ -29,7 +29,8 @@ shinyUI(
             sidebarMenu(
                 menuItem("Dashboard", tabName = "dashboard", icon = icon("dashboard")),
                 menuItem("Jahrestag", tabName = "jahrestag", icon = icon("th")),
-                menuItem("Wochentag", tabName = "wochentag", icon = icon("calendar-alt"))
+                menuItem("Wochentag", tabName = "wochentag", icon = icon("calendar-alt")),
+                menuItem("Korrelationstabelle", tabName = "correlation_table", icon = icon("cannabis"))
             ),
             selectInput(
                 inputId = "activity",
@@ -58,7 +59,10 @@ shinyUI(
                 tabItem(tabName = "wochentag",
                     h2("Vorkommnisse während der Woche"),
                     plotlyOutput("wochentag_hist")
-                )
+                ),
+                tabItem(tabName = "correlation_table",
+                    h2("Korrelation Aktivitäten und Stimmung"),
+                    rHandsontableOutput("correlation_table"))
             )
         )
     )
