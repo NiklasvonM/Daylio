@@ -136,7 +136,8 @@ shinyServer(function(input, output) {
                     )
                 )))
             ) +
-            geom_bar(stat = "identity")
+            geom_bar(stat = "identity") +
+            ylab(activity)
         ggplotly(p, tooltip = "text")
     })
     
