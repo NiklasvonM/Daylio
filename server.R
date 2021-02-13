@@ -127,13 +127,17 @@ shinyServer(function(input, output) {
         p <-
             ggplot(
                 dtPlot,
-                aes(
+                eval(bquote(aes(
                     x = Wochentag,
-                    y = get(activity)
-                )
+                    y = get(activity),
+                    text = paste0(
+                        "Wochentag: ", Wochentag, "<br>",
+                        .(activity), ": ", get(activity)
+                    )
+                )))
             ) +
             geom_bar(stat = "identity")
-        ggplotly(p)
+        ggplotly(p, tooltip = "text")
     })
     
 })
