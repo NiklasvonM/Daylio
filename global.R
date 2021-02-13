@@ -10,3 +10,13 @@ DATA[, Datum := as.Date(Datum)]
 ACTIVITIES <- names(DATA)
 ACTIVITIES <- ACTIVITIES[!ACTIVITIES %in% c("Datum", "Wochentag", "Stimmung")]
 ACTIVITIES <- sort(ACTIVITIES)
+
+WOCHENTAGE <- c(
+  "Montag",
+  "Dienstag",
+  "Mittwoch",
+  "Donnerstag",
+  "Freitag",
+  "Samstag",
+  "Sonntag"
+)

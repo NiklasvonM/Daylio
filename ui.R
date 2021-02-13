@@ -28,7 +28,8 @@ shinyUI(
         dashboardSidebar(
             sidebarMenu(
                 menuItem("Dashboard", tabName = "dashboard", icon = icon("dashboard")),
-                menuItem("Widgets", tabName = "widgets", icon = icon("th"))
+                menuItem("Jahrestag", tabName = "jahrestag", icon = icon("th")),
+                menuItem("Wochentag", tabName = "wochentag", icon = icon("calendar-alt"))
             ),
             selectInput(
                 inputId = "activity",
@@ -50,9 +51,13 @@ shinyUI(
                 ),
                 
                 # Second tab content
-                tabItem(tabName = "widgets",
+                tabItem(tabName = "jahrestag",
                     h2("Durchschnittliche Stimmung nach Jahrestag"),
                     plotlyOutput("year_heatmap")
+                ),
+                tabItem(tabName = "wochentag",
+                    h2("Vorkommnisse während der Woche"),
+                    plotlyOutput("wochentag_hist")
                 )
             )
         )

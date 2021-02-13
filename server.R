@@ -116,4 +116,24 @@ shinyServer(function(input, output) {
         p
     })
     
+    output$wochentag_hist <- renderPlotly({
+        req(input$activity)
+        activity <- input$activity
+        dtPlot <- DATA[, c("Wochentag", activity), with = FALSE]
+        dtPlot[, Wochentag := factor(Wochentag, levels = WOCHENTAGE)]
+        setnames(dtPlot, activity, "TempColumnName")
+        dtPlot <- dtPlot[, .(TempColumnName = sum(TempColumnName, na.rm = TRUE)), by = .(Wochentag)]
+        setnames(dtPlot, "TempColumnName", activity)
+        p <-
+            ggplot(
+                dtPlot,
+                aes(
+                    x = Wochentag,
+                    y = get(activity)
+                )
+            ) +
+            geom_bar(stat = "identity")
+        ggplotly(p)
+    })
+    
 })
