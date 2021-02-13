@@ -148,9 +148,7 @@ shinyServer(function(input, output) {
         renderer = "
            function (instance, td, row, col, prop, value, cellProperties) {
              Handsontable.renderers.NumericRenderer.apply(this, arguments);
-             if (row == col) {
-              td.style.background = 'lightgrey';
-             } else if (value < -0.1) {
+             if (value < -0.1) {
               td.style.background = 'pink';
              } else if (value > 0.1) {
               td.style.background = 'lightgreen';
