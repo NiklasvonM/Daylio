@@ -66,7 +66,7 @@ shinyUI(
                     rHandsontableOutput("correlation_table")
                 ),
                 tabItem(tabName = "single_day",
-                    h2("Was ist an an diesem Tag passiert?"),
+                    h2("Was ist an diesem Tag passiert?"),
                     dateInput(
                         "day",
                         "Tag",
