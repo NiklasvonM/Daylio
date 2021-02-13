@@ -18,6 +18,15 @@ DT_COR <- data.table(
 )
 for (activity in ACTIVITIES) {
   DT_COR[Aktivität == activity, Korrelation := round(cor(DATA$Stimmung, DATA[[activity]]), 2)]
+  DT_COR[
+    Aktivität == activity,
+    `Durchschnittliche Stimmung mit Aktivität` := round(mean(DATA[get(activity) == 1, Stimmung], na.rm = TRUE), 2)
+  ]
+  DT_COR[
+    Aktivität == activity,
+    `Durchschnittliche Stimmung ohne Aktivität` := round(mean(DATA[get(activity) == 0, Stimmung], na.rm = TRUE), 2)
+  ]
+  DT_COR[Aktivität == activity, `Summe Aktivität` := sum(DATA[[activity]], na.rm = TRUE)]
 }
 
 WOCHENTAGE <- c(
