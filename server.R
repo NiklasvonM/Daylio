@@ -156,4 +156,19 @@ shinyServer(function(input, output) {
            }")
     })
     
+    output$single_day <- renderRHandsontable({
+        date <- input$day
+        tbl <- DATA[Datum == date]
+        req(nrow(tbl) > 0)
+        tbl <- melt.data.table(
+            data = tbl,
+            id.vars = character(0),
+            measure.vars = names(tbl),
+            variable.name = "Aktivität",
+            value.name = "Wert",
+            value.factor = TRUE
+        )
+        tbl[Aktivität == "Datum", Wert := format(as.Date(as.integer(Wert), origin = "1970-01-01"), format = "%d.%m.%Y")]
+        rhandsontable(tbl)
+    })
 })

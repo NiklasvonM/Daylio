@@ -30,7 +30,8 @@ shinyUI(
                 menuItem("Dashboard", tabName = "dashboard", icon = icon("dashboard")),
                 menuItem("Jahrestag", tabName = "jahrestag", icon = icon("th")),
                 menuItem("Wochentag", tabName = "wochentag", icon = icon("calendar-alt")),
-                menuItem("Korrelationstabelle", tabName = "correlation_table", icon = icon("cannabis"))
+                menuItem("Korrelationstabelle", tabName = "correlation_table", icon = icon("cannabis")),
+                menuItem("Einzelne Tage", tabName = "single_day", icon = icon("calendar"))
             ),
             selectInput(
                 inputId = "activity",
@@ -62,7 +63,19 @@ shinyUI(
                 ),
                 tabItem(tabName = "correlation_table",
                     h2("Korrelation Aktivitäten und Stimmung"),
-                    rHandsontableOutput("correlation_table"))
+                    rHandsontableOutput("correlation_table")
+                ),
+                tabItem(tabName = "single_day",
+                    h2("Was ist an an diesem Tag passiert?"),
+                    dateInput(
+                        "day",
+                        "Tag",
+                        format = "dd.mm.yyyy",
+                        value = today() - 1,
+                        language = "de"
+                    ),
+                    rHandsontableOutput("single_day")
+                )
             )
         )
     )
