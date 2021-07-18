@@ -6,13 +6,14 @@ library(shinydashboard)
 library(lubridate)
 library(rhandsontable)
 
-fileName <- "Daten aufbereitet 2021-02-13"
+fileName <- "Daten aufbereitet 2021-07-18"
 DATA <- fread(paste0("data/", fileName, ".csv"), encoding = "UTF-8")
 DATA[, Datum := as.Date(Datum)]
 ACTIVITIES <- names(DATA)
 ACTIVITIES <- ACTIVITIES[!ACTIVITIES %in% c("Datum", "Wochentag", "Stimmung")]
 ACTIVITIES <- sort(ACTIVITIES)
 
+# correlation with Stimmung
 DT_COR <- data.table(
   Aktivität = ACTIVITIES
 )
@@ -28,6 +29,17 @@ for (activity in ACTIVITIES) {
   ]
   DT_COR[Aktivität == activity, `Summe Aktivität` := sum(DATA[[activity]], na.rm = TRUE)]
 }
+
+# correlation of activities with each other
+MAT_COR <- matrix(data = 0, nrow = length(ACTIVITIES), ncol = length(ACTIVITIES))
+colnames(MAT_COR) <- ACTIVITIES
+rownames(MAT_COR) <- ACTIVITIES
+for (i in ACTIVITIES) {
+  for (j in ACTIVITIES) {
+    MAT_COR[i, j] <- round(cor(DATA[[i]], DATA[[j]]), 2)
+  }
+}
+
 
 WOCHENTAGE <- c(
   "Montag",

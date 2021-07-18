@@ -1,7 +1,7 @@
 library(data.table)
 library(lubridate)
 
-fileName <- "daylio_export_2021_02_13.csv"
+fileName <- "daylio_export_2021_07_18.csv"
 dtOrig <- fread(paste0("data/", fileName), encoding = "UTF-8")
 dt <- dtOrig[, .(
   Datum = as.Date(full_date),

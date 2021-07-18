@@ -154,6 +154,25 @@ shinyServer(function(input, output) {
               td.style.background = 'lightgreen';
              }
            }")
+        tbl
+    })
+    
+    output$correlation_matrix <- renderRHandsontable({#renderDataTable({
+        # tbl <- rhandsontable(MAT_COR)
+        # tbl <- hot_cols(tbl, fixedColumnsLeft = 0)
+        # tbl <- hot_rows(tbl, fixedRowsTop = 0)
+        tbl <- rhandsontable(MAT_COR)
+        tbl <- hot_cols(tbl,
+            renderer = "
+           function (instance, td, row, col, prop, value, cellProperties) {
+             Handsontable.renderers.NumericRenderer.apply(this, arguments);
+             if (col != row && value < -0.1) {
+              td.style.background = 'pink';
+             } else if (col != row && value > 0.1) {
+              td.style.background = 'lightgreen';
+             }
+           }")
+        tbl
     })
     
     output$single_day <- renderRHandsontable({
