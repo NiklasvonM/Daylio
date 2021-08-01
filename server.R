@@ -190,4 +190,18 @@ shinyServer(function(input, output) {
         tbl[Aktivität == "Datum", Wert := format(as.Date(as.integer(Wert), origin = "1970-01-01"), format = "%d.%m.%Y")]
         rhandsontable(tbl)
     })
+    
+    output$lookback_pointplot <- renderPlotly({
+        dt <- DATA[, c("Stimmung", input$activity), with = FALSE]
+        dt[, Anzahl := countEntriesLookback(get(input$activity), nLookback = input$lookback_pointplot_n)]
+        dt <- dt[!is.na(Anzahl)]
+        dt[, N := .N, by = c("Anzahl")]
+        dtPlot <- dt[, .(Stimmung = mean(Stimmung, na.rm = TRUE)), by = c("Anzahl", "N")]
+        p <- ggplot(dtPlot, aes(Anzahl, Stimmung)) +
+            geom_point(aes(size = N)) +
+            geom_line() +
+            scale_y_continuous(limits = c(1, 5))
+        p <- ggplotly(p)
+        p
+    })
 })

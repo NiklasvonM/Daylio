@@ -32,7 +32,8 @@ shinyUI(
                 menuItem("Wochentag", tabName = "wochentag", icon = icon("calendar-alt")),
                 menuItem("Korrelationstabelle", tabName = "correlation_table", icon = icon("cannabis")),
                 menuItem("Korrelationsmatrix", tabName = "correlation_matrix", icon = icon("cannabis")),
-                menuItem("Einzelne Tage", tabName = "single_day", icon = icon("calendar"))
+                menuItem("Einzelne Tage", tabName = "single_day", icon = icon("calendar")),
+                menuItem("Aktivitätenanzahl Vortage", tabName = "lookback", icon = icon("cannabis"))
             ),
             selectInput(
                 inputId = "activity",
@@ -82,6 +83,11 @@ shinyUI(
                     ),
                     rHandsontableOutput("single_day")
                     #dataTableOutput("single_day")
+                ),
+                tabItem(tabName = "lookback",
+                    h2("Durchschnittliche Stimmung nach Aktivitäten in den Vortagen"),
+                    plotlyOutput("lookback_pointplot"),
+                    sliderInput("lookback_pointplot_n", "Anzahl Tage: ", min = 1, max = 365, step = 1, value = 14)
                 )
             )
         )
