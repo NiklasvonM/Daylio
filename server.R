@@ -100,8 +100,10 @@ shinyServer(function(input, output) {
         p <- ggplot(
             data = dtPlot,
             mapping = aes(
-                x = Monatstag,
-                y = Monat,
+                x = Monat,
+                y = Monatstag,
+                #x = Monatstag,
+                #y = Monat,
                 fill = Stimmung,
                 text = paste0(
                     "Tag: ", Tag, "<br>",
@@ -111,7 +113,8 @@ shinyServer(function(input, output) {
         ) +
             geom_tile() +
             scale_fill_gradient(low = "red", high = "green") +
-            scale_y_reverse(breaks = 1:12)
+            scale_x_continuous(breaks = 1:12) +
+            scale_y_reverse(breaks = 1:31)
         p <- ggplotly(p, tooltip = "text")
         p
     })
@@ -203,5 +206,18 @@ shinyServer(function(input, output) {
             scale_y_continuous(limits = c(1, 5))
         p <- ggplotly(p)
         p
+    })
+    
+    output$mean_mood_by_activity_value <- renderPlotly({
+      activity <- input$activity
+      dtPlot <- DATA[, .(`Durchschnittsstimmung` = mean(Stimmung, na.rm = TRUE), N = .N), by = c(activity)]
+      setnames(dtPlot, activity, make.names(activity))
+      p <- ggplot(dtPlot, aes_string(x = make.names(activity), y = "Durchschnittsstimmung")) +
+        geom_line() +
+        geom_point(aes(size = N)) +
+        scale_y_continuous(limits = c(1, 5)) +
+        scale_size_continuous(limits = c(0, max(dtPlot$N)))
+      p <- ggplotly(p)
+      p
     })
 })

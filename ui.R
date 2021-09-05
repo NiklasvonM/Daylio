@@ -33,7 +33,8 @@ shinyUI(
                 menuItem("Korrelationstabelle", tabName = "correlation_table", icon = icon("cannabis")),
                 menuItem("Korrelationsmatrix", tabName = "correlation_matrix", icon = icon("cannabis")),
                 menuItem("Einzelne Tage", tabName = "single_day", icon = icon("calendar")),
-                menuItem("Aktivitätenanzahl Vortage", tabName = "lookback", icon = icon("cannabis"))
+                menuItem("Aktivitätenanzahl Vortage", tabName = "lookback", icon = icon("cannabis")),
+                menuItem("Stimmung nach Aktivitätswert", tabName = "mean_mood_by_activity_value", icon = icon("cannabis"))
             ),
             selectInput(
                 inputId = "activity",
@@ -88,6 +89,10 @@ shinyUI(
                     h2("Durchschnittliche Stimmung nach Aktivitäten in den Vortagen"),
                     plotlyOutput("lookback_pointplot"),
                     sliderInput("lookback_pointplot_n", "Anzahl Tage: ", min = 1, max = 365, step = 1, value = 14)
+                ),
+                tabItem(tabName = "mean_mood_by_activity_value",
+                    h2("Durchschnittliche Stimmung nach Aktivitätswert"),
+                    plotlyOutput("mean_mood_by_activity_value")
                 )
             )
         )

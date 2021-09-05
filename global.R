@@ -6,9 +6,12 @@ library(shinydashboard)
 library(lubridate)
 library(rhandsontable)
 
-fileName <- "Daten aufbereitet 2021-07-18"
+fileName <- "Daten aufbereitet 2021-09-05"
 DATA <- fread(paste0("data/", fileName, ".csv"), encoding = "UTF-8")
 DATA[, Datum := as.Date(Datum)]
+DATA[, Monat := month(Datum)]
+DATA[, `Wochentag Zahl` := wday(Datum, week_start = 1)]
+DATA[, `Tag im Monat` := mday(Datum)]
 ACTIVITIES <- names(DATA)
 ACTIVITIES <- ACTIVITIES[!ACTIVITIES %in% c("Datum", "Wochentag", "Stimmung")]
 ACTIVITIES <- sort(ACTIVITIES)
@@ -18,7 +21,8 @@ DT_COR <- data.table(
   Aktivität = ACTIVITIES
 )
 for (activity in ACTIVITIES) {
-  DT_COR[Aktivität == activity, Korrelation := round(cor(DATA$Stimmung, DATA[[activity]]), 2)]
+  if(is.numeric(DATA[[activity]]))
+    DT_COR[Aktivität == activity, Korrelation := round(cor(DATA$Stimmung, DATA[[activity]]), 2)]
   DT_COR[
     Aktivität == activity,
     `Durchschnittliche Stimmung mit Aktivität` := round(mean(DATA[get(activity) > 0, Stimmung], na.rm = TRUE), 2)
