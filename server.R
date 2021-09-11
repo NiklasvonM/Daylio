@@ -208,15 +208,39 @@ shinyServer(function(input, output) {
         p
     })
     
-    output$mean_mood_by_activity_value <- renderPlotly({
-      activity <- input$activity
-      dtPlot <- DATA[, .(`Durchschnittsstimmung` = mean(Stimmung, na.rm = TRUE), N = .N), by = c(activity)]
+    output$mood_distribution_by_activity_value <- renderPlotly({
+      activity <<- input$activity
+      dtPlot <<- DATA[, c("Stimmung", activity), with = FALSE]
+      if (is.numeric(dtPlot[[activity]])) {
+          dtPlot[, (activity) := ordered(as.character(get(activity)))]
+      } else {
+          dtPlot[, (activity) := factor(get(activity))]
+      }
+      dtPlot[, n_activity := .N, by = c(activity)]
+      dtPlot[, Datenpunkte := .N, by = c("Stimmung", activity)]
+      dtPlot <- unique(dtPlot)
+      dtFill <- as.data.table(expand.grid(
+          Stimmung = unique(dtPlot$Stimmung),
+          V1 = unique(dtPlot[[activity]])
+      ))
+      setnames(dtFill, "V1", activity)
+      dtPlot <- merge(dtPlot, dtFill, by = c("Stimmung", activity), all = TRUE)
+      dtPlot[, `Stimmungsverteilung` := Datenpunkte / n_activity]
+      dtPlot[is.na(Stimmungsverteilung), Stimmungsverteilung := 0]
+      dtPlot[is.na(Datenpunkte), Datenpunkte := 0]
+      # dtPlot <- DATA[, .(`Durchschnittsstimmung` = mean(Stimmung, na.rm = TRUE), N = .N), by = c(activity)]
       setnames(dtPlot, activity, make.names(activity))
-      p <- ggplot(dtPlot, aes_string(x = make.names(activity), y = "Durchschnittsstimmung")) +
-        geom_line() +
-        geom_point(aes(size = N)) +
-        scale_y_continuous(limits = c(1, 5)) +
-        scale_size_continuous(limits = c(0, max(dtPlot$N)))
+      p <- ggplot(dtPlot, aes_string(x = "Stimmung", y = "Stimmungsverteilung", color = make.names(activity))) +
+          geom_line() +
+          geom_point(aes(size = Datenpunkte)) +
+          scale_y_continuous(limits = c(0, 1)) +
+          scale_x_continuous(limits = c(1, 5)) +
+          scale_size_continuous(limits = c(0, max(dtPlot$n)))
+      # p <- ggplot(dtPlot, aes_string(x = make.names(activity), y = "Durchschnittsstimmung")) +
+      #   geom_line() +
+      #   geom_point(aes(size = N)) +
+      #   scale_y_continuous(limits = c(1, 5)) +
+      #   scale_size_continuous(limits = c(0, max(dtPlot$N)))
       p <- ggplotly(p)
       p
     })
