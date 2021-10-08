@@ -209,8 +209,8 @@ shinyServer(function(input, output) {
     })
     
     output$mood_distribution_by_activity_value <- renderPlotly({
-      activity <<- input$activity
-      dtPlot <<- DATA[, c("Stimmung", activity), with = FALSE]
+      activity <- input$activity
+      dtPlot <- DATA[, c("Stimmung", activity), with = FALSE]
       if (is.numeric(dtPlot[[activity]])) {
           dtPlot[, (activity) := ordered(as.character(get(activity)))]
       } else {
@@ -243,5 +243,32 @@ shinyServer(function(input, output) {
       #   scale_size_continuous(limits = c(0, max(dtPlot$N)))
       p <- ggplotly(p)
       p
+    })
+    
+    output$mood_distribution_wwo_activity <- renderPlotly({
+      dtCur <- DATA
+      use <- input$dropzone_w
+      use_not <- input$dropzone_wo
+      if(length(use) > 0) {
+        for(activity in use) {
+          dtCur <- dtCur[get(activity) >= 1]
+        }
+      }
+      if(length(use_not) > 0) {
+        for(activity in use_not) {
+          dtCur <- dtCur[get(activity) <= 0]
+        }
+      }
+      req(nrow(dtCur) > 0)
+      dtPlot <- dtCur[, .(Dichte = .N / nrow(dtCur)), by = .(Stimmung)]
+      dtPlot <- merge(dtPlot, data.table(Stimmung = 1:5), by = c("Stimmung"), all = TRUE)
+      dtPlot[is.na(Dichte), Dichte := 0]
+      dtTest <<- dtPlot
+      p <- ggplot(dtPlot, aes(Stimmung, Dichte)) +
+        geom_bar(stat = "identity") +
+        #scale_x_continuous(limits = c(1, 5)) +
+        scale_y_continuous(limits = c(0, 1))
+      g <- ggplotly(p)
+      g
     })
 })

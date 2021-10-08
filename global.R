@@ -5,8 +5,9 @@ library(shiny)
 library(shinydashboard)
 library(lubridate)
 library(rhandsontable)
+library(dndselectr)
 
-fileName <- "Daten aufbereitet 2021-09-05"
+fileName <- "Daten aufbereitet 2021-09-14"
 DATA <- fread(paste0("data/", fileName, ".csv"), encoding = "UTF-8")
 DATA[, Datum := as.Date(Datum)]
 DATA[, Monat := month(Datum)]

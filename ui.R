@@ -34,7 +34,8 @@ shinyUI(
                 menuItem("Korrelationsmatrix", tabName = "correlation_matrix", icon = icon("cannabis")),
                 menuItem("Einzelne Tage", tabName = "single_day", icon = icon("calendar")),
                 menuItem("Aktivitätenanzahl Vortage", tabName = "lookback", icon = icon("cannabis")),
-                menuItem("Stimmung nach Aktivitätswert", tabName = "mood_distribution_by_activity_value", icon = icon("cannabis"))
+                menuItem("Stimmung nach Aktivitätswert", tabName = "mood_distribution_by_activity_value", icon = icon("cannabis")),
+                menuItem("Verteilung mit/ohne Aktivität", tabName = "mood_distribution_wwo_activity", icon = icon("cannabis"))
             ),
             selectInput(
                 inputId = "activity",
@@ -93,6 +94,31 @@ shinyUI(
                 tabItem(tabName = "mood_distribution_by_activity_value",
                     h2("Durchschnittliche Stimmung nach Aktivitätswert"),
                     plotlyOutput("mood_distribution_by_activity_value")
+                ),
+                tabItem(tabName = "mood_distribution_wwo_activity",
+                    fluidRow(
+                        plotlyOutput("mood_distribution_wwo_activity")
+                    ),
+                    fluidRow(
+                        column(4,
+                               h3("Aktivitäten"),
+                               dragZone("dragzone_activity",
+                                        choices = ACTIVITIES
+                               )
+                        ),
+                        column(4,
+                               h3("Einschließen"),
+                               dropZoneInput("dropzone_w",
+                                             choices = ACTIVITIES
+                               )
+                        ),
+                        column(4,
+                               h3("Ausschließen"),
+                               dropZoneInput("dropzone_wo",
+                                             choices = ACTIVITIES
+                               )
+                        )
+                    )
                 )
             )
         )
