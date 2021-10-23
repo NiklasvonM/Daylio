@@ -32,6 +32,7 @@ shinyUI(
                 menuItem("Wochentag", tabName = "wochentag", icon = icon("calendar-alt")),
                 menuItem("Korrelationstabelle", tabName = "correlation_table", icon = icon("cannabis")),
                 menuItem("Korrelationsmatrix", tabName = "correlation_matrix", icon = icon("cannabis")),
+                menuItem("Korrelationsmatrix Lag 1", tabName = "correlation_matrix_lag", icon = icon("cannabis")),
                 menuItem("Einzelne Tage", tabName = "single_day", icon = icon("calendar")),
                 menuItem("Aktivitätenanzahl Vortage", tabName = "lookback", icon = icon("cannabis")),
                 menuItem("Stimmung nach Aktivitätswert", tabName = "mood_distribution_by_activity_value", icon = icon("cannabis")),
@@ -71,8 +72,22 @@ shinyUI(
                 ),
                 tabItem(tabName = "correlation_matrix",
                     h2("Korrelation der einzelnen Aktivitäten"),
+                    plotlyOutput("correlation_matrix_plot", height = "1200px"),
+                    sliderInput("correlationThreshold",
+                                "Mindestkorrelation",
+                                min = -1, max = 1, value = c(-1, 1), step = 0.01),
                     #dataTableOutput("correlation_matrix")
                     rHandsontableOutput("correlation_matrix")
+                ),
+                tabItem(tabName = "correlation_matrix_lag",
+                        h2("Korrelation der einzelnen Aktivitäten"),
+                        plotlyOutput("correlation_matrix_lag_plot", height = "1200px"),
+                        sliderInput("correlationThresholdLag",
+                                    "Mindestkorrelation",
+                                    min = -1, max = 1, value = c(-1, 1), step = 0.01),
+                        h3("Spalte repräsentiert Folgetag"),
+                        #dataTableOutput("correlation_matrix")
+                        rHandsontableOutput("correlation_matrix_lag")
                 ),
                 tabItem(tabName = "single_day",
                     h2("Was ist an diesem Tag passiert?"),

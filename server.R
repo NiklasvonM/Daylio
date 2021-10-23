@@ -178,6 +178,93 @@ shinyServer(function(input, output) {
         tbl
     })
     
+    output$correlation_matrix_plot <- renderPlotly({
+      dtPlot <- data.table(
+        Aktivitaet = rownames(MAT_COR)[row(MAT_COR)],
+        `Aktivitaet2` = colnames(MAT_COR)[col(MAT_COR)],
+        KorrelationPlot = c(MAT_COR)
+      )
+      dtPlot[, Korrelation := KorrelationPlot]
+      dtPlot[!(input$correlationThreshold[1] <= Korrelation & Korrelation <= input$correlationThreshold[2]), KorrelationPlot := NA]
+      dtPlot[Korrelation < 0, Farbe := -1]
+      dtPlot[Korrelation > 0, Farbe := 1]
+      dtPlot[is.na(Farbe), Farbe := 0]
+      p <- ggplot(
+        dtPlot,
+        aes(
+          Aktivitaet,
+          Aktivitaet2,
+          size = abs(KorrelationPlot),
+          color = Farbe,
+          text = paste0(
+            "Aktivität 1: ", Aktivitaet, "<br>",
+            "Aktivität 2: ", Aktivitaet2, "<br>",
+            "Korrelation: ", Korrelation
+          )
+        )
+      ) +
+        geom_point() +
+        scale_color_continuous(low = "#3794bf", high = "#df8640") +
+        theme(legend.position = "none") +
+        xlab("Aktivität 1") +
+        ylab("Aktivität 2") +
+        scale_size_continuous(limits = c(0, 1))
+      ggplotly(p, tooltip = "text")
+    })
+    
+    output$correlation_matrix_lag <- renderRHandsontable({#renderDataTable({
+      # tbl <- rhandsontable(MAT_COR)
+      # tbl <- hot_cols(tbl, fixedColumnsLeft = 0)
+      # tbl <- hot_rows(tbl, fixedRowsTop = 0)
+      tbl <- rhandsontable(MAT_COR_LAG, readOnly = TRUE)
+      tbl <- hot_cols(tbl,
+                      renderer = "
+           function (instance, td, row, col, prop, value, cellProperties) {
+             Handsontable.renderers.NumericRenderer.apply(this, arguments);
+             if (col != row && value < -0.1) {
+              td.style.background = 'pink';
+             } else if (col != row && value > 0.1) {
+              td.style.background = 'lightgreen';
+             }
+           }")
+      tbl <- hot_rows(tbl, fixedRowsTop = 1)
+      tbl
+    })
+    
+    output$correlation_matrix_lag_plot <- renderPlotly({
+      dtPlot <- data.table(
+        Aktivitaet = rownames(MAT_COR_LAG)[row(MAT_COR_LAG)],
+        `Aktivitaet_Lag_1` = colnames(MAT_COR_LAG)[col(MAT_COR_LAG)],
+        KorrelationPlot = c(MAT_COR_LAG)
+      )
+      dtPlot[, Korrelation := KorrelationPlot]
+      dtPlot[!(input$correlationThresholdLag[1] <= Korrelation & Korrelation <= input$correlationThresholdLag[2]), KorrelationPlot := NA]
+      dtPlot[Korrelation < 0, Farbe := -1]
+      dtPlot[Korrelation > 0, Farbe := 1]
+      dtPlot[is.na(Farbe), Farbe := 0]
+      p <- ggplot(
+        dtPlot,
+        aes(
+          Aktivitaet,
+          Aktivitaet_Lag_1,
+          size = abs(KorrelationPlot),
+          color = Farbe,
+          text = paste0(
+            "Aktivität: ", Aktivitaet, "<br>",
+            "Aktivität Folgetag: ", Aktivitaet_Lag_1, "<br>",
+            "Korrelation: ", Korrelation
+          )
+        )
+      ) +
+        geom_point() +
+        scale_color_continuous(low = "#3794bf", high = "#df8640") +
+        theme(legend.position = "none") +
+        xlab("Aktivität") +
+        ylab("Aktivität Folgetag") +
+        scale_size_continuous(limits = c(0, 1))
+      ggplotly(p, tooltip = "text")
+    })
+    
     output$single_day <- renderRHandsontable({
         date <- input$day
         tbl <- DATA[Datum == date]
@@ -263,7 +350,6 @@ shinyServer(function(input, output) {
       dtPlot <- dtCur[, .(Dichte = .N / nrow(dtCur)), by = .(Stimmung)]
       dtPlot <- merge(dtPlot, data.table(Stimmung = 1:5), by = c("Stimmung"), all = TRUE)
       dtPlot[is.na(Dichte), Dichte := 0]
-      dtTest <<- dtPlot
       p <- ggplot(dtPlot, aes(Stimmung, Dichte)) +
         geom_bar(stat = "identity") +
         #scale_x_continuous(limits = c(1, 5)) +

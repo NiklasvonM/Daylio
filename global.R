@@ -7,7 +7,7 @@ library(lubridate)
 library(rhandsontable)
 library(dndselectr)
 
-fileName <- "Daten aufbereitet 2021-09-14"
+fileName <- "Daten aufbereitet 2021-10-23"
 DATA <- fread(paste0("data/", fileName, ".csv"), encoding = "UTF-8")
 DATA[, Datum := as.Date(Datum)]
 DATA[, Monat := month(Datum)]
@@ -44,6 +44,20 @@ for (i in ACTIVITIES) {
     MAT_COR[i, j] <- round(cor(DATA[[i]], DATA[[j]]), 2)
   }
 }
+
+
+# correlation of activities with each other with lag 1 for columns
+MAT_COR_LAG <- matrix(data = 0, nrow = length(ACTIVITIES), ncol = length(ACTIVITIES))
+colnames(MAT_COR_LAG) <- ACTIVITIES
+rownames(MAT_COR_LAG) <- ACTIVITIES
+N <- nrow(DATA)
+for (i in ACTIVITIES) {
+  for (j in ACTIVITIES) {
+    MAT_COR_LAG[i, j] <- round(cor(DATA[1:(N-1)][[i]], DATA[2:N][[j]]), 2)
+  }
+}
+
+
 
 
 WOCHENTAGE <- c(
