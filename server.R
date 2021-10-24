@@ -205,7 +205,7 @@ shinyServer(function(input, output) {
       ) +
         geom_point() +
         scale_color_continuous(low = "#3794bf", high = "#df8640") +
-        theme(legend.position = "none") +
+        theme(legend.position = "none", axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
         xlab("Aktivität 1") +
         ylab("Aktivität 2") +
         scale_size_continuous(limits = c(0, 1))
@@ -258,7 +258,7 @@ shinyServer(function(input, output) {
       ) +
         geom_point() +
         scale_color_continuous(low = "#3794bf", high = "#df8640") +
-        theme(legend.position = "none") +
+        theme(legend.position = "none", axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
         xlab("Aktivität") +
         ylab("Aktivität Folgetag") +
         scale_size_continuous(limits = c(0, 1))
