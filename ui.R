@@ -36,7 +36,9 @@ shinyUI(
                 menuItem("Einzelne Tage", tabName = "single_day", icon = icon("calendar")),
                 menuItem("Aktivitätenanzahl Vortage", tabName = "lookback", icon = icon("cannabis")),
                 menuItem("Stimmung nach Aktivitätswert", tabName = "mood_distribution_by_activity_value", icon = icon("cannabis")),
-                menuItem("Verteilung mit/ohne Aktivität", tabName = "mood_distribution_wwo_activity", icon = icon("cannabis"))
+                menuItem("Verteilung Stimmung mit/ohne Aktivitäten", tabName = "mood_distribution_wwo_activity", icon = icon("cannabis")),
+                menuItem("Verteilung Tage mit/ohne Aktivität", tabName = "days_distr_wwo_activity"),
+                menuItem("Netzwerk", tabName = "network")
             ),
             selectInput(
                 inputId = "activity",
@@ -134,6 +136,17 @@ shinyUI(
                                )
                         )
                     )
+                ),
+                tabItem(tabName = "days_distr_wwo_activity",
+                    fluidRow(
+                        plotlyOutput("days_distr_w_activity_plot")
+                    ),
+                    fluidRow(
+                        plotlyOutput("days_distr_wo_activity_plot")
+                    )
+                ),
+                tabItem(tabName = "network",
+                      forceNetworkOutput("forcenetwork", height = "1000px")  
                 )
             )
         )

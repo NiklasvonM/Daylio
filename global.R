@@ -1,3 +1,5 @@
+library(networkD3)
+library(reshape2)
 library(data.table)
 library(ggplot2)
 library(plotly)
@@ -7,7 +9,7 @@ library(lubridate)
 library(rhandsontable)
 library(dndselectr)
 
-fileName <- "Daten aufbereitet 2021-10-23"
+fileName <- "Daten aufbereitet 2021-12-08"
 DATA <- fread(paste0("data/", fileName, ".csv"), encoding = "UTF-8")
 DATA[, Datum := as.Date(Datum)]
 DATA[, Monat := month(Datum)]
@@ -16,6 +18,7 @@ DATA[, `Tag im Monat` := mday(Datum)]
 ACTIVITIES <- names(DATA)
 ACTIVITIES <- ACTIVITIES[!ACTIVITIES %in% c("Datum", "Wochentag", "Stimmung")]
 ACTIVITIES <- sort(ACTIVITIES)
+N <- nrow(DATA)
 
 # correlation with Stimmung
 DT_COR <- data.table(
@@ -50,7 +53,6 @@ for (i in ACTIVITIES) {
 MAT_COR_LAG <- matrix(data = 0, nrow = length(ACTIVITIES), ncol = length(ACTIVITIES))
 colnames(MAT_COR_LAG) <- ACTIVITIES
 rownames(MAT_COR_LAG) <- ACTIVITIES
-N <- nrow(DATA)
 for (i in ACTIVITIES) {
   for (j in ACTIVITIES) {
     MAT_COR_LAG[i, j] <- round(cor(DATA[1:(N-1)][[i]], DATA[2:N][[j]]), 2)
@@ -88,6 +90,39 @@ countEntriesLookback <- function(v, nLookback = 14, fun = sum) {
   return(res)
 }
 
+
+DT_ACTIVITY_LENGTH_DISTR <- as.data.table(expand.grid(
+  Activity = ACTIVITIES,
+  Days = 1:N
+))
+DT_ACTIVITY_LENGTH_DISTR[, `:=`(`n with activity` = 0, `n without activity` = 0)]
+
+# for(activity in ACTIVITIES) {
+#   cntWith <- 0
+#   cntWithout <- 0
+#   for(i in 1:N) {
+#     activityValue <- DATA[i, get(activity)]
+#     if (activityValue > 0) {
+#       cntWith <- cntWith + 1
+#       if (cntWithout > 0) {
+#         DT_ACTIVITY_LENGTH_DISTR[Activity == activity & Days == cntWithout, `n without activity` := `n without activity` + 1]
+#       }
+#       cntWithout <- 0
+#     } else {
+#       cntWithout <- cntWithout + 1
+#       if (cntWith > 0) {
+#         DT_ACTIVITY_LENGTH_DISTR[Activity == activity & Days == cntWith, `n with activity` := `n with activity` + 1]
+#       }
+#       cntWith <- 0
+#     }
+#   }
+#   if (cntWith > 0) {
+#     DT_ACTIVITY_LENGTH_DISTR[Activity == activity & Days == cntWith, `n with activity` := `n with activity` + 1]
+#   }
+#   if (cntWithout > 0) {
+#     DT_ACTIVITY_LENGTH_DISTR[Activity == activity & Days == cntWithout, `n without activity` := `n without activity` + 1]
+#   }
+# }
 
 
 

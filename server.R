@@ -357,4 +357,54 @@ shinyServer(function(input, output) {
       g <- ggplotly(p)
       g
     })
+    
+    output$days_distr_w_activity_plot <- renderPlotly({
+      activity <- input$activity
+      dtPlot <- DT_ACTIVITY_LENGTH_DISTR[Activity == activity, .(Tage = Days, `Anzahl` = `n with activity`)]
+      maxDay <- max(dtPlot[Anzahl > 0]$Tage)
+      dtPlot <- dtPlot[Tage <= maxDay]
+      p <- ggplot(dtPlot, aes(Tage, Anzahl)) +
+        geom_bar(stat = "identity") +
+        ggtitle(paste0("Verteilung der Anzahl aufeinanderfolgender Tage mit der Aktivität ", activity))
+      ggplotly(p)
+    })
+    
+    output$days_distr_wo_activity_plot <- renderPlotly({
+      activity <- input$activity
+      dtPlot <- DT_ACTIVITY_LENGTH_DISTR[Activity == activity, .(Tage = Days, `Anzahl` = `n without activity`)]
+      maxDay <- max(dtPlot[Anzahl > 0]$Tage)
+      dtPlot <- dtPlot[Tage <= maxDay]
+      p <- ggplot(dtPlot, aes(Tage, Anzahl)) +
+        geom_bar(stat = "identity") +
+        ggtitle(paste0("Verteilung der Anzahl aufeinanderfolgender Tage ohne die Aktivität ", activity))
+      ggplotly(p)
+    })
+    
+    output$forcenetwork <- renderForceNetwork({
+      
+      links <- data.table(reshape2::melt(MAT_COR))
+      setnames(links, c("Activity1", "Activity2", "value"))
+      links <- unique(links)
+      index1 <- data.table(Activity1 = ACTIVITIES)
+      index2 <- data.table(Activity2 = ACTIVITIES)
+      index1[, source := .I-1]
+      index2[, target := .I-1]
+      links <- merge(links, index1, all.x = TRUE, by = "Activity1")
+      links <- merge(links, index2, all.x = TRUE, by = "Activity2")
+      links <- links[source < target]
+      #links[, value := floor(exp(5*value))]
+      links <- links[value > 0.13]
+      
+      nodes <- data.table(name = ACTIVITIES)
+      nodes[, id := .I-1]
+      nodes[, group := 0]
+      
+      forceNetwork(
+        Links = links, Nodes = nodes, Source = "source", Target = "target",
+        Value = "value", NodeID = "name", Group = "group", opacityNoHover = 1,
+        opacity = 1, fontSize = 20, charge = -100
+      )
+      
+    })
+    
 })
