@@ -146,7 +146,7 @@ shinyUI(
                     )
                 ),
                 tabItem(tabName = "network",
-                      forceNetworkOutput("forcenetwork", height = "1000px")  
+                      visNetworkOutput("forcenetwork", height = "1000px")  
                 )
             )
         )

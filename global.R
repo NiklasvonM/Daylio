@@ -1,4 +1,4 @@
-library(networkD3)
+library(visNetwork)
 library(reshape2)
 library(data.table)
 library(ggplot2)

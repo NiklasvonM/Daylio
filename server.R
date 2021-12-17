@@ -380,30 +380,47 @@ shinyServer(function(input, output) {
       ggplotly(p)
     })
     
-    output$forcenetwork <- renderForceNetwork({
+    output$forcenetwork <- renderVisNetwork({
       
       links <- data.table(reshape2::melt(MAT_COR))
       setnames(links, c("Activity1", "Activity2", "value"))
       links <- unique(links)
       index1 <- data.table(Activity1 = ACTIVITIES)
       index2 <- data.table(Activity2 = ACTIVITIES)
-      index1[, source := .I-1]
-      index2[, target := .I-1]
+      index1[, from := .I-1]
+      index2[, to := .I-1]
       links <- merge(links, index1, all.x = TRUE, by = "Activity1")
       links <- merge(links, index2, all.x = TRUE, by = "Activity2")
-      links <- links[source < target]
-      #links[, value := floor(exp(5*value))]
-      links <- links[value > 0.13]
+      links <- links[from < to]
+      links <- links[value > 0.1]
       
-      nodes <- data.table(name = ACTIVITIES)
+      nodes <- data.table(label = ACTIVITIES)
       nodes[, id := .I-1]
-      nodes[, group := 0]
       
-      forceNetwork(
-        Links = links, Nodes = nodes, Source = "source", Target = "target",
-        Value = "value", NodeID = "name", Group = "group", opacityNoHover = 1,
-        opacity = 1, fontSize = 20, charge = -100
+      if(file.exists("ActivityGroups.csv")) {
+        activityGroups <- fread("ActivityGroups.csv", encoding = "UTF-8")
+        nodes <- merge(nodes, activityGroups, by.x = "label", by.y = "Activity", all.x = TRUE)
+        #setnames(nodes, "ActivityGroup", "group")
+      }
+      
+      nodes <- merge(
+        nodes[, -"group", with = FALSE],
+        DT_COR[, .(label = Aktivität, Korrelation)],
+        all.x = TRUE, by = "label"
       )
+      nodes[Korrelation < -0.05, group := -1]
+      nodes[-0.05 <= Korrelation & Korrelation <= 0.05, group := 0]
+      nodes[0.05 < Korrelation, group := 1]
+      nodes[is.na(group), group := 99]
+      
+      nodes[, title := paste0(
+        "Aktivität: ", label, "<br>",
+        "Korrelation mit Stimmung: ", Korrelation, "<br>",
+        "Gruppe: ", ActivityGroup
+      )]
+      
+      
+      visNetwork(nodes, links)
       
     })
     
