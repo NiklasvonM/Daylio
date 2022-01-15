@@ -139,8 +139,9 @@ getLocationData <- function(directory) {
                                      Longitude = location.longitudeE7,
                                      Adresse = location.address,
                                      Adressname = location.name,
-                                     Startzeit = as.POSIXct("1970-01-01", tz = "Europe/Berlin") + as.numeric(duration.startTimestampMs) / 1000,
-                                     Endzeit = as.POSIXct("1970-01-01", tz = "Europe/Berlin") + as.numeric(duration.endTimestampMs) / 1000
+                                     # TODO: Fix lazy hack (+3600): Time is off by one hour.
+                                     Startzeit = as.POSIXct("1970-01-01", tz = "Europe/Berlin") + as.numeric(duration.startTimestampMs) / 1000 + 3600,
+                                     Endzeit = as.POSIXct("1970-01-01", tz = "Europe/Berlin") + as.numeric(duration.endTimestampMs) / 1000 + 3600
     )]
     dt
   }
@@ -167,8 +168,16 @@ getLocationData <- function(directory) {
   setorder(dtFilled, "Startzeit")
   #dtFilled[, I := .I, by = .(Startzeit)]
   dtFilled[, Datum := Datum + rowid(Startzeit) - 1]
-  dtFilled[, N := .N, by = .(Startzeit)]
+  #dtFilled[, N := .N, by = .(Startzeit)]
   dtFilled[, AdresseFull := ifelse(is.na(Adresse), Adressname, paste0(Adressname, " (", Adresse, ")"))]
+  
+  meanLong <- mean(dtFilled$Longitude)
+  meanLat <- mean(dtFilled$Latitude)
+  dtFilled[, DistanceFromMeanLocation := sqrt((Longitude - meanLong)^2 + (Latitude - meanLat)^2)]
+  dtFilled[, PLZ := stringr::str_extract(Adresse, stringr::regex("[0-9]{5}"))]
+  # 4 digits and 2 letters for Dutch PLZ
+  dtFilled[is.na(PLZ), PLZ := stringr::str_extract(Adresse, stringr::regex("[0-9]{4} [a-zA-Z]{2}"))]
+  #View(DT_LOCATION[is.na(PLZ)])
   dtFilled
 }
 
@@ -176,3 +185,20 @@ DT_LOCATION <- getLocationData("data/GoogleMaps/Semantic Location History/")
 DATES_NO_LOCATION_DATA <- seq(min(DT_LOCATION$DatumStart), max(DT_LOCATION$DatumEnde), by = "days")
 DATES_NO_LOCATION_DATA <- DATES_NO_LOCATION_DATA[!DATES_NO_LOCATION_DATA %in% DT_LOCATION$Datum]
 
+
+PLZ_VISITED <- DT_LOCATION[!is.na(PLZ), .(
+  Longitude = mean(Longitude),
+  Latitude = mean(Latitude),
+  TimesVisited = length(unique(Datum)),
+  FirstVisit = min(Datum),
+  LastVisit = max(Datum)
+  ), by = .(PLZ)]
+
+PLACES_VISITED <- DT_LOCATION[, .(
+  Adressen = paste0(unique(Adresse), collapse = "; "),
+  Adressname = paste0(unique(Adressname), collapse = "; "),
+  AdresseFull = paste0(unique(AdresseFull), collapse = "; "),
+  MinDate = min(Datum),
+  MaxDate = max(Datum),
+  DaysVisited = length(unique(Datum))
+  ), by = .(Latitude, Longitude, DistanceFromMeanLocation)]

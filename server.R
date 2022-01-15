@@ -424,7 +424,7 @@ shinyServer(function(input, output) {
       
     })
     
-    # World Map
+    # world map with daily visits 
     output$worldmap <- renderLeaflet({
       
       dateSelected <- input$day
@@ -434,7 +434,7 @@ shinyServer(function(input, output) {
                          options = providerTileOptions(noWrap = TRUE))
       
       dtLocations <- DT_LOCATION[Datum == dateSelected]
-      
+      # TODO: Handle overwriting if a location is visited more than once.
       for(i in seq(length = nrow(dtLocations))) {
         curLocation <- dtLocations[i]
         curStartzeit <- curLocation$Startzeit
@@ -459,6 +459,39 @@ shinyServer(function(input, output) {
                 "Endzeit: ",
                   ifelse(curLocation$DatumStart != curLocation$DatumEnde, paste0(format(curLocation$DatumEnde, "%d.%m.%Y"), " "), ""),
                   format(curEndzeit, "%H:%M"), " Uhr<br>"
+              )
+            )
+          )
+      }
+      
+      basemap
+    })
+    
+    # world map with daily visits 
+    output$plz_visited <- renderLeaflet({
+      
+      basemap <- leaflet()  %>%
+        addProviderTiles(providers$Stamen.TonerLite,
+                         options = providerTileOptions(noWrap = TRUE))
+      
+      for(i in seq(length = nrow(PLZ_VISITED))) {
+        curLocation <- PLZ_VISITED[i]
+        curStartzeit <- curLocation$Startzeit
+        curEndzeit <- curLocation$Endzeit
+        basemap <- basemap %>%
+          addMinicharts(
+            lng = curLocation$Longitude,
+            lat = curLocation$Latitude,
+            opacity = 0.5,
+            # Hovertext
+            popup = popupArgs(
+              html = paste0(
+                "PLZ: ", curLocation$PLZ, "<br>",
+                "Erster Besuch: ", format(curLocation$FirstVisit, "%d.%m.%Y"), "<br>",
+                "Letzter Besuch: ", format(curLocation$LastVisit, "%d.%m.%Y"), "<br>",
+                "Anzahl Besuche: ", curLocation$TimesVisited, "<br>",
+                "Latitude: ", curLocation$Latitude, "<br>",
+                "Longitude: ", curLocation$Longitude
               )
             )
           )

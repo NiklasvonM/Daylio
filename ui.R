@@ -39,7 +39,8 @@ shinyUI(
                 menuItem("Verteilung Stimmung mit/ohne Aktivitäten", tabName = "mood_distribution_wwo_activity", icon = icon("cannabis")),
                 menuItem("Verteilung Tage mit/ohne Aktivität", tabName = "days_distr_wwo_activity"),
                 menuItem("Netzwerk", tabName = "network"),
-                menuItem("Standortdaten", tabName = "worldmap")
+                menuItem("Standortdaten", tabName = "worldmap"),
+                menuItem("Besuchte Orte", tabName = "plz_visited")
             ),
             selectInput(
                 inputId = "activity",
@@ -152,7 +153,11 @@ shinyUI(
                       visNetworkOutput("forcenetwork", height = "1000px")  
                 ),
                 tabItem(tabName = "worldmap",
-                        leafletOutput("worldmap", height = "1000px"))
+                        leafletOutput("worldmap", height = "1000px")
+                ),
+                tabItem(tabName = "plz_visited",
+                        leafletOutput("plz_visited", height = "1000px")
+                )
             )
         )
     )
