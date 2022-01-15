@@ -42,11 +42,6 @@ shinyServer(function(input, output) {
             geom_line(aes(x = Datum, y = RunningAvg7), color = "red", alpha = 0.6) +
             geom_line(aes(x = Datum, y = RunningAvg30), color = "blue", alpha = 0.6)
         p <- ggplotly(p, tooltip = "text")
-        # p <- layout(
-        #     p,
-        #     xaxis = list(rangeslider = list()),
-        #     yaxis = list(fixedrange = FALSE)
-        # )
         p
     })
     
@@ -283,7 +278,7 @@ shinyServer(function(input, output) {
     
     output$lookback_pointplot <- renderPlotly({
         dt <- DATA[, c("Stimmung", input$activity), with = FALSE]
-        dt[, Anzahl := countEntriesLookback(get(input$activity), nLookback = input$lookback_pointplot_n)]
+        dt[, Anzahl := countEntriesLookback(get(input$activity), nLookback = input$lookback_pointplot_n - 1)]
         dt <- dt[!is.na(Anzahl)]
         dt[, N := .N, by = c("Anzahl")]
         dtPlot <- dt[, .(Stimmung = mean(Stimmung, na.rm = TRUE)), by = c("Anzahl", "N")]
@@ -430,8 +425,8 @@ shinyServer(function(input, output) {
       dateSelected <- input$day
       
       basemap <- leaflet()  %>%
-        addProviderTiles(providers$Stamen.TonerLite,
-                         options = providerTileOptions(noWrap = TRUE))
+        addTiles()
+        #addProviderTiles(providers$Stamen.TonerLite, options = providerTileOptions(noWrap = TRUE))
       
       dtLocations <- DT_LOCATION[Datum == dateSelected]
       # TODO: Handle overwriting if a location is visited more than once.
@@ -471,8 +466,8 @@ shinyServer(function(input, output) {
     output$plz_visited <- renderLeaflet({
       
       basemap <- leaflet()  %>%
-        addProviderTiles(providers$Stamen.TonerLite,
-                         options = providerTileOptions(noWrap = TRUE))
+        addTiles()
+        #addProviderTiles(providers$Stamen.TonerLite, options = providerTileOptions(noWrap = TRUE))
       
       for(i in seq(length = nrow(PLZ_VISITED))) {
         curLocation <- PLZ_VISITED[i]
