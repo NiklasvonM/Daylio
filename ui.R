@@ -38,7 +38,8 @@ shinyUI(
                 menuItem("Stimmung nach Aktivitätswert", tabName = "mood_distribution_by_activity_value", icon = icon("cannabis")),
                 menuItem("Verteilung Stimmung mit/ohne Aktivitäten", tabName = "mood_distribution_wwo_activity", icon = icon("cannabis")),
                 menuItem("Verteilung Tage mit/ohne Aktivität", tabName = "days_distr_wwo_activity"),
-                menuItem("Netzwerk", tabName = "network")
+                menuItem("Netzwerk", tabName = "network"),
+                menuItem("Standortdaten", tabName = "worldmap")
             ),
             selectInput(
                 inputId = "activity",
@@ -46,7 +47,16 @@ shinyUI(
                 choices = ACTIVITIES,
                 multiple = FALSE
             ),
-            downloadButton("download")
+            downloadButton("download"),
+            dateInput(
+                "day",
+                "Tag",
+                format = "dd.mm.yyyy",
+                value = today() - 1,
+                max = today(),
+                language = "de",
+                datesdisabled = DATES_NO_LOCATION_DATA # currently not working
+            )
         ),
         dashboardBody(
             tabItems(
@@ -93,13 +103,6 @@ shinyUI(
                 ),
                 tabItem(tabName = "single_day",
                     h2("Was ist an diesem Tag passiert?"),
-                    dateInput(
-                        "day",
-                        "Tag",
-                        format = "dd.mm.yyyy",
-                        value = today() - 1,
-                        language = "de"
-                    ),
                     rHandsontableOutput("single_day")
                     #dataTableOutput("single_day")
                 ),
@@ -147,7 +150,9 @@ shinyUI(
                 ),
                 tabItem(tabName = "network",
                       visNetworkOutput("forcenetwork", height = "1000px")  
-                )
+                ),
+                tabItem(tabName = "worldmap",
+                        leafletOutput("worldmap", height = "1000px"))
             )
         )
     )

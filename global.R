@@ -1,15 +1,19 @@
-library(visNetwork)
+library(visNetwork) # network visualization
 library(reshape2)
 library(data.table)
 library(ggplot2)
 library(plotly)
 library(shiny)
-library(shinydashboard)
-library(lubridate)
-library(rhandsontable)
+library(shinydashboard) # dashboard UI
+library(lubridate) # date manipulation
+library(rhandsontable) # interactive table (Excel-like)
 library(dndselectr)
+library(leaflet) # world map
+library(leaflet.minicharts) # world map
+library(magrittr) # pipe
+library(jsonlite) # json reading
 
-fileName <- "Daten aufbereitet 2021-12-08"
+fileName <- "Daten aufbereitet 2021-12-28"
 DATA <- fread(paste0("data/", fileName, ".csv"), encoding = "UTF-8")
 DATA[, Datum := as.Date(Datum)]
 DATA[, Monat := month(Datum)]
@@ -125,5 +129,50 @@ DT_ACTIVITY_LENGTH_DISTR[, `:=`(`n with activity` = 0, `n without activity` = 0)
 # }
 
 
+getLocationData <- function(directory) {
+  getPlaceVisits <- function(fileName) {
+    df0 <- fromJSON(fileName, flatten = FALSE)[[1]]$placeVisit
+    dt0 <- as.data.table(df0)
+    if(! "centerLatE7" %in% names(dt0))
+      return(data.table())
+    dt <- dt0[!is.na(centerLatE7), .(Latitude = location.latitudeE7,
+                                     Longitude = location.longitudeE7,
+                                     Adresse = location.address,
+                                     Adressname = location.name,
+                                     Startzeit = as.POSIXct("1970-01-01", tz = "Europe/Berlin") + as.numeric(duration.startTimestampMs) / 1000,
+                                     Endzeit = as.POSIXct("1970-01-01", tz = "Europe/Berlin") + as.numeric(duration.endTimestampMs) / 1000
+    )]
+    dt
+  }
+  
+  dt <- Reduce(
+    f = function(x, y) rbindlist(list(x, y)),
+    x = lapply(X = list.files(path = directory, recursive = TRUE, full.names = TRUE),
+               FUN = getPlaceVisits),
+    init = data.table()
+    #fromJSON("Semantic Location History/2021/2021_DECEMBER.json")[[1]]
+  )
+  
+  dt[, DatumStart := as.Date(Startzeit)]
+  dt[, DatumEnde := as.Date(Endzeit)]
+  dt[, Latitude := Latitude / 10^7]
+  dt[, Longitude := Longitude / 10^7]
+  #View(dt[DatumStart != DatumEnde])
+  minDate <- min(as.Date(dt$Startzeit))
+  maxDate <- max(as.Date(dt$Endzeit))
+  
+  dtFill <- data.table(Datum = seq(minDate, maxDate, by = "days"))
+  
+  dtFilled <- dtFill[dt, on = .(Datum >= DatumStart, Datum <= DatumEnde), c(names(dt), "Datum"), with = FALSE]
+  setorder(dtFilled, "Startzeit")
+  #dtFilled[, I := .I, by = .(Startzeit)]
+  dtFilled[, Datum := Datum + rowid(Startzeit) - 1]
+  dtFilled[, N := .N, by = .(Startzeit)]
+  dtFilled[, AdresseFull := ifelse(is.na(Adresse), Adressname, paste0(Adressname, " (", Adresse, ")"))]
+  dtFilled
+}
 
+DT_LOCATION <- getLocationData("data/GoogleMaps/Semantic Location History/")
+DATES_NO_LOCATION_DATA <- seq(min(DT_LOCATION$DatumStart), max(DT_LOCATION$DatumEnde), by = "days")
+DATES_NO_LOCATION_DATA <- DATES_NO_LOCATION_DATA[!DATES_NO_LOCATION_DATA %in% DT_LOCATION$Datum]
 

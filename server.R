@@ -424,4 +424,47 @@ shinyServer(function(input, output) {
       
     })
     
+    # World Map
+    output$worldmap <- renderLeaflet({
+      
+      dateSelected <- input$day
+      
+      basemap <- leaflet()  %>%
+        addProviderTiles(providers$Stamen.TonerLite,
+                         options = providerTileOptions(noWrap = TRUE))
+      
+      dtLocations <- DT_LOCATION[Datum == dateSelected]
+      
+      for(i in seq(length = nrow(dtLocations))) {
+        curLocation <- dtLocations[i]
+        curStartzeit <- curLocation$Startzeit
+        curEndzeit <- curLocation$Endzeit
+        basemap <- basemap %>%
+          addMinicharts(
+            lng = curLocation$Longitude,
+            lat = curLocation$Latitude,
+            #chartdata = curEndzeit - curStartzeit,
+            time = curEndzeit - curStartzeit,
+            opacity = 0.5,
+            # Currently not working
+            labelText = paste0(format(curStartzeit, "%H:%M"), " - ", format(curEndzeit, "%H:%M")),
+            showLabels = TRUE,
+            # Hovertext
+            popup = popupArgs(
+              html = paste0(
+                "Adresse: ", curLocation$AdresseFull, "<br>",
+                "Startzeit: ",
+                  ifelse(curLocation$DatumStart != curLocation$DatumEnde, paste0(format(curLocation$DatumStart, "%d.%m.%Y"), " "), ""),
+                  format(curStartzeit, "%H:%M"), " Uhr", "<br>",
+                "Endzeit: ",
+                  ifelse(curLocation$DatumStart != curLocation$DatumEnde, paste0(format(curLocation$DatumEnde, "%d.%m.%Y"), " "), ""),
+                  format(curEndzeit, "%H:%M"), " Uhr<br>"
+              )
+            )
+          )
+      }
+      
+      basemap
+    })
+    
 })
