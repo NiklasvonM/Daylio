@@ -130,7 +130,7 @@ DT_ACTIVITY_LENGTH_DISTR[, `:=`(`n with activity` = 0, `n without activity` = 0)
 
 
 getLocationData <- function(directory) {
-  getPlaceVisits <- function(fileName) {
+  getLocationDataSingleMonth <- function(fileName) {
     df0 <- fromJSON(fileName, flatten = FALSE)[[1]]$placeVisit
     dt0 <- as.data.table(df0)
     if(! "centerLatE7" %in% names(dt0))
@@ -149,7 +149,7 @@ getLocationData <- function(directory) {
   dt <- Reduce(
     f = function(x, y) rbindlist(list(x, y)),
     x = lapply(X = list.files(path = directory, recursive = TRUE, full.names = TRUE),
-               FUN = getPlaceVisits),
+               FUN = getLocationDataSingleMonth),
     init = data.table()
     #fromJSON("Semantic Location History/2021/2021_DECEMBER.json")[[1]]
   )
@@ -202,3 +202,72 @@ PLACES_VISITED <- DT_LOCATION[, .(
   MaxDate = max(Datum),
   DaysVisited = length(unique(Datum))
   ), by = .(Latitude, Longitude, DistanceFromMeanLocation)]
+
+
+
+
+
+
+getMovementData <- function(directory) {
+  getMovementSingleMonth <- function(fileName) {
+    df0 <- fromJSON(fileName, flatten = FALSE)[[1]]$activitySegment
+    dt0 <- as.data.table(df0)
+    if(! "startLocation.latitudeE7" %in% names(dt0))
+      return(data.table())
+    if(! "distance" %in% names(dt0))
+      dt0[, distance := NA]
+    if(! "activityType" %in% names(dt0))
+      dt0[, activityType := NA]
+    dt <- dt0[!is.na(startLocation.latitudeE7), .(
+      StartLatitude = startLocation.latitudeE7,
+      StartLongitude = startLocation.longitudeE7,
+      EndLatitude = endLocation.latitudeE7,
+      EndLongitude = endLocation.longitudeE7,
+      Distanz = distance,
+      Fortbewegungsmittel = activityType,
+      # TODO: Fix lazy hack (+3600): Time is off by one hour.
+      Startzeit = as.POSIXct("1970-01-01", tz = "Europe/Berlin") + as.numeric(duration.startTimestampMs) / 1000 + 3600,
+      Endzeit = as.POSIXct("1970-01-01", tz = "Europe/Berlin") + as.numeric(duration.endTimestampMs) / 1000 + 3600
+    )]
+    dt
+  }
+  
+  dt <- Reduce(
+    f = function(x, y) rbindlist(list(x, y)),
+    x = lapply(X = list.files(path = directory, recursive = TRUE, full.names = TRUE),
+               FUN = getMovementSingleMonth),
+    init = data.table()
+    #fromJSON("Semantic Location History/2021/2021_DECEMBER.json")[[1]]
+  )
+  
+  dt[, DatumStart := as.Date(Startzeit)]
+  dt[, DatumEnde := as.Date(Endzeit)]
+  dt[, StartLatitude := StartLatitude / 10^7]
+  dt[, StartLongitude := StartLongitude / 10^7]
+  dt[, EndLatitude := EndLatitude / 10^7]
+  dt[, EndLongitude := EndLongitude / 10^7]
+  #View(dt[DatumStart != DatumEnde])
+  minDate <- min(as.Date(dt$Startzeit))
+  maxDate <- max(as.Date(dt$Endzeit))
+  
+  dtFill <- data.table(Datum = seq(minDate, maxDate, by = "days"))
+  
+  dtFilled <- dtFill[dt, on = .(Datum >= DatumStart, Datum <= DatumEnde), c(names(dt), "Datum"), with = FALSE]
+  setorder(dtFilled, "Startzeit")
+  #dtFilled[, I := .I, by = .(Startzeit)]
+  dtFilled[, Datum := Datum + rowid(Startzeit) - 1]
+  #dtFilled[, N := .N, by = .(Startzeit)]
+  dtFilled
+}
+
+DT_MOVEMENT <- getMovementData("data/GoogleMaps/Semantic Location History/")
+
+
+
+
+
+
+
+
+
+

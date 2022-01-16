@@ -428,6 +428,42 @@ shinyServer(function(input, output) {
         addTiles()
         #addProviderTiles(providers$Stamen.TonerLite, options = providerTileOptions(noWrap = TRUE))
       
+      dtMovement <- DT_MOVEMENT[Datum == dateSelected]
+      for(i in seq(length = nrow(dtMovement))) {
+        curMovement <- dtMovement[i]
+        if(curMovement$StartLatitude != curMovement$EndLatitude |
+           curMovement$StartLongitude != curMovement$EndLongitude) {
+          basemap <- basemap %>%
+            addFlows(
+              lng0 = curMovement$StartLongitude,
+              lat0 = curMovement$StartLatitude,
+              lng1 = curMovement$EndLongitude,
+              lat1 = curMovement$EndLatitude,
+              opacity = 0.5,
+              flow = 0.1,
+              color = "#848484",
+              popup = popupArgs(
+                html = paste0(
+                  "Startzeit: ",
+                  ifelse(curMovement$DatumStart != curMovement$DatumEnde, paste0(format(curMovement$DatumStart, "%d.%m.%Y"), " "), ""),
+                  format(curMovement$Startzeit, "%H:%M"), " Uhr", "<br>",
+                  "Endzeit: ",
+                  ifelse(curMovement$DatumStart != curMovement$DatumEnde, paste0(format(curMovement$DatumEnde, "%d.%m.%Y"), " "), ""),
+                  format(curMovement$Endzeit, "%H:%M"), " Uhr", "<br>",
+                  "Distanz: ", ifelse(
+                    curMovement$Distanz >= 1000,
+                    paste0(round(curMovement$Distanz / 1000, 2), "km"),
+                    paste0(curMovement$Distanz, "m")
+                  ), "<br>",
+                  "Fortbewegungsmittel: ", curMovement$Fortbewegungsmittel
+                )
+              )
+            )
+        }
+        
+      }
+      
+      
       dtLocations <- DT_LOCATION[Datum == dateSelected]
       # TODO: Handle overwriting if a location is visited more than once.
       for(i in seq(length = nrow(dtLocations))) {
