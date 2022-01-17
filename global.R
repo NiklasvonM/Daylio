@@ -13,7 +13,7 @@ library(leaflet.minicharts) # world map
 library(magrittr) # pipe
 library(jsonlite) # json reading
 
-fileName <- "Daten aufbereitet 2021-12-28"
+fileName <- "mockdata"#"Daten aufbereitet 2021-12-28"
 DATA <- fread(paste0("data/", fileName, ".csv"), encoding = "UTF-8")
 DATA[, Datum := as.Date(Datum)]
 DATA[, Monat := month(Datum)]
