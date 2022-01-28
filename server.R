@@ -14,8 +14,7 @@ shinyServer(function(input, output) {
         dtPlot[, RunningAvg30 := frollmean(Stimmung, 30, algo = "exact", align = "left")]
         activity <- as.name(activity)
         p <- ggplot(
-            data = dtPlot,
-            
+            data = dtPlot
         ) +
             geom_point(
                 mapping = eval(bquote(aes(
@@ -529,6 +528,91 @@ shinyServer(function(input, output) {
       }
       
       basemap
+    })
+    
+    output$strucutral_break_test <- renderPlotly({
+      activity <- cur_activity()
+      
+      dtCur <- DATA[, c("Datum", activity, "Stimmung"), with = FALSE]
+      
+      dtCoeff <- as.data.table(expand.grid(
+        l = DATA[mday(Datum) == 1]$Datum, u = DATA[mday(Datum) == 1]$Datum
+      ))
+      dtCoeff <- dtCoeff[l < u]
+      
+      for (i in 1:nrow(dtCoeff)) {
+        l <- dtCoeff[i]$l
+        u <- dtCoeff[i]$u
+        dt1 <- dtCur[l <= Datum & Datum <= u]
+        dt2 <- dtCur[!dt1, on = names(dtCur)]
+        if (nrow(dt1) < 5 | nrow(dt2) < 5)
+          next
+        cTestCur <- as.list(chow.test(
+          y1 = dt1$Stimmung,
+          y2 = dt2$Stimmung,
+          x1 = dt1[[activity]],
+          x2 = dt2[[activity]]
+        ))
+        dtCoeff[i, F.value := ifelse(is.null(cTestCur$`F value`), NA, cTestCur$`F value`)]
+        dtCoeff[i, p.value := ifelse(is.null(cTestCur$`P value`), NA, cTestCur$`P value`)]
+      }
+      
+      p <- ggplot(dtCoeff, aes(x = l, y = u, fill = F.value)) +
+        geom_tile() +
+        scale_fill_gradient(low = "red", high = "green")
+      ggplotly(p)
+    })
+    
+    output$animation_demo <- renderPlotly({
+      t <- seq(0, 2 * pi, length.out = 100)
+      sig2 <- 0.001
+      x <- rnorm(n = length(t) - 1, sd = sqrt(sig2))
+      bm <- c(0, cumsum(x))
+      bb <- (bm - t / (2 * pi) * bm)
+      plot(t, bb)
+      dt <- data.table()
+      t1 <- t[1:10]
+      for(i in 1:10) {
+        tCur <- t[(10*(i-1)+1):(10*i)]
+        x <- rnorm(n = length(t1) - 1, sd = sqrt(sig2))
+        bm <- c(0, cumsum(x))
+        bb <- (bm - t1 / (2 * pi / 10) * bm)
+        dt <- rbindlist(list(dt, data.table(t = tCur, bb = bb)))
+      }
+      
+      dt[, const := 1]
+      dt <- merge(dt, data.table(const = 1, j = 0:7), by = "const", all = TRUE, allow.cartesian = TRUE)
+      dt[, size := ifelse(j == 0, 20, 10)]
+      dt[, x2 := cos(t + 2 * pi * j / 8)]
+      dt[, y2 := sin(t + 2 * pi * j / 8)]
+      dt[, x0 := cos(t)]
+      dt[, y0 := sin(t)]
+      dt[, x := x2 * (bb+0.5)]
+      dt[, y := y2 * (bb+0.5)]
+      dt[, x1 := x2 * (cos(t*5) / 10 + 1)]
+      dt[, y1 := y2 * (cos(t*5) / 10 + 1)]
+      p <- ggplot(data = dt, aes(x2, y2, size = size)) +
+        geom_point(aes(frame = t)) +
+        xlim(c(-2, 2)) +
+        ylim(c(-2, 2)) +
+        theme_minimal() +
+        scale_size_continuous(range = c(10, 20))
+      
+      p <- ggplotly(p)
+      animation_opts(p, frame = 2)
+    })
+    
+    output$chord_diagram <- renderChorddiag({
+      M <- length(ACTIVITIES)
+      dtCur <- DATA[Stimmung == input$mood]
+      mat <- matrix(0, nrow = (M+1), ncol = (M+1))
+      rownames(mat) <- colnames(mat) <- c("Stimmung", ACTIVITIES)
+      mat[1,1] <- nrow(dtCur) / nrow(DATA)
+      for(i in 1:M) {
+        mat[i+1,1] <- nrow(dtCur[get(ACTIVITIES[i]) > 0]) / nrow(DATA[get(ACTIVITIES[i]) > 0])
+      }
+      chorddiag(mat, showTicks = FALSE, precision = 2)
+      #chorddiag(MAT_COR)
     })
     
 })

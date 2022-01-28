@@ -1,3 +1,6 @@
+#devtools::install_github("mattflor/chorddiag")
+library(chorddiag)
+library(gap) # chow.test structural break
 library(visNetwork) # network visualization
 library(reshape2)
 library(data.table)
@@ -13,15 +16,17 @@ library(leaflet.minicharts) # world map
 library(magrittr) # pipe
 library(jsonlite) # json reading
 
-fileName <- "mockdata"#"Daten aufbereitet 2021-12-28"
+fileName <- 
+  #"mockdata"
+  "Daten aufbereitet 2022-01-18"
 DATA <- fread(paste0("data/", fileName, ".csv"), encoding = "UTF-8")
 DATA[, Datum := as.Date(Datum)]
-DATA[, Monat := month(Datum)]
-DATA[, `Wochentag Zahl` := wday(Datum, week_start = 1)]
-DATA[, `Tag im Monat` := mday(Datum)]
 ACTIVITIES <- names(DATA)
 ACTIVITIES <- ACTIVITIES[!ACTIVITIES %in% c("Datum", "Wochentag", "Stimmung")]
 ACTIVITIES <- sort(ACTIVITIES)
+DATA[, Monat := month(Datum)]
+DATA[, `Wochentag Zahl` := wday(Datum, week_start = 1)]
+DATA[, `Tag im Monat` := mday(Datum)]
 N <- nrow(DATA)
 
 # correlation with Stimmung

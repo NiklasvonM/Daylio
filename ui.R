@@ -27,20 +27,23 @@ shinyUI(
         ),
         dashboardSidebar(
             sidebarMenu(
-                menuItem("Dashboard", tabName = "dashboard", icon = icon("dashboard")),
+                menuItem("Dashboard", tabName = "dashboard"),
                 menuItem("Jahrestag", tabName = "jahrestag", icon = icon("th")),
                 menuItem("Wochentag", tabName = "wochentag", icon = icon("calendar-alt")),
-                menuItem("Korrelationstabelle", tabName = "correlation_table", icon = icon("cannabis")),
-                menuItem("Korrelationsmatrix", tabName = "correlation_matrix", icon = icon("cannabis")),
-                menuItem("Korrelationsmatrix Lag 1", tabName = "correlation_matrix_lag", icon = icon("cannabis")),
-                menuItem("Einzelne Tage", tabName = "single_day", icon = icon("calendar")),
-                menuItem("Aktivitätenanzahl Vortage", tabName = "lookback", icon = icon("cannabis")),
-                menuItem("Stimmung nach Aktivitätswert", tabName = "mood_distribution_by_activity_value", icon = icon("cannabis")),
-                menuItem("Verteilung Stimmung mit/ohne Aktivitäten", tabName = "mood_distribution_wwo_activity", icon = icon("cannabis")),
+                menuItem("Korrelationstabelle", tabName = "correlation_table"),
+                menuItem("Korrelationsmatrix", tabName = "correlation_matrix"),
+                menuItem("Korrelationsmatrix Lag 1", tabName = "correlation_matrix_lag"),
+                menuItem("Einzelne Tage", tabName = "single_day"),
+                menuItem("Aktivitätenanzahl Vortage", tabName = "lookback"),
+                menuItem("Stimmung nach Aktivitätswert", tabName = "mood_distribution_by_activity_value"),
+                menuItem("Verteilung Stimmung mit/ohne Aktivitäten", tabName = "mood_distribution_wwo_activity"),
                 menuItem("Verteilung Tage mit/ohne Aktivität", tabName = "days_distr_wwo_activity"),
                 menuItem("Netzwerk", tabName = "network"),
                 menuItem("Standortdaten", tabName = "worldmap"),
-                menuItem("Besuchte Orte", tabName = "plz_visited")
+                menuItem("Besuchte Orte", tabName = "plz_visited"),
+                menuItem("Strukturbruch", tabName = "strucutral_break_test"),
+                menuItem("Animationsdemo", tabName = "animation"),
+                menuItem("Akkorddiagramm", tabName = "chord_diagram")
             ),
             selectInput(
                 inputId = "activity",
@@ -72,19 +75,19 @@ shinyUI(
                 
                 # Second tab content
                 tabItem(tabName = "jahrestag",
-                    h2("Durchschnittliche Stimmung nach Jahrestag"),
+                    shiny::h2("Durchschnittliche Stimmung nach Jahrestag"),
                     plotlyOutput("year_heatmap")
                 ),
                 tabItem(tabName = "wochentag",
-                    h2("Vorkommnisse während der Woche"),
+                    shiny::h2("Vorkommnisse während der Woche"),
                     plotlyOutput("wochentag_hist")
                 ),
                 tabItem(tabName = "correlation_table",
-                    h2("Korrelation Aktivitäten und Stimmung"),
+                    shiny::h2("Korrelation Aktivitäten und Stimmung"),
                     rHandsontableOutput("correlation_table")
                 ),
                 tabItem(tabName = "correlation_matrix",
-                    h2("Korrelation der einzelnen Aktivitäten"),
+                    shiny::h2("Korrelation der einzelnen Aktivitäten"),
                     plotlyOutput("correlation_matrix_plot", height = "1200px"),
                     sliderInput("correlationThreshold",
                                 "Mindestkorrelation",
@@ -93,7 +96,7 @@ shinyUI(
                     rHandsontableOutput("correlation_matrix")
                 ),
                 tabItem(tabName = "correlation_matrix_lag",
-                        h2("Korrelation der einzelnen Aktivitäten"),
+                        shiny::h2("Korrelation der einzelnen Aktivitäten"),
                         plotlyOutput("correlation_matrix_lag_plot", height = "1200px"),
                         sliderInput("correlationThresholdLag",
                                     "Mindestkorrelation",
@@ -103,17 +106,17 @@ shinyUI(
                         rHandsontableOutput("correlation_matrix_lag")
                 ),
                 tabItem(tabName = "single_day",
-                    h2("Was ist an diesem Tag passiert?"),
+                    shiny::h2("Was ist an diesem Tag passiert?"),
                     rHandsontableOutput("single_day")
                     #dataTableOutput("single_day")
                 ),
                 tabItem(tabName = "lookback",
-                    h2("Durchschnittliche Stimmung nach Aktivitäten in den Vortagen"),
+                    shiny::h2("Durchschnittliche Stimmung nach Aktivitäten in den Vortagen"),
                     plotlyOutput("lookback_pointplot"),
                     sliderInput("lookback_pointplot_n", "Anzahl Tage: ", min = 1, max = 365, step = 1, value = 14)
                 ),
                 tabItem(tabName = "mood_distribution_by_activity_value",
-                    h2("Durchschnittliche Stimmung nach Aktivitätswert"),
+                    shiny::h2("Durchschnittliche Stimmung nach Aktivitätswert"),
                     plotlyOutput("mood_distribution_by_activity_value")
                 ),
                 tabItem(tabName = "mood_distribution_wwo_activity",
@@ -157,6 +160,17 @@ shinyUI(
                 ),
                 tabItem(tabName = "plz_visited",
                         leafletOutput("plz_visited", height = "1000px")
+                ),
+                tabItem(tabName = "strucutral_break_test",
+                        plotlyOutput("strucutral_break_test", height = "1000px")
+                ),
+                tabItem(tabName = "animation",
+                        plotlyOutput("animation_demo", height = "1200px")
+                ),
+                tabItem(tabName = "chord_diagram",
+                        shiny::h2("Welcher Anteil der Aktivität tritt bei dieser Stimmung auf?"),
+                        selectInput("mood", "Stimmung", choices = 1:5),
+                        chorddiagOutput("chord_diagram", height = "1000px")
                 )
             )
         )
