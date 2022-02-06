@@ -10,6 +10,7 @@ library(shiny)
 library(shinydashboard) # dashboard UI
 library(lubridate) # date manipulation
 library(rhandsontable) # interactive table (Excel-like)
+#devtools::install_github("serenity-r/dndselectr")
 library(dndselectr)
 library(leaflet) # world map
 library(leaflet.minicharts) # world map
@@ -210,9 +211,6 @@ PLACES_VISITED <- DT_LOCATION[, .(
 
 
 
-
-
-
 getMovementData <- function(directory) {
   getMovementSingleMonth <- function(fileName) {
     df0 <- fromJSON(fileName, flatten = FALSE)[[1]]$activitySegment
@@ -267,6 +265,30 @@ getMovementData <- function(directory) {
 
 DT_MOVEMENT <- getMovementData("data/GoogleMaps/Semantic Location History/")
 
+DT_MOVEMENT[, a := sin(pi / 180 * (EndLatitude - StartLatitude)/2)^2 + cos(pi / 180 * StartLatitude) * cos(pi / 180 * EndLatitude) * sin(pi / 180 * (EndLongitude-StartLongitude)/2)^2]
+DT_MOVEMENT[, c := 2 * atan2(sqrt(a),sqrt(1-a))]
+
+DT_MOVEMENT[, `Distance by LatLon` := 6371000 * c]
+
+
+
+
+dtAllPlacesVisited <- unique(rbindlist(list(
+  DT_LOCATION[, .(Latitude, Longitude, Zeit = Startzeit)],
+  DT_LOCATION[, .(Latitude, Longitude, Zeit = Endzeit)],
+  DT_MOVEMENT[, .(Latitude = StartLatitude, Longitude = StartLongitude, Zeit = Startzeit)],
+  DT_MOVEMENT[, .(Latitude = EndLatitude, Longitude = EndLongitude, Zeit = Endzeit)]
+)))
+dtPlaceInformation <- unique(DT_LOCATION[
+  !is.na(PLZ) | !is.na(Adresse),
+  .(Adresse = Adresse[!is.na(Adresse)][1], Adressname = Adressname[!is.na(Adressname)][1], AdresseFull = AdresseFull[!is.na(AdresseFull)][1], PLZ = PLZ[!is.na(PLZ)][1]),
+  by = .(Latitude, Longitude)])
+dtFirstLastVisit <- dtAllPlacesVisited[, .(`Erster Besuch` = min(Zeit), `Letzter Besuch` = max(Zeit)), by = .(Latitude, Longitude)]
+
+DT_ALL_PLACES_VISITED <- merge(unique(dtAllPlacesVisited[, .(Latitude, Longitude)]), dtPlaceInformation, by = c("Latitude", "Longitude"), all.x = TRUE) %>%
+  merge(dtFirstLastVisit, by = c("Latitude", "Longitude"), all.x = TRUE)
+DT_ALL_PLACES_VISITED[, Standortinformationen := ifelse(is.na(AdresseFull) & is.na(PLZ), 0, 1)]
+DT_ALL_PLACES_VISITED[, Color := ifelse(Standortinformationen == 1, "blue", "black")]
 
 
 

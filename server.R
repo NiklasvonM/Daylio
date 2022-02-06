@@ -409,9 +409,15 @@ shinyServer(function(input, output) {
       
       nodes[, title := paste0(
         "Aktivität: ", label, "<br>",
-        "Korrelation mit Stimmung: ", Korrelation, "<br>",
-        "Gruppe: ", ActivityGroup
+        "Korrelation mit Stimmung: ", Korrelation
       )]
+      
+      if("ActivityGroup" %in% names(nodes)) {
+        nodes[, title := paste0(
+          title, "<br>",
+          "Gruppe: ", ActivityGroup
+        )]
+      }
       
       
       visNetwork(nodes, links)
@@ -528,6 +534,41 @@ shinyServer(function(input, output) {
       }
       
       basemap
+    })
+    
+    output$places_visited <- renderLeaflet({
+      #https://bhaskarvk.github.io/leaflet-talk-rstudioconf-2017/RstudioConf2017.html#13
+      DT_ALL_PLACES_VISITED.df <- as.data.frame(DT_ALL_PLACES_VISITED) %>%
+        split(.$Standortinformationen)
+      l <- leaflet() %>%
+        addTiles()
+      names(DT_ALL_PLACES_VISITED.df) %>%
+        purrr::walk(function(df) {
+          dataCur <- DT_ALL_PLACES_VISITED.df[[df]]
+          l <<- l %>%
+            addMarkers(
+              data=dataCur,
+              lng=~Longitude,
+              lat=~Latitude,
+              label=~as.character(Standortinformationen),
+              popup=paste0(
+                    "Adresse: ", dataCur$AdresseFull, "<br>",
+                    "PLZ: ", dataCur$PLZ, "<br>",
+                    "Erster Besuch: ", dataCur$`Erster Besuch`, "<br>",
+                    "Letzter Besuch: ", dataCur$`Letzter Besuch`, "<br>",
+                    "Latitude: ", dataCur$Latitude, "<br>",
+                    "Longitude: ", dataCur$Longitude
+              ),
+              group = df,
+              clusterOptions = markerClusterOptions()
+            )
+        })
+      l <- l %>%
+        addLayersControl(
+          overlayGroups = names(DT_ALL_PLACES_VISITED.df),
+          options = layersControlOptions(collapsed = FALSE)) %>%
+        addMiniMap(width = 120, height=80)
+      l
     })
     
     output$strucutral_break_test <- renderPlotly({

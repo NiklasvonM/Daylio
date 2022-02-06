@@ -40,7 +40,8 @@ shinyUI(
                 menuItem("Verteilung Tage mit/ohne Aktivität", tabName = "days_distr_wwo_activity"),
                 menuItem("Netzwerk", tabName = "network"),
                 menuItem("Standortdaten", tabName = "worldmap"),
-                menuItem("Besuchte Orte", tabName = "plz_visited"),
+                menuItem("Besuchte Orte (grob)", tabName = "plz_visited"),
+                menuItem("Besuchte Orte (fein)", tabName = "places_visited"),
                 menuItem("Strukturbruch", tabName = "strucutral_break_test"),
                 menuItem("Animationsdemo", tabName = "animation"),
                 menuItem("Akkorddiagramm", tabName = "chord_diagram")
@@ -160,6 +161,9 @@ shinyUI(
                 ),
                 tabItem(tabName = "plz_visited",
                         leafletOutput("plz_visited", height = "1000px")
+                ),
+                tabItem(tabName = "places_visited",
+                        leafletOutput("places_visited", height = "1000px")
                 ),
                 tabItem(tabName = "strucutral_break_test",
                         plotlyOutput("strucutral_break_test", height = "1000px")
