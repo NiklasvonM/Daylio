@@ -16,12 +16,20 @@ library(leaflet) # world map
 library(leaflet.minicharts) # world map
 library(magrittr) # pipe
 library(jsonlite) # json reading
+library(scico) # scale_color_scico
+library(ggdark)
+
+# Whether or not to calculate the distribution with and without an activity.
+# Currently very slow. Only set to TRUE if you want to view that graph.
+CALCULATE_DISTR_WWO_ACTIVITY <- FALSE
 
 fileName <- 
   #"mockdata"
-  "Daten aufbereitet 2022-01-18"
+  "Daten aufbereitet 2022-02-12"
 DATA <- fread(paste0("data/", fileName, ".csv"), encoding = "UTF-8")
 DATA[, Datum := as.Date(Datum)]
+
+
 ACTIVITIES <- names(DATA)
 ACTIVITIES <- ACTIVITIES[!ACTIVITIES %in% c("Datum", "Wochentag", "Stimmung")]
 ACTIVITIES <- sort(ACTIVITIES)
@@ -29,6 +37,7 @@ DATA[, Monat := month(Datum)]
 DATA[, `Wochentag Zahl` := wday(Datum, week_start = 1)]
 DATA[, `Tag im Monat` := mday(Datum)]
 N <- nrow(DATA)
+
 
 # correlation with Stimmung
 DT_COR <- data.table(
@@ -107,33 +116,34 @@ DT_ACTIVITY_LENGTH_DISTR <- as.data.table(expand.grid(
 ))
 DT_ACTIVITY_LENGTH_DISTR[, `:=`(`n with activity` = 0, `n without activity` = 0)]
 
-# for(activity in ACTIVITIES) {
-#   cntWith <- 0
-#   cntWithout <- 0
-#   for(i in 1:N) {
-#     activityValue <- DATA[i, get(activity)]
-#     if (activityValue > 0) {
-#       cntWith <- cntWith + 1
-#       if (cntWithout > 0) {
-#         DT_ACTIVITY_LENGTH_DISTR[Activity == activity & Days == cntWithout, `n without activity` := `n without activity` + 1]
-#       }
-#       cntWithout <- 0
-#     } else {
-#       cntWithout <- cntWithout + 1
-#       if (cntWith > 0) {
-#         DT_ACTIVITY_LENGTH_DISTR[Activity == activity & Days == cntWith, `n with activity` := `n with activity` + 1]
-#       }
-#       cntWith <- 0
-#     }
-#   }
-#   if (cntWith > 0) {
-#     DT_ACTIVITY_LENGTH_DISTR[Activity == activity & Days == cntWith, `n with activity` := `n with activity` + 1]
-#   }
-#   if (cntWithout > 0) {
-#     DT_ACTIVITY_LENGTH_DISTR[Activity == activity & Days == cntWithout, `n without activity` := `n without activity` + 1]
-#   }
-# }
-
+if(CALCULATE_DISTR_WWO_ACTIVITY) {
+  for(activity in ACTIVITIES) {
+    cntWith <- 0
+    cntWithout <- 0
+    for(i in 1:N) {
+      activityValue <- DATA[i, get(activity)]
+      if (activityValue > 0) {
+        cntWith <- cntWith + 1
+        if (cntWithout > 0) {
+          DT_ACTIVITY_LENGTH_DISTR[Activity == activity & Days == cntWithout, `n without activity` := `n without activity` + 1]
+        }
+        cntWithout <- 0
+      } else {
+        cntWithout <- cntWithout + 1
+        if (cntWith > 0) {
+          DT_ACTIVITY_LENGTH_DISTR[Activity == activity & Days == cntWith, `n with activity` := `n with activity` + 1]
+        }
+        cntWith <- 0
+      }
+    }
+    if (cntWith > 0) {
+      DT_ACTIVITY_LENGTH_DISTR[Activity == activity & Days == cntWith, `n with activity` := `n with activity` + 1]
+    }
+    if (cntWithout > 0) {
+      DT_ACTIVITY_LENGTH_DISTR[Activity == activity & Days == cntWithout, `n without activity` := `n without activity` + 1]
+    }
+  }
+}
 
 getLocationData <- function(directory) {
   getLocationDataSingleMonth <- function(fileName) {

@@ -67,6 +67,25 @@ shinyServer(function(input, output) {
             value = paste(valWith, valWithout, sep = "/")
         )
     })
+    
+    output$roll_sum_activity <- renderPlotly({
+      activity <- input$activity
+      dtPlot <- DATA[, c("Datum", activity), with = FALSE]
+      setorder(dtPlot, "Datum")
+      dtPlot[, `14 Tage rollierende Summe` := frollsum(get(activity), n = 14)]
+      # https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/
+      ggplot(dtPlot, aes(Datum, `14 Tage rollierende Summe`)) +
+        geom_line(color="#69b3a2", size=2) +
+        geom_point(size = 5) +
+        geom_point(
+          aes(
+            color = `14 Tage rollierende Summe`,
+            color = after_scale(invert_color(color))
+          ), size = 2) +
+        scale_color_scico(palette = "hawaii", guide = "none") +
+        ggtitle(activity) +
+        theme_minimal()
+    })
 
     
     output$download <- downloadHandler(
@@ -133,8 +152,9 @@ shinyServer(function(input, output) {
                     )
                 )))
             ) +
-            geom_bar(stat = "identity") +
-            ylab(activity)
+            geom_bar(stat = "identity", fill = "#0a3b7e") +
+            ylab(activity) +
+            theme_minimal()
         ggplotly(p, tooltip = "text")
     })
     
@@ -309,6 +329,11 @@ shinyServer(function(input, output) {
       dtPlot[, `Stimmungsverteilung` := Datenpunkte / n_activity]
       dtPlot[is.na(Stimmungsverteilung), Stimmungsverteilung := 0]
       dtPlot[is.na(Datenpunkte), Datenpunkte := 0]
+      if(activity == "Schlafqualitaet") {
+        dtPlot[get(activity) == -1, (activity) := "Schlecht"]
+        dtPlot[get(activity) == 0, (activity) := "Mäßig"]
+        dtPlot[get(activity) == 1, (activity) := "Gut"]
+      }
       # dtPlot <- DATA[, .(`Durchschnittsstimmung` = mean(Stimmung, na.rm = TRUE), N = .N), by = c(activity)]
       setnames(dtPlot, activity, make.names(activity))
       p <- ggplot(dtPlot, aes_string(x = "Stimmung", y = "Stimmungsverteilung", color = make.names(activity))) +
@@ -316,7 +341,8 @@ shinyServer(function(input, output) {
           geom_point(aes(size = Datenpunkte)) +
           scale_y_continuous(limits = c(0, 1)) +
           scale_x_continuous(limits = c(1, 5)) +
-          scale_size_continuous(limits = c(0, max(dtPlot$n)))
+          scale_size_continuous(limits = c(0, max(dtPlot$n)), guide = "none") +
+          theme_minimal()
       # p <- ggplot(dtPlot, aes_string(x = make.names(activity), y = "Durchschnittsstimmung")) +
       #   geom_line() +
       #   geom_point(aes(size = N)) +
@@ -344,11 +370,19 @@ shinyServer(function(input, output) {
       dtPlot <- dtCur[, .(Dichte = .N / nrow(dtCur)), by = .(Stimmung)]
       dtPlot <- merge(dtPlot, data.table(Stimmung = 1:5), by = c("Stimmung"), all = TRUE)
       dtPlot[is.na(Dichte), Dichte := 0]
-      p <- ggplot(dtPlot, aes(Stimmung, Dichte)) +
-        geom_bar(stat = "identity") +
+      p <- ggplot(dtPlot, aes(Stimmung, Dichte, text = paste0(
+        "Stimmung: ", Stimmung, "<br>",
+        "Dichte: ", round(100 * Dichte, 2), "%"
+      ))) +
+        geom_bar(stat = "identity", fill = "#0a3b7e") +
+        geom_text(aes(label=paste0(round(100 * Dichte), "%"), y = Dichte + 0.05)) +
+        theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+              panel.background = element_blank(), axis.line = element_blank(), axis.title.y = element_blank(),
+              axis.ticks = element_blank(),
+              axis.text.y = element_blank()) +
         #scale_x_continuous(limits = c(1, 5)) +
         scale_y_continuous(limits = c(0, 1))
-      g <- ggplotly(p)
+      g <- ggplotly(p, tooltip = "text")
       g
     })
     
@@ -652,7 +686,7 @@ shinyServer(function(input, output) {
       for(i in 1:M) {
         mat[i+1,1] <- nrow(dtCur[get(ACTIVITIES[i]) > 0]) / nrow(DATA[get(ACTIVITIES[i]) > 0])
       }
-      chorddiag(mat, showTicks = FALSE, precision = 2)
+      chorddiag(mat, showTicks = FALSE, precision = 2, groupnameFontsize = 14, groupThickness = 0.2)
       #chorddiag(MAT_COR)
     })
     

@@ -68,9 +68,16 @@ shinyUI(
                 # First tab content
                 tabItem(tabName = "dashboard",
                     fluidPage(
-                        plotlyOutput("date_dots"),
-                        valueBoxOutput("correlation"),
-                        infoBoxOutput("avg_mood")
+                        fluidRow(
+                            plotlyOutput("date_dots")
+                        ),
+                        fluidRow(
+                            valueBoxOutput("correlation"),
+                            infoBoxOutput("avg_mood")
+                        ),
+                        fluidRow(
+                            plotlyOutput("roll_sum_activity")   
+                        )
                     )
                 ),
                 
@@ -117,30 +124,33 @@ shinyUI(
                     sliderInput("lookback_pointplot_n", "Anzahl Tage: ", min = 1, max = 365, step = 1, value = 14)
                 ),
                 tabItem(tabName = "mood_distribution_by_activity_value",
-                    shiny::h2("Durchschnittliche Stimmung nach Aktivitätswert"),
+                    shiny::h2("Stimmungsverteilung nach Aktivitätswert"),
                     plotlyOutput("mood_distribution_by_activity_value")
                 ),
                 tabItem(tabName = "mood_distribution_wwo_activity",
+                    shiny::h2("Stimmungsverteilung mit oder ohne gewisse Aktivitäten"),
                     fluidRow(
                         plotlyOutput("mood_distribution_wwo_activity")
                     ),
                     fluidRow(
-                        column(4,
-                               h3("Aktivitäten"),
-                               dragZone("dragzone_activity",
-                                        choices = ACTIVITIES
-                               )
-                        ),
-                        column(4,
+                        column(6,
                                h3("Einschließen"),
                                dropZoneInput("dropzone_w",
                                              choices = ACTIVITIES
                                )
                         ),
-                        column(4,
+                        column(6,
                                h3("Ausschließen"),
                                dropZoneInput("dropzone_wo",
                                              choices = ACTIVITIES
+                               )
+                        )
+                    ),
+                    fluidRow(
+                        column(6,
+                               h3("Aktivitäten"),
+                               dragZone("dragzone_activity",
+                                        choices = ACTIVITIES
                                )
                         )
                     )
@@ -166,15 +176,15 @@ shinyUI(
                         leafletOutput("places_visited", height = "1000px")
                 ),
                 tabItem(tabName = "strucutral_break_test",
-                        plotlyOutput("strucutral_break_test", height = "1000px")
+                        plotlyOutput("strucutral_break_test", height = "800px")
                 ),
                 tabItem(tabName = "animation",
-                        plotlyOutput("animation_demo", height = "1200px")
+                        plotlyOutput("animation_demo", height = "1000px")
                 ),
                 tabItem(tabName = "chord_diagram",
                         shiny::h2("Welcher Anteil der Aktivität tritt bei dieser Stimmung auf?"),
                         selectInput("mood", "Stimmung", choices = 1:5),
-                        chorddiagOutput("chord_diagram", height = "1000px")
+                        chorddiagOutput("chord_diagram", width = "80%", height = "1000px")
                 )
             )
         )
