@@ -8,10 +8,16 @@ shinyServer(function(input, output) {
     
     plot_mood <- reactive({
         activity <- cur_activity()
-        dtPlot <- DATA[, c("Datum", "Wochentag", "Stimmung", activity), with = FALSE]
+        dtPlot <- DATA[, c("Datum", "Wochentag", "Stimmung", "Notiz", activity), with = FALSE]
         dtPlot[, (activity) := as.ordered(get(activity))]
         dtPlot[, RunningAvg7 := frollmean(Stimmung, 7, algo = "exact", align = "left")]
         dtPlot[, RunningAvg30 := frollmean(Stimmung, 30, algo = "exact", align = "left")]
+        
+        dtDailyPlacesVisitedHovertext <- DT_LOCATION[, .(HovertextOrte = paste0(
+          paste0(gsub("\n", " ", unique(AdresseFull))),
+          collapse = "<br>")), .(Datum)]
+        dtPlot <- merge(dtPlot, dtDailyPlacesVisitedHovertext, all.x = TRUE, by = "Datum")
+        
         activity <- as.name(activity)
         p <- ggplot(
             data = dtPlot
@@ -34,7 +40,9 @@ shinyServer(function(input, output) {
                         )), "<br>",
                         activity, ": ", .(activity), "<br>",
                         "7-tägiger Stimmungsdurchschnitt: ", round(RunningAvg7, 2), "<br>",
-                        "30-tägiger Stimmungsdurchschnitt: ", round(RunningAvg30, 2)
+                        "30-tägiger Stimmungsdurchschnitt: ", round(RunningAvg30, 2), "<br>",
+                        ifelse(Notiz == "", "", "<br>"), Notiz, ifelse(Notiz == "", "", "<br><br>"),
+                        'Besuchte Orte:<br>', HovertextOrte
                     )
                 )))
             ) +
@@ -198,6 +206,10 @@ shinyServer(function(input, output) {
         `Aktivitaet2` = colnames(MAT_COR)[col(MAT_COR)],
         KorrelationPlot = c(MAT_COR)
       )
+      for(col in ACTIVITIES_MOOD) {
+        maxCor <- max(abs(dtPlot[Aktivitaet == col & Aktivitaet != Aktivitaet2]$KorrelationPlot))
+        dtPlot[Aktivitaet == col, Shape := as.factor(as.integer(abs(KorrelationPlot) == maxCor))]
+      }
       dtPlot[, Korrelation := KorrelationPlot]
       dtPlot[!(input$correlationThreshold[1] <= Korrelation & Korrelation <= input$correlationThreshold[2]), KorrelationPlot := NA]
       dtPlot[Korrelation < 0, Farbe := -1]
@@ -210,6 +222,7 @@ shinyServer(function(input, output) {
           Aktivitaet2,
           size = abs(KorrelationPlot),
           color = Farbe,
+          shape = Shape,
           text = paste0(
             "Aktivität 1: ", Aktivitaet, "<br>",
             "Aktivität 2: ", Aktivitaet2, "<br>",
@@ -251,6 +264,10 @@ shinyServer(function(input, output) {
         `Aktivitaet_Lag_1` = colnames(MAT_COR_LAG)[col(MAT_COR_LAG)],
         KorrelationPlot = c(MAT_COR_LAG)
       )
+      for(col in ACTIVITIES_MOOD) {
+        maxCor <- max(abs(dtPlot[Aktivitaet == col & Aktivitaet != Aktivitaet_Lag_1]$KorrelationPlot))
+        dtPlot[Aktivitaet == col, Shape := as.factor(as.integer(abs(KorrelationPlot) == maxCor))]
+      }
       dtPlot[, Korrelation := KorrelationPlot]
       dtPlot[!(input$correlationThresholdLag[1] <= Korrelation & Korrelation <= input$correlationThresholdLag[2]), KorrelationPlot := NA]
       dtPlot[Korrelation < 0, Farbe := -1]
@@ -263,6 +280,7 @@ shinyServer(function(input, output) {
           Aktivitaet_Lag_1,
           size = abs(KorrelationPlot),
           color = Farbe,
+          shape = Shape,
           text = paste0(
             "Aktivität: ", Aktivitaet, "<br>",
             "Aktivität Folgetag: ", Aktivitaet_Lag_1, "<br>",
@@ -470,35 +488,51 @@ shinyServer(function(input, output) {
       dtMovement <- DT_MOVEMENT[Datum == dateSelected]
       for(i in seq(length = nrow(dtMovement))) {
         curMovement <- dtMovement[i]
-        if(curMovement$StartLatitude != curMovement$EndLatitude |
-           curMovement$StartLongitude != curMovement$EndLongitude) {
-          basemap <- basemap %>%
-            addFlows(
-              lng0 = curMovement$StartLongitude,
-              lat0 = curMovement$StartLatitude,
-              lng1 = curMovement$EndLongitude,
-              lat1 = curMovement$EndLatitude,
-              opacity = 0.5,
-              flow = 0.1,
-              color = "#848484",
-              popup = popupArgs(
-                html = paste0(
-                  "Startzeit: ",
-                  ifelse(curMovement$DatumStart != curMovement$DatumEnde, paste0(format(curMovement$DatumStart, "%d.%m.%Y"), " "), ""),
-                  format(curMovement$Startzeit, "%H:%M"), " Uhr", "<br>",
-                  "Endzeit: ",
-                  ifelse(curMovement$DatumStart != curMovement$DatumEnde, paste0(format(curMovement$DatumEnde, "%d.%m.%Y"), " "), ""),
-                  format(curMovement$Endzeit, "%H:%M"), " Uhr", "<br>",
-                  "Distanz: ", ifelse(
-                    curMovement$Distanz >= 1000,
-                    paste0(round(curMovement$Distanz / 1000, 2), "km"),
-                    paste0(curMovement$Distanz, "m")
-                  ), "<br>",
-                  "Fortbewegungsmittel: ", curMovement$Fortbewegungsmittel
+        
+        dtWayPoint <- rbindlist(list(
+          data.table(latE7 = curMovement$StartLatitude * 1e7, lngE7 = curMovement$StartLongitude * 1e7),
+          curMovement$wayPoints[[1]],
+          data.table(latE7 = curMovement$EndLatitude * 1e7, lngE7 = curMovement$EndLongitude * 1e7)
+        ))
+        dtWayPoint[, `:=`(Lat = latE7 / 1e7, Lng = lngE7 / 1e7)]
+        
+        js <- nrow(dtWayPoint)
+        for(j in seq(length = js-1)) {
+          if(dtWayPoint[j]$Lat != dtWayPoint[j+1]$Lat |
+             dtWayPoint[j]$Lng != dtWayPoint[j+1]$Lng) {
+            basemap <- basemap %>%
+              addFlows(
+                lng0 = dtWayPoint[j]$Lng,
+                lat0 = dtWayPoint[j]$Lat,
+                lng1 = dtWayPoint[j+1]$Lng,
+                lat1 = dtWayPoint[j+1]$Lat,
+                opacity = 0.5,
+                flow = 0.1,
+                color = "#848484",
+                popup = popupArgs(
+                  html = paste0(
+                    "Startzeit: ",
+                    ifelse(curMovement$DatumStart != curMovement$DatumEnde, paste0(format(curMovement$DatumStart, "%d.%m.%Y"), " "), ""),
+                    format(curMovement$Startzeit, "%H:%M"), " Uhr", "<br>",
+                    "Endzeit: ",
+                    ifelse(curMovement$DatumStart != curMovement$DatumEnde, paste0(format(curMovement$DatumEnde, "%d.%m.%Y"), " "), ""),
+                    format(curMovement$Endzeit, "%H:%M"), " Uhr", "<br>",
+                    "Distanz: ", ifelse(
+                      curMovement$Distanz >= 1000,
+                      paste0(round(curMovement$Distanz / 1000, 2), "km"),
+                      paste0(curMovement$Distanz, "m")
+                    ), "<br>",
+                    "Fortbewegungsmittel: ", curMovement$Fortbewegungsmittel, "<br>",
+                    "Startbreitengrad: ", dtWayPoint[j]$Lat, "<br>",
+                    "Startlängengrad: ", dtWayPoint[j]$Lng, "<br>",
+                    "Endbreitengrad: ", dtWayPoint[j+1]$Lat, "<br>",
+                    "Endlängengrad: ", dtWayPoint[j+1]$Lng, "<br>"
+                  )
                 )
               )
-            )
+          }
         }
+
         
       }
       
@@ -568,6 +602,18 @@ shinyServer(function(input, output) {
       }
       
       basemap
+    })
+    
+    # timeline animation of places visited within the last year
+    output$plz_visited_timeline <- renderLeaflet({
+      #dtTimeline <- PLZ_VISITED[, .(Latitude, Longitude, start = FirstVisit, end = today())]
+      #dtTimeline <- dtAllPlacesVisited[, .(Latitude, Longitude, start = Zeit, end = today())]
+      dtTimeline <- PLACES_VISITED[, .(Latitude, Longitude, start = MinDate, end = pmin(max(MaxDate), MinDate+365))]
+      geoTimeline <- geojsonio::geojson_json(dtTimeline,lat="Latitude",lon="Longitude")
+      leaflet() %>%
+        addTiles() %>%
+        setView(44.0665,23.74667,2) %>%
+        addTimeline(data = geoTimeline)
     })
     
     output$places_visited <- renderLeaflet({

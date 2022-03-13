@@ -14,6 +14,7 @@ library(rhandsontable) # interactive table (Excel-like)
 library(dndselectr)
 library(leaflet) # world map
 library(leaflet.minicharts) # world map
+library(leaftime) # animated map
 library(magrittr) # pipe
 library(jsonlite) # json reading
 library(scico) # scale_color_scico
@@ -25,14 +26,15 @@ CALCULATE_DISTR_WWO_ACTIVITY <- FALSE
 
 fileName <- 
   #"mockdata"
-  "Daten aufbereitet 2022-02-12"
+  "Daten aufbereitet 2022-02-27"
 DATA <- fread(paste0("data/", fileName, ".csv"), encoding = "UTF-8")
 DATA[, Datum := as.Date(Datum)]
 
 
 ACTIVITIES <- names(DATA)
-ACTIVITIES <- ACTIVITIES[!ACTIVITIES %in% c("Datum", "Wochentag", "Stimmung")]
+ACTIVITIES <- ACTIVITIES[!ACTIVITIES %in% c("Datum", "Wochentag", "Stimmung", "Notiz")]
 ACTIVITIES <- sort(ACTIVITIES)
+ACTIVITIES_MOOD <- c(ACTIVITIES, "Stimmung")
 DATA[, Monat := month(Datum)]
 DATA[, `Wochentag Zahl` := wday(Datum, week_start = 1)]
 DATA[, `Tag im Monat` := mday(Datum)]
@@ -58,22 +60,22 @@ for (activity in ACTIVITIES) {
 }
 
 # correlation of activities with each other
-MAT_COR <- matrix(data = 0, nrow = length(ACTIVITIES), ncol = length(ACTIVITIES))
-colnames(MAT_COR) <- ACTIVITIES
-rownames(MAT_COR) <- ACTIVITIES
-for (i in ACTIVITIES) {
-  for (j in ACTIVITIES) {
+MAT_COR <- matrix(data = 0, nrow = length(ACTIVITIES_MOOD), ncol = length(ACTIVITIES_MOOD))
+colnames(MAT_COR) <- ACTIVITIES_MOOD
+rownames(MAT_COR) <- ACTIVITIES_MOOD
+for (i in ACTIVITIES_MOOD) {
+  for (j in ACTIVITIES_MOOD) {
     MAT_COR[i, j] <- round(cor(DATA[[i]], DATA[[j]]), 2)
   }
 }
 
 
 # correlation of activities with each other with lag 1 for columns
-MAT_COR_LAG <- matrix(data = 0, nrow = length(ACTIVITIES), ncol = length(ACTIVITIES))
-colnames(MAT_COR_LAG) <- ACTIVITIES
-rownames(MAT_COR_LAG) <- ACTIVITIES
-for (i in ACTIVITIES) {
-  for (j in ACTIVITIES) {
+MAT_COR_LAG <- matrix(data = 0, nrow = length(ACTIVITIES_MOOD), ncol = length(ACTIVITIES_MOOD))
+colnames(MAT_COR_LAG) <- ACTIVITIES_MOOD
+rownames(MAT_COR_LAG) <- ACTIVITIES_MOOD
+for (i in ACTIVITIES_MOOD) {
+  for (j in ACTIVITIES_MOOD) {
     MAT_COR_LAG[i, j] <- round(cor(DATA[1:(N-1)][[i]], DATA[2:N][[j]]), 2)
   }
 }
@@ -238,6 +240,7 @@ getMovementData <- function(directory) {
       EndLongitude = endLocation.longitudeE7,
       Distanz = distance,
       Fortbewegungsmittel = activityType,
+      wayPoints = waypointPath.waypoints,
       # TODO: Fix lazy hack (+3600): Time is off by one hour.
       Startzeit = as.POSIXct("1970-01-01", tz = "Europe/Berlin") + as.numeric(duration.startTimestampMs) / 1000 + 3600,
       Endzeit = as.POSIXct("1970-01-01", tz = "Europe/Berlin") + as.numeric(duration.endTimestampMs) / 1000 + 3600

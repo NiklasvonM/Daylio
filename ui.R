@@ -170,7 +170,8 @@ shinyUI(
                         leafletOutput("worldmap", height = "1000px")
                 ),
                 tabItem(tabName = "plz_visited",
-                        leafletOutput("plz_visited", height = "1000px")
+                        leafletOutput("plz_visited", height = "1000px"),
+                        leafletOutput("plz_visited_timeline", height = "1000px")
                 ),
                 tabItem(tabName = "places_visited",
                         leafletOutput("places_visited", height = "1000px")
