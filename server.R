@@ -407,10 +407,18 @@ shinyServer(function(input, output) {
     output$days_distr_w_activity_plot <- renderPlotly({
       activity <- input$activity
       dtPlot <- DT_ACTIVITY_LENGTH_DISTR[Activity == activity, .(Tage = Days, `Anzahl` = `n with activity`)]
+      
+      # Estimate exponential distribution using maximum likelihood estimation
+      lambda_mle <- 1/ (sum(dtPlot[, .(Tage * Anzahl)]) / sum(dtPlot$Anzahl))
+      # bias corrected maximum likelihood estimation
+      lambda_mle_bias_corrected <- lambda_mle - lambda_mle / (sum(dtPlot$Anzahl) - 1)
+      dtPlot[, EstimatedDensity := dexp(Tage, rate = lambda_mle_bias_corrected) * sum(dtPlot$Anzahl)]
+      
       maxDay <- max(dtPlot[Anzahl > 0]$Tage)
       dtPlot <- dtPlot[Tage <= maxDay]
       p <- ggplot(dtPlot, aes(Tage, Anzahl)) +
         geom_bar(stat = "identity") +
+        geom_line(aes(y = EstimatedDensity)) +
         ggtitle(paste0("Verteilung der Anzahl aufeinanderfolgender Tage mit der Aktivität ", activity))
       ggplotly(p)
     })
@@ -418,10 +426,18 @@ shinyServer(function(input, output) {
     output$days_distr_wo_activity_plot <- renderPlotly({
       activity <- input$activity
       dtPlot <- DT_ACTIVITY_LENGTH_DISTR[Activity == activity, .(Tage = Days, `Anzahl` = `n without activity`)]
+      
+      # Estimate exponential distribution using maximum likelihood estimation
+      lambda_mle <- 1/ (sum(dtPlot[, .(Tage * Anzahl)]) / sum(dtPlot$Anzahl))
+      # bias corrected maximum likelihood estimation
+      lambda_mle_bias_corrected <- lambda_mle - lambda_mle / (sum(dtPlot$Anzahl) - 1)
+      dtPlot[, EstimatedDensity := dexp(Tage, rate = lambda_mle_bias_corrected) * sum(dtPlot$Anzahl)]
+      
       maxDay <- max(dtPlot[Anzahl > 0]$Tage)
       dtPlot <- dtPlot[Tage <= maxDay]
       p <- ggplot(dtPlot, aes(Tage, Anzahl)) +
-        geom_bar(stat = "identity") +
+        geom_bar(aes(y = Anzahl), stat = "identity") +
+        geom_line(aes(y = EstimatedDensity)) +
         ggtitle(paste0("Verteilung der Anzahl aufeinanderfolgender Tage ohne die Aktivität ", activity))
       ggplotly(p)
     })
@@ -734,6 +750,11 @@ shinyServer(function(input, output) {
       }
       chorddiag(mat, showTicks = FALSE, precision = 2, groupnameFontsize = 14, groupThickness = 0.2)
       #chorddiag(MAT_COR)
+    })
+    
+    output$dependencies <- renderRHandsontable({
+      tbl <- rhandsontable(dtDependencies)
+      tbl
     })
     
 })
