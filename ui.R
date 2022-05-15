@@ -28,23 +28,25 @@ shinyUI(
         dashboardSidebar(
             sidebarMenu(
                 menuItem("Dashboard", tabName = "dashboard"),
-                menuItem("Jahrestag", tabName = "jahrestag", icon = icon("th")),
-                menuItem("Wochentag", tabName = "wochentag", icon = icon("calendar-alt")),
-                menuItem("Korrelationstabelle", tabName = "correlation_table"),
-                menuItem("Korrelationsmatrix", tabName = "correlation_matrix"),
-                menuItem("Korrelationsmatrix Lag 1", tabName = "correlation_matrix_lag"),
-                menuItem("Einzelne Tage", tabName = "single_day"),
-                menuItem("Aktivitätenanzahl Vortage", tabName = "lookback"),
-                menuItem("Stimmung nach Aktivitätswert", tabName = "mood_distribution_by_activity_value"),
-                menuItem("Verteilung Stimmung mit/ohne Aktivitäten", tabName = "mood_distribution_wwo_activity"),
-                menuItem("Verteilung Tage mit/ohne Aktivität", tabName = "days_distr_wwo_activity"),
-                menuItem("Netzwerk", tabName = "network"),
-                menuItem("Standortdaten", tabName = "worldmap"),
-                menuItem("Besuchte Orte (grob)", tabName = "plz_visited"),
-                menuItem("Besuchte Orte (fein)", tabName = "places_visited"),
-                menuItem("Strukturbruch", tabName = "strucutral_break_test"),
-                menuItem("Animationsdemo", tabName = "animation"),
-                menuItem("Akkorddiagramm", tabName = "chord_diagram")
+                menuItem("Day of year", tabName = "jahrestag", icon = icon("th")),
+                menuItem("Weekday", tabName = "wochentag", icon = icon("calendar-alt")),
+                menuItem("Correlation table", tabName = "correlation_table"),
+                menuItem("Correlation matrix", tabName = "correlation_matrix"),
+                menuItem("Correlation matrix lag 1", tabName = "correlation_matrix_lag"),
+                menuItem("Signle day", tabName = "single_day"),
+                menuItem("Number activities foredays", tabName = "lookback"),
+                menuItem("Mood by activity value", tabName = "mood_distribution_by_activity_value"),
+                menuItem("Distribution mood with/without activity", tabName = "mood_distribution_wwo_activity"),
+                menuItem("Distribution day with/without activity", tabName = "days_distr_wwo_activity"),
+                menuItem("Network", tabName = "network"),
+                menuItem("Location data", tabName = "worldmap"),
+                menuItem("Visited places (coarse)", tabName = "plz_visited"),
+                menuItem("Visited places (fine)", tabName = "places_visited"),
+                menuItem("Structural break", tabName = "strucutral_break_test"),
+                #menuItem("Animationsdemo", tabName = "animation"),
+                menuItem("Accord diagram", tabName = "chord_diagram"),
+                menuItem("Dependencies", tabName = "dependencies"),
+                width = "300px"
             ),
             selectInput(
                 inputId = "activity",
@@ -186,6 +188,9 @@ shinyUI(
                         shiny::h2("Welcher Anteil der Aktivität tritt bei dieser Stimmung auf?"),
                         selectInput("mood", "Stimmung", choices = 1:5),
                         chorddiagOutput("chord_diagram", width = "80%", height = "1000px")
+                ),
+                tabItem(tabName = "dependencies",
+                        rHandsontableOutput("dependencies")
                 )
             )
         )
