@@ -140,6 +140,35 @@ shinyServer(function(input, output) {
         p
     })
     
+    output$day_of_year_activity_plot <- renderPlotly({
+      activity <- input$activity
+      dtPlot <- DATA[, c("Datum", activity), with = FALSE]
+      dtPlot[, Day := format(Datum, "%m-%d")]
+      dtPlot[, Year := year(Datum)]
+      activityName <- as.name(activity)
+      
+      breaks <- paste0(ifelse(1:12 > 10, "", "0"), 1:12, "-01")
+      
+      p <- ggplot(
+        data = dtPlot,
+        mapping = eval(bquote(aes(
+          x = Day,
+          y = Year,
+          fill = .(activityName),
+          text = paste0(
+            "Date: ", paste0(Year, "-", Day), "<br>",
+            activity, ": ", .(activityName)
+          )
+        )))
+      ) +
+        geom_tile() +
+        scale_fill_gradient(low = "red", high = "green") +
+        scale_x_discrete(breaks = breaks) +
+        scale_y_reverse()
+      p <- ggplotly(p, tooltip = "text")
+      p
+    })
+    
     output$wochentag_hist <- renderPlotly({
         req(input$activity)
         activity <- input$activity
@@ -367,6 +396,8 @@ shinyServer(function(input, output) {
       #   scale_y_continuous(limits = c(1, 5)) +
       #   scale_size_continuous(limits = c(0, max(dtPlot$N)))
       p <- ggplotly(p)
+      
+      test <<- p
       p
     })
     
@@ -755,6 +786,41 @@ shinyServer(function(input, output) {
     output$dependencies <- renderRHandsontable({
       tbl <- rhandsontable(dtDependencies)
       tbl
+    })
+    
+    output$cycles_heatmap <- renderPlotly({
+      activity <- input$activity_cycles
+      cycleLength <- input$slider_cycles
+      dtCycles <- DATA[, c("Datum", activity), with = FALSE]
+      
+      minDate <- min(dtCycles$Datum)
+      offset <- as.integer(minDate) %% cycleLength
+      dtCycles[, `day of cycle` := (as.integer(Datum) - offset) %% cycleLength]
+      dtCycles[, `cycle` := floor(as.integer((Datum - minDate)) / cycleLength)]
+      dtTest <<- dtCycles
+      
+      
+      activityName <- as.name(activity)
+      p <- ggplot(
+        data = dtCycles,
+        mapping = eval(bquote(aes(
+          x = `day of cycle`,
+          y = cycle,
+          fill = .(activityName),
+          text = paste0(
+            "Cycle: ", `cycle`, "<br>",
+            "Day of Cycle: ", `day of cycle`, "<br>",
+            "Date: ", Datum, "<br>",
+            activity, ": ", get(activity)
+          )
+        )))
+      ) +
+        geom_tile() +
+        scale_fill_gradient(low = "red", high = "green") +
+        scale_x_continuous() +
+        scale_y_reverse()
+      p <- ggplotly(p, tooltip = "text")
+      p
     })
     
 })

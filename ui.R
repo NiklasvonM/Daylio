@@ -1,39 +1,26 @@
 
-
-# shinyUI(fluidPage(
-# 
-#     # Application title
-#     titlePanel("Daylio"),
-# 
-#     sidebarLayout(
-#         sidebarPanel(
-#             selectInput(
-#                 inputId = "activity",
-#                 label = "Aktivitaet",
-#                 choices = ACTIVITIES,
-#                 multiple = FALSE
-#             )
-#         ),
-# 
-#         mainPanel(
-#             plotlyOutput("date_dots")
-#         )
-#     )
-# ))
-
 shinyUI(
     dashboardPage(
         dashboardHeader(
         ),
         dashboardSidebar(
+            selectInput(
+                inputId = "activity",
+                label = "Aktivitaet",
+                choices = ACTIVITIES,
+                multiple = FALSE,
+                selectize = FALSE,
+                size = min(length(ACTIVITIES), 15)
+            ),
             sidebarMenu(
                 menuItem("Dashboard", tabName = "dashboard"),
                 menuItem("Day of year", tabName = "jahrestag", icon = icon("th")),
+                menuItem("Day of year acitvity", tabName = "day_of_year_activity"),
                 menuItem("Weekday", tabName = "wochentag", icon = icon("calendar-alt")),
                 menuItem("Correlation table", tabName = "correlation_table"),
                 menuItem("Correlation matrix", tabName = "correlation_matrix"),
                 menuItem("Correlation matrix lag 1", tabName = "correlation_matrix_lag"),
-                menuItem("Signle day", tabName = "single_day"),
+                menuItem("Single day", tabName = "single_day"),
                 menuItem("Number activities foredays", tabName = "lookback"),
                 menuItem("Mood by activity value", tabName = "mood_distribution_by_activity_value"),
                 menuItem("Distribution mood with/without activity", tabName = "mood_distribution_wwo_activity"),
@@ -46,13 +33,8 @@ shinyUI(
                 #menuItem("Animationsdemo", tabName = "animation"),
                 menuItem("Accord diagram", tabName = "chord_diagram"),
                 menuItem("Dependencies", tabName = "dependencies"),
-                width = "300px"
-            ),
-            selectInput(
-                inputId = "activity",
-                label = "Aktivitaet",
-                choices = ACTIVITIES,
-                multiple = FALSE
+                menuItem("Cycles", tabName = "cycles"),
+                width = "400px"
             ),
             downloadButton("download"),
             dateInput(
@@ -67,7 +49,6 @@ shinyUI(
         ),
         dashboardBody(
             tabItems(
-                # First tab content
                 tabItem(tabName = "dashboard",
                     fluidPage(
                         fluidRow(
@@ -83,10 +64,13 @@ shinyUI(
                     )
                 ),
                 
-                # Second tab content
                 tabItem(tabName = "jahrestag",
                     shiny::h2("Durchschnittliche Stimmung nach Jahrestag"),
                     plotlyOutput("year_heatmap")
+                ),
+                tabItem(tabName = "day_of_year_activity",
+                        shiny::h2(""),
+                        plotlyOutput("day_of_year_activity_plot")
                 ),
                 tabItem(tabName = "wochentag",
                     shiny::h2("Vorkommnisse während der Woche"),
@@ -191,6 +175,25 @@ shinyUI(
                 ),
                 tabItem(tabName = "dependencies",
                         rHandsontableOutput("dependencies")
+                ),
+                tabItem(tabName = "cycles",
+                        selectInput(
+                          inputId = "activity_cycles",
+                          label = "Aktivitaet",
+                          choices = ACTIVITIES_MOOD,
+                          multiple = FALSE,
+                          selectize = FALSE,
+                          size = min(length(ACTIVITIES_MOOD), 15)
+                        ),
+                        sliderInput(
+                          "slider_cycles", 
+                          label = "Cycle Length",
+                          min = 1,
+                          max = 50,
+                          value = 30,
+                          step = 1
+                        ),
+                        plotlyOutput("cycles_heatmap")
                 )
             )
         )

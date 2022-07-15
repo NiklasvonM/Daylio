@@ -142,6 +142,17 @@ if(CALCULATE_DISTR_WWO_ACTIVITY) {
 }
 
 getLocationData <- function(directory) {
+  
+  tryFormats <- c(
+    "%Y-%m-%dT%H:%M:%SZ",
+    "%Y-%m-%dT%H:%M:%S.%OSZ",
+    "%Y/%m/%d %H:%M:%OS",
+    "%Y-%m-%d %H:%M",
+    "%Y/%m/%d %H:%M",
+    "%Y-%m-%d",
+    "%Y/%m/%d"
+  )
+  
   getLocationDataSingleMonth <- function(fileName) {
     df0 <- fromJSON(fileName, flatten = FALSE)[[1]]$placeVisit
     dt0 <- as.data.table(df0)
@@ -152,8 +163,10 @@ getLocationData <- function(directory) {
                                      Adresse = location.address,
                                      Adressname = location.name,
                                      # TODO: Fix lazy hack (+3600): Time is off by one hour.
-                                     Startzeit = as.POSIXct("1970-01-01", tz = "Europe/Berlin") + as.numeric(duration.startTimestampMs) / 1000 + 3600,
-                                     Endzeit = as.POSIXct("1970-01-01", tz = "Europe/Berlin") + as.numeric(duration.endTimestampMs) / 1000 + 3600
+                                     Startzeit = as.POSIXct(duration.startTimestamp, tz = "Europe/Berlin", tryFormats = tryFormats),
+                                     Endzeit = as.POSIXct(duration.endTimestamp, tz = "Europe/Berlin", tryFormats = tryFormats)
+                                     #Startzeit = as.POSIXct("1970-01-01", tz = "Europe/Berlin") + as.numeric(duration.startTimestamp) / 1000 + 3600,
+                                     #Endzeit = as.POSIXct("1970-01-01", tz = "Europe/Berlin") + as.numeric(duration.endTimestamp) / 1000 + 3600
     )]
     dt
   }
@@ -218,6 +231,17 @@ PLACES_VISITED <- DT_LOCATION[, .(
 
 
 getMovementData <- function(directory) {
+  
+  tryFormats <- c(
+    "%Y-%m-%dT%H:%M:%SZ",
+    "%Y-%m-%dT%H:%M:%S.%OSZ",
+    "%Y/%m/%d %H:%M:%OS",
+    "%Y-%m-%d %H:%M",
+    "%Y/%m/%d %H:%M",
+    "%Y-%m-%d",
+    "%Y/%m/%d"
+  )
+  
   getMovementSingleMonth <- function(fileName) {
     df0 <- fromJSON(fileName, flatten = FALSE)[[1]]$activitySegment
     dt0 <- as.data.table(df0)
@@ -236,8 +260,10 @@ getMovementData <- function(directory) {
       Fortbewegungsmittel = activityType,
       wayPoints = waypointPath.waypoints,
       # TODO: Fix lazy hack (+3600): Time is off by one hour.
-      Startzeit = as.POSIXct("1970-01-01", tz = "Europe/Berlin") + as.numeric(duration.startTimestampMs) / 1000 + 3600,
-      Endzeit = as.POSIXct("1970-01-01", tz = "Europe/Berlin") + as.numeric(duration.endTimestampMs) / 1000 + 3600
+      Startzeit = as.POSIXct(duration.startTimestamp, tz = "Europe/Berlin", tryFormats = tryFormats),
+      Endzeit = as.POSIXct(duration.endTimestamp, tz = "Europe/Berlin", tryFormats = tryFormats)
+      #Startzeit = as.POSIXct("1970-01-01", tz = "Europe/Berlin") + as.numeric(duration.startTimestampMs) / 1000 + 3600,
+      #Endzeit = as.POSIXct("1970-01-01", tz = "Europe/Berlin") + as.numeric(duration.endTimestampMs) / 1000 + 3600
     )]
     dt
   }
@@ -249,7 +275,7 @@ getMovementData <- function(directory) {
     init = data.table()
     #fromJSON("Semantic Location History/2021/2021_DECEMBER.json")[[1]]
   )
-  
+   
   dt[, DatumStart := as.Date(Startzeit)]
   dt[, DatumEnde := as.Date(Endzeit)]
   dt[, StartLatitude := StartLatitude / 10^7]
