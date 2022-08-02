@@ -8,46 +8,87 @@ shinyServer(function(input, output) {
     
     plot_mood <- reactive({
         activity <- cur_activity()
-        dtPlot <- DATA[, c("Datum", "Wochentag", "Stimmung", "Notiz", activity), with = FALSE]
+        useNames <- intersect(c("Day", "Weekday", "Mood", "Note", activity), names(DATA))
+        dtPlot <- DATA[, useNames, with = FALSE]
         dtPlot[, (activity) := as.ordered(get(activity))]
-        dtPlot[, RunningAvg7 := frollmean(Stimmung, 7, algo = "exact", align = "left")]
-        dtPlot[, RunningAvg30 := frollmean(Stimmung, 30, algo = "exact", align = "left")]
+        dtPlot[, RunningAvg7 := frollmean(Mood, 7, algo = "exact", align = "left")]
+        dtPlot[, RunningAvg30 := frollmean(Mood, 30, algo = "exact", align = "left")]
         
         dtDailyPlacesVisitedHovertext <- DT_LOCATION[, .(HovertextOrte = paste0(
           paste0(gsub("\n", " ", unique(AdresseFull))),
-          collapse = "<br>")), .(Datum)]
-        dtPlot <- merge(dtPlot, dtDailyPlacesVisitedHovertext, all.x = TRUE, by = "Datum")
+          collapse = "<br>")), .(Day)]
+        dtPlot <- merge(dtPlot, dtDailyPlacesVisitedHovertext, all.x = TRUE, by = "Day")
+        
+        
+        
+        fnSwitch <- if(LANGUAGE == "de") {
+          function(x) switch(
+            as.character(x),
+            "1" = "Lausig",
+            "2" = "Schlecht",
+            "3" = "Ok",
+            "4" = "Gut",
+            "5" = "Super",
+            "NA"
+          )
+        } else if (LANGUAGE == "en") {
+          function(x) switch(
+            as.character(x),
+            "1" = "awful",
+            "2" = "bad",
+            "3" = "meh",
+            "4" = "good",
+            "5" = "rad",
+            "NA"
+          )
+        } else {
+          stop("LANGUAGE in config.R unknown.")
+        }
         
         activity <- as.name(activity)
-        p <- ggplot(
+        p <- if("Note" %in% names(dtPlot)) {
+          ggplot(
             data = dtPlot
-        ) +
+          ) +
             geom_point(
-                mapping = eval(bquote(aes(
-                    x = Datum,
-                    y = Stimmung,
-                    color = .(activity),
-                    text = paste0(
-                        "Datum: ", format(Datum, "%d.%m.%Y"), "<br>",
-                        "Stimmung: ", sapply(Stimmung, function(x) switch(
-                            as.character(x),
-                            "1" = "Lausig",
-                            "2" = "Schlecht",
-                            "3" = "Ok",
-                            "4" = "Gut",
-                            "5" = "Super",
-                            "NA"
-                        )), "<br>",
-                        activity, ": ", .(activity), "<br>",
-                        "7-tägiger Stimmungsdurchschnitt: ", round(RunningAvg7, 2), "<br>",
-                        "30-tägiger Stimmungsdurchschnitt: ", round(RunningAvg30, 2), "<br>",
-                        ifelse(Notiz == "", "", "<br>"), Notiz, ifelse(Notiz == "", "", "<br><br>"),
-                        'Besuchte Orte:<br>', HovertextOrte
-                    )
-                )))
-            ) +
-            geom_line(aes(x = Datum, y = RunningAvg7), color = "red", alpha = 0.6) +
-            geom_line(aes(x = Datum, y = RunningAvg30), color = "blue", alpha = 0.6)
+              mapping = eval(bquote(aes(
+                x = Day,
+                y = Mood,
+                color = .(activity),
+                text = paste0(
+                  "Day: ", format(Day, "%d.%m.%Y"), "<br>",
+                  "Mood: ", sapply(Mood, fnSwitch), "<br>",
+                  activity, ": ", .(activity), "<br>",
+                  "7-day mood average: ", round(RunningAvg7, 2), "<br>",
+                  "30-day mood average: ", round(RunningAvg30, 2), "<br>",
+                  ifelse(Note == "", "", "<br>"), Note, ifelse(Notiz == "", "", "<br><br>"),
+                  'Places visited :<br>', HovertextOrte
+                )
+              )))
+            )
+        } else {
+          ggplot(
+            data = dtPlot
+          ) +
+            geom_point(
+              mapping = eval(bquote(aes(
+                x = Day,
+                y = Mood,
+                color = .(activity),
+                text = paste0(
+                  "Day: ", format(Day, "%d.%m.%Y"), "<br>",
+                  "Mood: ", sapply(Mood, fnSwitch), "<br>",
+                  activity, ": ", .(activity), "<br>",
+                  "7-day mood average: ", round(RunningAvg7, 2), "<br>",
+                  "30-day mood average: ", round(RunningAvg30, 2), "<br>",
+                  'Places visited :<br>', HovertextOrte
+                )
+              )))
+            )
+        }
+        p <- p +
+            geom_line(aes(x = Day, y = RunningAvg7), color = "red", alpha = 0.6) +
+            geom_line(aes(x = Day, y = RunningAvg30), color = "blue", alpha = 0.6)
         p <- ggplotly(p, tooltip = "text")
         p
     })
@@ -58,36 +99,36 @@ shinyServer(function(input, output) {
     
     output$correlation <- renderValueBox({
         activity <- cur_activity()
-        correlation <- cor(DATA$Stimmung, DATA[[activity]])
+        correlation <- cor(DATA$Mood, DATA[[activity]])
         correlation <- round(correlation, 2)
         valueBox(
             value = correlation,
-            subtitle = paste0("Korrelation Stimmung und ", activity)
+            subtitle = paste0("Correlation mood and ", activity)
         )
     })
     
     output$avg_mood <- renderInfoBox({
         activity <- cur_activity()
-        valWith <- round(mean(DATA[get(activity) == 1, Stimmung], na.rm = TRUE), 2)
-        valWithout <- round(mean(DATA[get(activity) == 0, Stimmung], na.rm = TRUE), 2)
+        valWith <- round(mean(DATA[get(activity) == 1, Mood], na.rm = TRUE), 2)
+        valWithout <- round(mean(DATA[get(activity) == 0, Mood], na.rm = TRUE), 2)
         infoBox(
-            title = "Durchschnittliche Stimmung mit/ohne Aktivität",
+            title = "Average mood with/without activity",
             value = paste(valWith, valWithout, sep = "/")
         )
     })
     
     output$roll_sum_activity <- renderPlotly({
       activity <- input$activity
-      dtPlot <- DATA[, c("Datum", activity), with = FALSE]
-      setorder(dtPlot, "Datum")
-      dtPlot[, `14 Tage rollierende Summe` := frollsum(get(activity), n = 14)]
+      dtPlot <- DATA[, c("Day", activity), with = FALSE]
+      setorder(dtPlot, "Day")
+      dtPlot[, `14 days rolling sum` := frollsum(get(activity), n = 14)]
       # https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/
-      ggplot(dtPlot, aes(Datum, `14 Tage rollierende Summe`)) +
+      ggplot(dtPlot, aes(Day, `14 days rolling sum`)) +
         geom_line(color="#69b3a2", size=2) +
         geom_point(size = 5) +
         geom_point(
           aes(
-            color = `14 Tage rollierende Summe`,
+            color = `14 days rolling sum`,
             color = after_scale(invert_color(color))
           ), size = 2) +
         scale_color_scico(palette = "hawaii", guide = "none") +
@@ -106,29 +147,27 @@ shinyServer(function(input, output) {
     )
     
     output$year_heatmap <- renderPlotly({
-        dtPlot <- DATA[, .(Datum, Stimmung)]
-        dtPlot[, Tag := format(Datum, "%d.%m.")]
+        dtPlot <- DATA[, .(Day, Mood)]
+        dtPlot[, Day := format(Day, "%m-%d")]
         dtPlot <- dtPlot[, .(
-            Stimmung = ifelse(length(Stimmung) > 0, mean(Stimmung, na.rm = TRUE), NA)
-        ), by = .(Tag)]
+            Mood = ifelse(length(Mood) > 0, mean(Mood, na.rm = TRUE), NA)
+        ), by = .(Day)]
         # Merge all possible days
-        dtMerge <- data.table(Tag = seq(as.Date("2004-01-01"), as.Date("2004-12-31"), by = "days"))
-        dtMerge[, Monatstag := mday(Tag)]
-        dtMerge[, Monat := month(Tag)]
-        dtMerge[, Tag := format(Tag, format = "%d.%m.")]
-        dtPlot <- merge(dtPlot, dtMerge, all.y = TRUE, by = c("Tag"))
+        dtMerge <- data.table(Day = seq(as.Date("2004-01-01"), as.Date("2004-12-31"), by = "days"))
+        dtMerge[, DayOfMonth := mday(Day)]
+        dtMerge[, Month := month(Day)]
+        dtMerge[, Day := format(Day, format = "%m-%d")]
+        dtPlot <- merge(dtPlot, dtMerge, all.y = TRUE, by = c("Day"))
         
         p <- ggplot(
             data = dtPlot,
             mapping = aes(
-                x = Monat,
-                y = Monatstag,
-                #x = Monatstag,
-                #y = Monat,
-                fill = Stimmung,
+                x = Month,
+                y = DayOfMonth,
+                fill = Mood,
                 text = paste0(
-                    "Tag: ", Tag, "<br>",
-                    "Durchschnittliche Stimmung: ", Stimmung
+                    "Day: ", Day, "<br>",
+                    "Average mood: ", Mood
                 )
             )
         ) +
@@ -142,9 +181,9 @@ shinyServer(function(input, output) {
     
     output$day_of_year_activity_plot <- renderPlotly({
       activity <- input$activity
-      dtPlot <- DATA[, c("Datum", activity), with = FALSE]
-      dtPlot[, Day := format(Datum, "%m-%d")]
-      dtPlot[, Year := year(Datum)]
+      dtPlot <- DATA[, c("Day", activity), with = FALSE]
+      dtPlot[, Year := year(Day)]
+      dtPlot[, Day := format(Day, "%m-%d")]
       activityName <- as.name(activity)
       
       breaks <- paste0(ifelse(1:12 > 10, "", "0"), 1:12, "-01")
@@ -156,7 +195,7 @@ shinyServer(function(input, output) {
           y = Year,
           fill = .(activityName),
           text = paste0(
-            "Date: ", paste0(Year, "-", Day), "<br>",
+            "Day: ", paste0(Year, "-", Day), "<br>",
             activity, ": ", .(activityName)
           )
         )))
@@ -169,22 +208,22 @@ shinyServer(function(input, output) {
       p
     })
     
-    output$wochentag_hist <- renderPlotly({
+    output$weekday_hist <- renderPlotly({
         req(input$activity)
         activity <- input$activity
-        dtPlot <- DATA[, c("Wochentag", activity), with = FALSE]
-        dtPlot[, Wochentag := factor(Wochentag, levels = WOCHENTAGE)]
+        dtPlot <- DATA[, c("Weekday", activity), with = FALSE]
+        dtPlot[, Weekday := factor(Weekday, levels = WEEKDAYS)]
         setnames(dtPlot, activity, "TempColumnName")
-        dtPlot <- dtPlot[, .(TempColumnName = sum(TempColumnName, na.rm = TRUE)), by = .(Wochentag)]
+        dtPlot <- dtPlot[, .(TempColumnName = sum(TempColumnName, na.rm = TRUE)), by = .(Weekday)]
         setnames(dtPlot, "TempColumnName", activity)
         p <-
             ggplot(
                 dtPlot,
                 eval(bquote(aes(
-                    x = Wochentag,
+                    x = Weekday,
                     y = get(activity),
                     text = paste0(
-                        "Wochentag: ", Wochentag, "<br>",
+                        "Weekday: ", Weekday, "<br>",
                         .(activity), ": ", get(activity)
                     )
                 )))
@@ -231,39 +270,39 @@ shinyServer(function(input, output) {
     
     output$correlation_matrix_plot <- renderPlotly({
       dtPlot <- data.table(
-        Aktivitaet = rownames(MAT_COR)[row(MAT_COR)],
-        `Aktivitaet2` = colnames(MAT_COR)[col(MAT_COR)],
-        KorrelationPlot = c(MAT_COR)
+        Activity = rownames(MAT_COR)[row(MAT_COR)],
+        `Activity2` = colnames(MAT_COR)[col(MAT_COR)],
+        CorrelationPlot = c(MAT_COR)
       )
       for(col in ACTIVITIES_MOOD) {
-        maxCor <- max(abs(dtPlot[Aktivitaet == col & Aktivitaet != Aktivitaet2]$KorrelationPlot))
-        dtPlot[Aktivitaet == col, Shape := as.factor(as.integer(abs(KorrelationPlot) == maxCor))]
+        maxCor <- max(abs(dtPlot[Activity == col & Activity != Activity2]$CorrelationPlot))
+        dtPlot[Activity == col, Shape := as.factor(as.integer(abs(CorrelationPlot) == maxCor))]
       }
-      dtPlot[, Korrelation := KorrelationPlot]
-      dtPlot[!(input$correlationThreshold[1] <= Korrelation & Korrelation <= input$correlationThreshold[2]), KorrelationPlot := NA]
-      dtPlot[Korrelation < 0, Farbe := -1]
-      dtPlot[Korrelation > 0, Farbe := 1]
-      dtPlot[is.na(Farbe), Farbe := 0]
+      dtPlot[, Correlation := CorrelationPlot]
+      dtPlot[!(input$correlationThreshold[1] <= Correlation & Correlation <= input$correlationThreshold[2]), CorrelationPlot := NA]
+      dtPlot[Correlation < 0, Color := -1]
+      dtPlot[Correlation > 0, Color := 1]
+      dtPlot[is.na(Color), Color := 0]
       p <- ggplot(
         dtPlot,
         aes(
-          Aktivitaet,
-          Aktivitaet2,
-          size = abs(KorrelationPlot),
-          color = Farbe,
+          Activity,
+          Activity2,
+          size = abs(CorrelationPlot),
+          color = Color,
           shape = Shape,
           text = paste0(
-            "Aktivität 1: ", Aktivitaet, "<br>",
-            "Aktivität 2: ", Aktivitaet2, "<br>",
-            "Korrelation: ", Korrelation
+            "Activity 1: ", Activity, "<br>",
+            "Activity 2: ", Activity2, "<br>",
+            "Correlation: ", Correlation
           )
         )
       ) +
         geom_point() +
         scale_color_continuous(low = "#3794bf", high = "#df8640") +
         theme(legend.position = "none", axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
-        xlab("Aktivität 1") +
-        ylab("Aktivität 2") +
+        xlab("Activity 1") +
+        ylab("Activity 2") +
         scale_size_continuous(limits = c(0, 1))
       ggplotly(p, tooltip = "text")
     })
@@ -289,66 +328,66 @@ shinyServer(function(input, output) {
     
     output$correlation_matrix_lag_plot <- renderPlotly({
       dtPlot <- data.table(
-        Aktivitaet = rownames(MAT_COR_LAG)[row(MAT_COR_LAG)],
-        `Aktivitaet_Lag_1` = colnames(MAT_COR_LAG)[col(MAT_COR_LAG)],
-        KorrelationPlot = c(MAT_COR_LAG)
+        Activity = rownames(MAT_COR_LAG)[row(MAT_COR_LAG)],
+        `Activity_Lag_1` = colnames(MAT_COR_LAG)[col(MAT_COR_LAG)],
+        CorrelationPlot = c(MAT_COR_LAG)
       )
       for(col in ACTIVITIES_MOOD) {
-        maxCor <- max(abs(dtPlot[Aktivitaet == col & Aktivitaet != Aktivitaet_Lag_1]$KorrelationPlot))
-        dtPlot[Aktivitaet == col, Shape := as.factor(as.integer(abs(KorrelationPlot) == maxCor))]
+        maxCor <- max(abs(dtPlot[Activity == col & Activity != Activity_Lag_1]$CorrelationPlot))
+        dtPlot[Activity == col, Shape := as.factor(as.integer(abs(CorrelationPlot) == maxCor))]
       }
-      dtPlot[, Korrelation := KorrelationPlot]
-      dtPlot[!(input$correlationThresholdLag[1] <= Korrelation & Korrelation <= input$correlationThresholdLag[2]), KorrelationPlot := NA]
-      dtPlot[Korrelation < 0, Farbe := -1]
-      dtPlot[Korrelation > 0, Farbe := 1]
-      dtPlot[is.na(Farbe), Farbe := 0]
+      dtPlot[, Correlation := CorrelationPlot]
+      dtPlot[!(input$correlationThresholdLag[1] <= Correlation & Correlation <= input$correlationThresholdLag[2]), CorrelationPlot := NA]
+      dtPlot[Correlation < 0, Color := -1]
+      dtPlot[Correlation > 0, Color := 1]
+      dtPlot[is.na(Color), Color := 0]
       p <- ggplot(
         dtPlot,
         aes(
-          Aktivitaet,
-          Aktivitaet_Lag_1,
-          size = abs(KorrelationPlot),
-          color = Farbe,
+          Activity,
+          Activity_Lag_1,
+          size = abs(CorrelationPlot),
+          color = Color,
           shape = Shape,
           text = paste0(
-            "Aktivität: ", Aktivitaet, "<br>",
-            "Aktivität Folgetag: ", Aktivitaet_Lag_1, "<br>",
-            "Korrelation: ", Korrelation
+            "Activity: ", Activity, "<br>",
+            "Activity next day: ", Activity_Lag_1, "<br>",
+            "Correlation: ", Correlation
           )
         )
       ) +
         geom_point() +
         scale_color_continuous(low = "#3794bf", high = "#df8640") +
         theme(legend.position = "none", axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
-        xlab("Aktivität") +
-        ylab("Aktivität Folgetag") +
+        xlab("Activity") +
+        ylab("Activity next day") +
         scale_size_continuous(limits = c(0, 1))
       ggplotly(p, tooltip = "text")
     })
     
     output$single_day <- renderRHandsontable({
         date <- input$day
-        tbl <- DATA[Datum == date]
+        tbl <- DATA[Day == date]
         req(nrow(tbl) > 0)
         tbl <- melt.data.table(
             data = tbl,
             id.vars = character(0),
             measure.vars = names(tbl),
-            variable.name = "Aktivität",
-            value.name = "Wert",
+            variable.name = "Activity",
+            value.name = "Value",
             value.factor = TRUE
         )
-        tbl[Aktivität == "Datum", Wert := format(as.Date(as.integer(Wert), origin = "1970-01-01"), format = "%d.%m.%Y")]
+        tbl[Activity == "Day", Value := format(as.Date(as.integer(Value), origin = "1970-01-01"), format = "%d.%m.%Y")]
         rhandsontable(tbl)
     })
     
     output$lookback_pointplot <- renderPlotly({
-        dt <- DATA[, c("Stimmung", input$activity), with = FALSE]
-        dt[, Anzahl := countEntriesLookback(get(input$activity), nLookback = input$lookback_pointplot_n - 1)]
-        dt <- dt[!is.na(Anzahl)]
-        dt[, N := .N, by = c("Anzahl")]
-        dtPlot <- dt[, .(Stimmung = mean(Stimmung, na.rm = TRUE)), by = c("Anzahl", "N")]
-        p <- ggplot(dtPlot, aes(Anzahl, Stimmung)) +
+        dt <- DATA[, c("Mood", input$activity), with = FALSE]
+        dt[, Count := countEntriesLookback(get(input$activity), nLookback = input$lookback_pointplot_n - 1)]
+        dt <- dt[!is.na(Count)]
+        dt[, N := .N, by = c("Count")]
+        dtPlot <- dt[, .(Mood = mean(Mood, na.rm = TRUE)), by = c("Count", "N")]
+        p <- ggplot(dtPlot, aes(Count, Mood)) +
             geom_point(aes(size = N)) +
             geom_line() +
             scale_y_continuous(limits = c(1, 5))
@@ -358,46 +397,41 @@ shinyServer(function(input, output) {
     
     output$mood_distribution_by_activity_value <- renderPlotly({
       activity <- input$activity
-      dtPlot <- DATA[, c("Stimmung", activity), with = FALSE]
+      dtPlot <- DATA[, c("Mood", activity), with = FALSE]
       if (is.numeric(dtPlot[[activity]])) {
           dtPlot[, (activity) := ordered(as.character(get(activity)))]
       } else {
           dtPlot[, (activity) := factor(get(activity))]
       }
       dtPlot[, n_activity := .N, by = c(activity)]
-      dtPlot[, Datenpunkte := .N, by = c("Stimmung", activity)]
+      dtPlot[, `n data points` := .N, by = c("Mood", activity)]
       dtPlot <- unique(dtPlot)
       dtFill <- as.data.table(expand.grid(
-          Stimmung = unique(dtPlot$Stimmung),
+          Mood = unique(dtPlot$Mood),
           V1 = unique(dtPlot[[activity]])
       ))
       setnames(dtFill, "V1", activity)
-      dtPlot <- merge(dtPlot, dtFill, by = c("Stimmung", activity), all = TRUE)
-      dtPlot[, `Stimmungsverteilung` := Datenpunkte / n_activity]
-      dtPlot[is.na(Stimmungsverteilung), Stimmungsverteilung := 0]
-      dtPlot[is.na(Datenpunkte), Datenpunkte := 0]
+      dtPlot <- merge(dtPlot, dtFill, by = c("Mood", activity), all = TRUE)
+      dtPlot[, `MoodDistribution` := `n data points` / n_activity]
+      dtPlot[is.na(`MoodDistribution`), `MoodDistribution` := 0]
+      dtPlot[is.na(`n data points`), `n data points` := 0]
       if(activity == "Schlafqualitaet") {
-        dtPlot[get(activity) == -1, (activity) := "Schlecht"]
-        dtPlot[get(activity) == 0, (activity) := "Mäßig"]
-        dtPlot[get(activity) == 1, (activity) := "Gut"]
+        if(all(c("Schlecht", "Mäßig", "Gut") %in% dtPlot$Schlafqualitaet)) {
+          dtPlot[get(activity) == -1, (activity) := "Schlecht"]
+          dtPlot[get(activity) == 0, (activity) := "Mäßig"]
+          dtPlot[get(activity) == 1, (activity) := "Gut"]
+        }
       }
-      # dtPlot <- DATA[, .(`Durchschnittsstimmung` = mean(Stimmung, na.rm = TRUE), N = .N), by = c(activity)]
       setnames(dtPlot, activity, make.names(activity))
-      p <- ggplot(dtPlot, aes_string(x = "Stimmung", y = "Stimmungsverteilung", color = make.names(activity))) +
+      p <- ggplot(dtPlot, aes_string(x = "Mood", y = "MoodDistribution", color = make.names(activity))) +
           geom_line() +
-          geom_point(aes(size = Datenpunkte)) +
+          geom_point(aes(size = `n data points`)) +
           scale_y_continuous(limits = c(0, 1)) +
           scale_x_continuous(limits = c(1, 5)) +
-          scale_size_continuous(limits = c(0, max(dtPlot$n)), guide = "none") +
+          scale_size_continuous(limits = c(0, max(dtPlot$`n data points`)), guide = "none") +
           theme_minimal()
-      # p <- ggplot(dtPlot, aes_string(x = make.names(activity), y = "Durchschnittsstimmung")) +
-      #   geom_line() +
-      #   geom_point(aes(size = N)) +
-      #   scale_y_continuous(limits = c(1, 5)) +
-      #   scale_size_continuous(limits = c(0, max(dtPlot$N)))
       p <- ggplotly(p)
       
-      test <<- p
       p
     })
     
@@ -416,11 +450,11 @@ shinyServer(function(input, output) {
         }
       }
       req(nrow(dtCur) > 0)
-      dtPlot <- dtCur[, .(Dichte = .N / nrow(dtCur)), by = .(Stimmung)]
-      dtPlot <- merge(dtPlot, data.table(Stimmung = 1:5), by = c("Stimmung"), all = TRUE)
+      dtPlot <- dtCur[, .(Dichte = .N / nrow(dtCur)), by = .(Mood)]
+      dtPlot <- merge(dtPlot, data.table(Mood = 1:5), by = c("Mood"), all = TRUE)
       dtPlot[is.na(Dichte), Dichte := 0]
-      p <- ggplot(dtPlot, aes(Stimmung, Dichte, text = paste0(
-        "Stimmung: ", Stimmung, "<br>",
+      p <- ggplot(dtPlot, aes(Mood, Dichte, text = paste0(
+        "Mood: ", Mood, "<br>",
         "Dichte: ", round(100 * Dichte, 2), "%"
       ))) +
         geom_bar(stat = "identity", fill = "#0a3b7e") +
@@ -437,39 +471,39 @@ shinyServer(function(input, output) {
     
     output$days_distr_w_activity_plot <- renderPlotly({
       activity <- input$activity
-      dtPlot <- DT_ACTIVITY_LENGTH_DISTR[Activity == activity, .(Tage = Days, `Anzahl` = `n with activity`)]
+      dtPlot <- DT_ACTIVITY_LENGTH_DISTR[Activity == activity, .(Days, `Count` = `n with activity`)]
       
       # Estimate exponential distribution using maximum likelihood estimation
-      lambda_mle <- 1/ (sum(dtPlot[, .(Tage * Anzahl)]) / sum(dtPlot$Anzahl))
+      lambda_mle <- 1/ (sum(dtPlot[, .(Days * Count)]) / sum(dtPlot$Count))
       # bias corrected maximum likelihood estimation
-      lambda_mle_bias_corrected <- lambda_mle - lambda_mle / (sum(dtPlot$Anzahl) - 1)
-      dtPlot[, EstimatedDensity := dexp(Tage, rate = lambda_mle_bias_corrected) * sum(dtPlot$Anzahl)]
+      lambda_mle_bias_corrected <- lambda_mle - lambda_mle / (sum(dtPlot$Count) - 1)
+      dtPlot[, EstimatedDensity := dexp(Days, rate = lambda_mle_bias_corrected) * sum(dtPlot$Count)]
       
-      maxDay <- max(dtPlot[Anzahl > 0]$Tage)
-      dtPlot <- dtPlot[Tage <= maxDay]
-      p <- ggplot(dtPlot, aes(Tage, Anzahl)) +
+      maxDay <- max(dtPlot[Count > 0]$Days)
+      dtPlot <- dtPlot[Days <= maxDay]
+      p <- ggplot(dtPlot, aes(Days, Count)) +
         geom_bar(stat = "identity") +
         geom_line(aes(y = EstimatedDensity)) +
-        ggtitle(paste0("Verteilung der Anzahl aufeinanderfolgender Tage mit der Aktivität ", activity))
+        ggtitle(paste0("Distribution of the number of consecutive days with activity '", activity, "'"))
       ggplotly(p)
     })
     
     output$days_distr_wo_activity_plot <- renderPlotly({
       activity <- input$activity
-      dtPlot <- DT_ACTIVITY_LENGTH_DISTR[Activity == activity, .(Tage = Days, `Anzahl` = `n without activity`)]
+      dtPlot <- DT_ACTIVITY_LENGTH_DISTR[Activity == activity, .(Days, `Count` = `n without activity`)]
       
       # Estimate exponential distribution using maximum likelihood estimation
-      lambda_mle <- 1/ (sum(dtPlot[, .(Tage * Anzahl)]) / sum(dtPlot$Anzahl))
+      lambda_mle <- 1/ (sum(dtPlot[, .(Days * Count)]) / sum(dtPlot$Count))
       # bias corrected maximum likelihood estimation
-      lambda_mle_bias_corrected <- lambda_mle - lambda_mle / (sum(dtPlot$Anzahl) - 1)
-      dtPlot[, EstimatedDensity := dexp(Tage, rate = lambda_mle_bias_corrected) * sum(dtPlot$Anzahl)]
+      lambda_mle_bias_corrected <- lambda_mle - lambda_mle / (sum(dtPlot$Count) - 1)
+      dtPlot[, EstimatedDensity := dexp(Days, rate = lambda_mle_bias_corrected) * sum(dtPlot$Count)]
       
-      maxDay <- max(dtPlot[Anzahl > 0]$Tage)
-      dtPlot <- dtPlot[Tage <= maxDay]
-      p <- ggplot(dtPlot, aes(Tage, Anzahl)) +
-        geom_bar(aes(y = Anzahl), stat = "identity") +
+      maxDay <- max(dtPlot[Count > 0]$Days)
+      dtPlot <- dtPlot[Days <= maxDay]
+      p <- ggplot(dtPlot, aes(Days, Count)) +
+        geom_bar(aes(y = Count), stat = "identity") +
         geom_line(aes(y = EstimatedDensity)) +
-        ggtitle(paste0("Verteilung der Anzahl aufeinanderfolgender Tage ohne die Aktivität ", activity))
+        ggtitle(paste0("Distribution of the number of consecutive days without activity '", activity, "'"))
       ggplotly(p)
     })
     
@@ -498,23 +532,23 @@ shinyServer(function(input, output) {
       
       nodes <- merge(
         nodes[, -"group", with = FALSE],
-        DT_COR[, .(label = Aktivität, Korrelation)],
+        DT_COR[, .(label = Activity, Correlation)],
         all.x = TRUE, by = "label"
       )
-      nodes[Korrelation < -0.05, group := -1]
-      nodes[-0.05 <= Korrelation & Korrelation <= 0.05, group := 0]
-      nodes[0.05 < Korrelation, group := 1]
+      nodes[Correlation < -0.05, group := -1]
+      nodes[-0.05 <= Correlation & Correlation <= 0.05, group := 0]
+      nodes[0.05 < Correlation, group := 1]
       nodes[is.na(group), group := 99]
       
       nodes[, title := paste0(
-        "Aktivität: ", label, "<br>",
-        "Korrelation mit Stimmung: ", Korrelation
+        "Activity: ", label, "<br>",
+        "Correlation with mood: ", Correlation
       )]
       
       if("ActivityGroup" %in% names(nodes)) {
         nodes[, title := paste0(
           title, "<br>",
-          "Gruppe: ", ActivityGroup
+          "Group: ", ActivityGroup
         )]
       }
       
@@ -532,7 +566,7 @@ shinyServer(function(input, output) {
         addTiles()
         #addProviderTiles(providers$Stamen.TonerLite, options = providerTileOptions(noWrap = TRUE))
       
-      dtMovement <- DT_MOVEMENT[Datum == dateSelected]
+      dtMovement <- DT_MOVEMENT[Day == dateSelected]
       for(i in seq(length = nrow(dtMovement))) {
         curMovement <- dtMovement[i]
         
@@ -584,7 +618,7 @@ shinyServer(function(input, output) {
       }
       
       
-      dtLocations <- DT_LOCATION[Datum == dateSelected]
+      dtLocations <- DT_LOCATION[Day == dateSelected]
       # TODO: Handle overwriting if a location is visited more than once.
       for(i in seq(length = nrow(dtLocations))) {
         curLocation <- dtLocations[i]
@@ -701,23 +735,23 @@ shinyServer(function(input, output) {
     output$strucutral_break_test <- renderPlotly({
       activity <- cur_activity()
       
-      dtCur <- DATA[, c("Datum", activity, "Stimmung"), with = FALSE]
+      dtCur <- DATA[, c("Day", activity, "Mood"), with = FALSE]
       
       dtCoeff <- as.data.table(expand.grid(
-        l = DATA[mday(Datum) == 1]$Datum, u = DATA[mday(Datum) == 1]$Datum
+        l = DATA[mday(Day) == 1]$Day, u = DATA[mday(Day) == 1]$Day
       ))
       dtCoeff <- dtCoeff[l < u]
       
       for (i in 1:nrow(dtCoeff)) {
         l <- dtCoeff[i]$l
         u <- dtCoeff[i]$u
-        dt1 <- dtCur[l <= Datum & Datum <= u]
+        dt1 <- dtCur[l <= Day & Day <= u]
         dt2 <- dtCur[!dt1, on = names(dtCur)]
         if (nrow(dt1) < 5 | nrow(dt2) < 5)
           next
         cTestCur <- as.list(chow.test(
-          y1 = dt1$Stimmung,
-          y2 = dt2$Stimmung,
+          y1 = dt1$Mood,
+          y2 = dt2$Mood,
           x1 = dt1[[activity]],
           x2 = dt2[[activity]]
         ))
@@ -772,9 +806,9 @@ shinyServer(function(input, output) {
     
     output$chord_diagram <- renderChorddiag({
       M <- length(ACTIVITIES)
-      dtCur <- DATA[Stimmung == input$mood]
+      dtCur <- DATA[Mood == input$mood]
       mat <- matrix(0, nrow = (M+1), ncol = (M+1))
-      rownames(mat) <- colnames(mat) <- c("Stimmung", ACTIVITIES)
+      rownames(mat) <- colnames(mat) <- c("Mood", ACTIVITIES)
       mat[1,1] <- nrow(dtCur) / nrow(DATA)
       for(i in 1:M) {
         mat[i+1,1] <- nrow(dtCur[get(ACTIVITIES[i]) > 0]) / nrow(DATA[get(ACTIVITIES[i]) > 0])
@@ -791,14 +825,12 @@ shinyServer(function(input, output) {
     output$cycles_heatmap <- renderPlotly({
       activity <- input$activity_cycles
       cycleLength <- input$slider_cycles
-      dtCycles <- DATA[, c("Datum", activity), with = FALSE]
+      dtCycles <- DATA[, c("Day", activity), with = FALSE]
       
-      minDate <- min(dtCycles$Datum)
+      minDate <- min(dtCycles$Day)
       offset <- as.integer(minDate) %% cycleLength
-      dtCycles[, `day of cycle` := (as.integer(Datum) - offset) %% cycleLength]
-      dtCycles[, `cycle` := floor(as.integer((Datum - minDate)) / cycleLength)]
-      dtTest <<- dtCycles
-      
+      dtCycles[, `day of cycle` := (as.integer(Day) - offset) %% cycleLength]
+      dtCycles[, `cycle` := floor(as.integer((Day - minDate)) / cycleLength)]
       
       activityName <- as.name(activity)
       p <- ggplot(
@@ -810,7 +842,7 @@ shinyServer(function(input, output) {
           text = paste0(
             "Cycle: ", `cycle`, "<br>",
             "Day of Cycle: ", `day of cycle`, "<br>",
-            "Date: ", Datum, "<br>",
+            "Date: ", Day, "<br>",
             activity, ": ", get(activity)
           )
         )))

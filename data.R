@@ -1,21 +1,37 @@
 library(data.table)
 library(lubridate)
 
-fileName <- "daylio_export_2021_10_23.csv"
+fileName <- "daylio_export_2022_08_01.csv"
 dtOrig <- fread(paste0("data/", fileName), encoding = "UTF-8")
 dt <- dtOrig[, .(
-  Datum = as.Date(full_date),
-  Wochentag = weekday,
-  Stimmung = mood,
-  Activities = activities
+  Day = as.Date(full_date),
+  Weekday = weekday,
+  Mood = mood,
+  Activities = activities,
+  Note = note
 )]
-dt[, Stimmung := sapply(Stimmung, function(x) switch(x,
-  "Super" = 5,
-  "Gut" = 4,
-  "Ok" = 3,
-  "Schlecht" = 2,
-  "Lausig" = 1
-))]
+
+# Map mood descriptions to numbers, e.g. awful -> 1, bad -> 2, ..., rad -> 5.
+dtMoodNamesTry <- data.table(
+  "1" = c("Lausig", "awful"),
+  "2" = c("Schlecht", "bad"),
+  "3" = c("Ok", "meh"),
+  "4" = c("Gut", "good"),
+  "5" = c("Super", "rad")
+)
+moodNamesFound <- FALSE
+for(i in seq_len(nrow(dtMoodNamesTry))) {
+  moodNamesCur <- as.character(dtMoodNamesTry[i])
+  if(all(dt$Mood %in% moodNamesCur)) {
+    dt[, Mood := match(Mood, moodNamesCur)]
+    moodNamesFound <- TRUE
+    break
+  }
+}
+if(!moodNamesFound) {
+  warning("Mood names where not found!")
+}
+
 
 activities <- paste0(dt$Activities, collapse = " | ")
 activities <- base::strsplit(activities, split = " | ", fixed = TRUE)
@@ -36,6 +52,13 @@ for (activity in activities) {
   )]
 }
 dt[, Activities := NULL]
-dt[, Schlafqualitaet := (-1 * Schlecht + 1 * Gut) / (Schlecht + Mäßig + Gut)]
-dt[, `Koerperliche Taetigkeiten` := Yoga + Sport + Laufen]
-fwrite(dt, file = paste0("data/Daten aufbereitet ", today(), ".csv"), sep = ";")
+if(all(c("Schlecht", "Mäßig", "Gut") %in% names(dt))) {
+  dt[, Schlafqualitaet := (-1 * Schlecht + 1 * Gut) / (Schlecht + Mäßig + Gut)]
+}
+if(all(c("Yoga", "Sport", "Laufen", "Krankengymnastik Übung", "Schwimmen") %in% names(dt))) {
+  dt[, `Koerperliche Taetigkeiten` := Yoga + Sport + Laufen + `Krankengymnastik Übung` + Schwimmen]
+}
+fwrite(dt, file = paste0("data/data cleaned ", today(), ".csv"), sep = ";")
+
+
+

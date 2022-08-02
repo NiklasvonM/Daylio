@@ -6,17 +6,26 @@ shinyUI(
         dashboardSidebar(
             selectInput(
                 inputId = "activity",
-                label = "Aktivitaet",
+                label = "Activity",
                 choices = ACTIVITIES,
                 multiple = FALSE,
                 selectize = FALSE,
                 size = min(length(ACTIVITIES), 15)
             ),
+            dateInput(
+              "day",
+              "Day",
+              format = "yyyy-mm-dd",
+              value = max(DATA$Day),
+              max = today(),
+              language = "en"#,
+              #datesdisabled = DATES_NO_LOCATION_DATA # currently not working
+            ),
             sidebarMenu(
                 menuItem("Dashboard", tabName = "dashboard"),
-                menuItem("Day of year", tabName = "jahrestag", icon = icon("th")),
-                menuItem("Day of year acitvity", tabName = "day_of_year_activity"),
-                menuItem("Weekday", tabName = "wochentag", icon = icon("calendar-alt")),
+                menuItem("Day of year", tabName = "day_of_year", icon = icon("th")),
+                menuItem("Day of year activity", tabName = "day_of_year_activity"),
+                menuItem("Weekday", tabName = "weekday", icon = icon("calendar-alt")),
                 menuItem("Correlation table", tabName = "correlation_table"),
                 menuItem("Correlation matrix", tabName = "correlation_matrix"),
                 menuItem("Correlation matrix lag 1", tabName = "correlation_matrix_lag"),
@@ -36,16 +45,7 @@ shinyUI(
                 menuItem("Cycles", tabName = "cycles"),
                 width = "400px"
             ),
-            downloadButton("download"),
-            dateInput(
-                "day",
-                "Tag",
-                format = "dd.mm.yyyy",
-                value = today() - 1,
-                max = today(),
-                language = "de",
-                datesdisabled = DATES_NO_LOCATION_DATA # currently not working
-            )
+            downloadButton("download")
         ),
         dashboardBody(
             tabItems(
@@ -64,69 +64,69 @@ shinyUI(
                     )
                 ),
                 
-                tabItem(tabName = "jahrestag",
-                    shiny::h2("Durchschnittliche Stimmung nach Jahrestag"),
+                tabItem(tabName = "day_of_year",
+                    shiny::h2("Average mood by day of the year"),
                     plotlyOutput("year_heatmap")
                 ),
                 tabItem(tabName = "day_of_year_activity",
                         shiny::h2(""),
                         plotlyOutput("day_of_year_activity_plot")
                 ),
-                tabItem(tabName = "wochentag",
-                    shiny::h2("Vorkommnisse während der Woche"),
-                    plotlyOutput("wochentag_hist")
+                tabItem(tabName = "weekday",
+                    shiny::h2("Occurances during the week"),
+                    plotlyOutput("weekday_hist")
                 ),
                 tabItem(tabName = "correlation_table",
-                    shiny::h2("Korrelation Aktivitäten und Stimmung"),
+                    shiny::h2("Correlation activities and mood"),
                     rHandsontableOutput("correlation_table")
                 ),
                 tabItem(tabName = "correlation_matrix",
-                    shiny::h2("Korrelation der einzelnen Aktivitäten"),
+                    shiny::h2("Correlation of the individual activities"),
                     plotlyOutput("correlation_matrix_plot", height = "1200px"),
                     sliderInput("correlationThreshold",
-                                "Mindestkorrelation",
+                                "Minimum correlation",
                                 min = -1, max = 1, value = c(-1, 1), step = 0.01),
                     #dataTableOutput("correlation_matrix")
                     rHandsontableOutput("correlation_matrix")
                 ),
                 tabItem(tabName = "correlation_matrix_lag",
-                        shiny::h2("Korrelation der einzelnen Aktivitäten"),
+                        shiny::h2("Correlation of the individual activities during the next day"),
                         plotlyOutput("correlation_matrix_lag_plot", height = "1200px"),
                         sliderInput("correlationThresholdLag",
-                                    "Mindestkorrelation",
+                                    "Minimum correlation",
                                     min = -1, max = 1, value = c(-1, 1), step = 0.01),
-                        h3("Spalte repräsentiert Folgetag"),
+                        h3("column represents next day"),
                         #dataTableOutput("correlation_matrix")
                         rHandsontableOutput("correlation_matrix_lag")
                 ),
                 tabItem(tabName = "single_day",
-                    shiny::h2("Was ist an diesem Tag passiert?"),
+                    shiny::h2("What happen during this day?"),
                     rHandsontableOutput("single_day")
                     #dataTableOutput("single_day")
                 ),
                 tabItem(tabName = "lookback",
-                    shiny::h2("Durchschnittliche Stimmung nach Aktivitäten in den Vortagen"),
+                    shiny::h2("Average mood by activity during the previous days"),
                     plotlyOutput("lookback_pointplot"),
                     sliderInput("lookback_pointplot_n", "Anzahl Tage: ", min = 1, max = 365, step = 1, value = 14)
                 ),
                 tabItem(tabName = "mood_distribution_by_activity_value",
-                    shiny::h2("Stimmungsverteilung nach Aktivitätswert"),
+                    shiny::h2("Mood distribution by activity value"),
                     plotlyOutput("mood_distribution_by_activity_value")
                 ),
                 tabItem(tabName = "mood_distribution_wwo_activity",
-                    shiny::h2("Stimmungsverteilung mit oder ohne gewisse Aktivitäten"),
+                    shiny::h2("Mood distribution with and without selected activities"),
                     fluidRow(
                         plotlyOutput("mood_distribution_wwo_activity")
                     ),
                     fluidRow(
                         column(6,
-                               h3("Einschließen"),
+                               h3("Include"),
                                dropZoneInput("dropzone_w",
                                              choices = ACTIVITIES
                                )
                         ),
                         column(6,
-                               h3("Ausschließen"),
+                               h3("Exclude"),
                                dropZoneInput("dropzone_wo",
                                              choices = ACTIVITIES
                                )
@@ -134,7 +134,7 @@ shinyUI(
                     ),
                     fluidRow(
                         column(6,
-                               h3("Aktivitäten"),
+                               h3("Activities"),
                                dragZone("dragzone_activity",
                                         choices = ACTIVITIES
                                )
@@ -169,8 +169,8 @@ shinyUI(
                         plotlyOutput("animation_demo", height = "1000px")
                 ),
                 tabItem(tabName = "chord_diagram",
-                        shiny::h2("Welcher Anteil der Aktivität tritt bei dieser Stimmung auf?"),
-                        selectInput("mood", "Stimmung", choices = 1:5),
+                        shiny::h2("What share of the activity occurs during this exact mood?"),
+                        selectInput("mood", "Mood", choices = 1:5),
                         chorddiagOutput("chord_diagram", width = "80%", height = "1000px")
                 ),
                 tabItem(tabName = "dependencies",
@@ -179,7 +179,7 @@ shinyUI(
                 tabItem(tabName = "cycles",
                         selectInput(
                           inputId = "activity_cycles",
-                          label = "Aktivitaet",
+                          label = "Activity",
                           choices = ACTIVITIES_MOOD,
                           multiple = FALSE,
                           selectize = FALSE,

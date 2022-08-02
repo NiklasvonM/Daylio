@@ -19,38 +19,47 @@ library(magrittr) # pipe
 library(jsonlite) # json reading
 library(scico) # scale_color_scico
 library(ggdark)
+library(DataExplorer)
 source("config.R")
 
 DATA <- fread(paste0("data/", fileName, ".csv"), encoding = "UTF-8")
-DATA[, Datum := as.Date(Datum)]
+DATA[, Day := as.Date(Day)]
 
 
 ACTIVITIES <- names(DATA)
-ACTIVITIES <- ACTIVITIES[!ACTIVITIES %in% c("Datum", "Wochentag", "Stimmung", "Notiz")]
+ACTIVITIES <- ACTIVITIES[!ACTIVITIES %in% c("Day", "Weekday", "Mood", "Notiz")]
 ACTIVITIES <- sort(ACTIVITIES)
-ACTIVITIES_MOOD <- c(ACTIVITIES, "Stimmung")
-DATA[, Monat := month(Datum)]
-DATA[, `Wochentag Zahl` := wday(Datum, week_start = 1)]
-DATA[, `Tag im Monat` := mday(Datum)]
+ACTIVITIES_MOOD <- c(ACTIVITIES, "Mood")
+DATA[, Month := month(Day)]
+DATA[, `Weekday Number` := wday(Day, week_start = 1)]
+DATA[, `Day of Month` := mday(Day)]
 N <- nrow(DATA)
 
 
-# correlation with Stimmung
+# DataExplorer::create_report(
+#   DATA,
+#   output_file = "report.html",
+#   report_title = "Daylio Report",
+#   y = "Mood"
+# )
+
+
+# correlation with mood
 DT_COR <- data.table(
-  Aktivität = ACTIVITIES
+  Activity = ACTIVITIES
 )
 for (activity in ACTIVITIES) {
   if(is.numeric(DATA[[activity]]))
-    DT_COR[Aktivität == activity, Korrelation := round(cor(DATA$Stimmung, DATA[[activity]]), 2)]
+    DT_COR[Activity == activity, Correlation := round(cor(DATA$Mood, DATA[[activity]]), 2)]
   DT_COR[
-    Aktivität == activity,
-    `Durchschnittliche Stimmung mit Aktivität` := round(mean(DATA[get(activity) > 0, Stimmung], na.rm = TRUE), 2)
+    Activity == activity,
+    `Average Mood with Activity` := round(mean(DATA[get(activity) > 0, Mood], na.rm = TRUE), 2)
   ]
   DT_COR[
-    Aktivität == activity,
-    `Durchschnittliche Stimmung ohne Aktivität` := round(mean(DATA[get(activity) <= 0, Stimmung], na.rm = TRUE), 2)
+    Activity == activity,
+    `Average Mood without Activity` := round(mean(DATA[get(activity) <= 0, Mood], na.rm = TRUE), 2)
   ]
-  DT_COR[Aktivität == activity, `Summe Aktivität` := sum(DATA[[activity]], na.rm = TRUE)]
+  DT_COR[Activity == activity, `Sum Activity` := sum(DATA[[activity]], na.rm = TRUE)]
 }
 
 # correlation of activities with each other
@@ -77,14 +86,14 @@ for (i in ACTIVITIES_MOOD) {
 
 
 
-WOCHENTAGE <- c(
-  "Montag",
-  "Dienstag",
-  "Mittwoch",
-  "Donnerstag",
-  "Freitag",
-  "Samstag",
-  "Sonntag"
+WEEKDAYS <- c(
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday"
 )
 
 
@@ -179,6 +188,9 @@ getLocationData <- function(directory) {
     #fromJSON("Semantic Location History/2021/2021_DECEMBER.json")[[1]]
   )
   
+  if(nrow(dt) == 0)
+    return(dt)
+  
   dt[, DatumStart := as.Date(Startzeit)]
   dt[, DatumEnde := as.Date(Endzeit)]
   dt[, Latitude := Latitude / 10^7]
@@ -187,12 +199,12 @@ getLocationData <- function(directory) {
   minDate <- min(as.Date(dt$Startzeit))
   maxDate <- max(as.Date(dt$Endzeit))
   
-  dtFill <- data.table(Datum = seq(minDate, maxDate, by = "days"))
+  dtFill <- data.table(Day = seq(minDate, maxDate, by = "days"))
   
-  dtFilled <- dtFill[dt, on = .(Datum >= DatumStart, Datum <= DatumEnde), c(names(dt), "Datum"), with = FALSE]
+  dtFilled <- dtFill[dt, on = .(Day >= DatumStart, Day <= DatumEnde), c(names(dt), "Day"), with = FALSE]
   setorder(dtFilled, "Startzeit")
   #dtFilled[, I := .I, by = .(Startzeit)]
-  dtFilled[, Datum := Datum + rowid(Startzeit) - 1]
+  dtFilled[, Day := Day + rowid(Startzeit) - 1]
   #dtFilled[, N := .N, by = .(Startzeit)]
   dtFilled[, AdresseFull := ifelse(is.na(Adresse), Adressname, paste0(Adressname, " (", Adresse, ")"))]
   
@@ -207,26 +219,47 @@ getLocationData <- function(directory) {
 }
 
 DT_LOCATION <- getLocationData("data/GoogleMaps/Semantic Location History/")
-DATES_NO_LOCATION_DATA <- seq(min(DT_LOCATION$DatumStart), max(DT_LOCATION$DatumEnde), by = "days")
-DATES_NO_LOCATION_DATA <- DATES_NO_LOCATION_DATA[!DATES_NO_LOCATION_DATA %in% DT_LOCATION$Datum]
+#DATES_NO_LOCATION_DATA <- seq(min(DT_LOCATION$DatumStart), max(DT_LOCATION$DatumEnde), by = "days")
+#DATES_NO_LOCATION_DATA <- DATES_NO_LOCATION_DATA[!DATES_NO_LOCATION_DATA %in% DT_LOCATION$Day]
 
-
-PLZ_VISITED <- DT_LOCATION[!is.na(PLZ), .(
-  Longitude = mean(Longitude),
-  Latitude = mean(Latitude),
-  TimesVisited = length(unique(Datum)),
-  FirstVisit = min(Datum),
-  LastVisit = max(Datum)
+if(nrow(DT_LOCATION) > 0) {
+  PLZ_VISITED <- DT_LOCATION[!is.na(PLZ), .(
+    Longitude = mean(Longitude),
+    Latitude = mean(Latitude),
+    TimesVisited = length(unique(Day)),
+    FirstVisit = min(Day),
+    LastVisit = max(Day)
   ), by = .(PLZ)]
-
-PLACES_VISITED <- DT_LOCATION[, .(
-  Adressen = paste0(unique(Adresse), collapse = "; "),
-  Adressname = paste0(unique(Adressname), collapse = "; "),
-  AdresseFull = paste0(unique(AdresseFull), collapse = "; "),
-  MinDate = min(Datum),
-  MaxDate = max(Datum),
-  DaysVisited = length(unique(Datum))
+  
+  PLACES_VISITED <- DT_LOCATION[, .(
+    Adressen = paste0(unique(Adresse), collapse = "; "),
+    Adressname = paste0(unique(Adressname), collapse = "; "),
+    AdresseFull = paste0(unique(AdresseFull), collapse = "; "),
+    MinDate = min(Day),
+    MaxDate = max(Day),
+    DaysVisited = length(unique(Day))
   ), by = .(Latitude, Longitude, DistanceFromMeanLocation)]
+} else {
+  DT_LOCATION[, Day := NA_Date_]
+  DT_LOCATION[, AdresseFull := ""]
+  PLZ_VISITED <- data.table(
+    Longitude = NA_real_,
+    Latitude = NA_real_,
+    TimesVisited = NA_integer_,
+    FirstVisit = NA_Date_,
+    LastVisit = NA_Date_
+  )
+  
+  PLACES_VISITED <- data.table(
+    Adressen = "",
+    Adressname = "",
+    AdresseFull = "",
+    MinDate = NA_Date_,
+    MaxDate = NA_Date_,
+    DaysVisited = NA_integer_
+  )
+}
+
 
 
 
@@ -275,6 +308,9 @@ getMovementData <- function(directory) {
     init = data.table()
     #fromJSON("Semantic Location History/2021/2021_DECEMBER.json")[[1]]
   )
+  
+  if(nrow(dt) == 0)
+    return(dt)
    
   dt[, DatumStart := as.Date(Startzeit)]
   dt[, DatumEnde := as.Date(Endzeit)]
@@ -286,42 +322,60 @@ getMovementData <- function(directory) {
   minDate <- min(as.Date(dt$Startzeit))
   maxDate <- max(as.Date(dt$Endzeit))
   
-  dtFill <- data.table(Datum = seq(minDate, maxDate, by = "days"))
+  dtFill <- data.table(Day = seq(minDate, maxDate, by = "days"))
   
-  dtFilled <- dtFill[dt, on = .(Datum >= DatumStart, Datum <= DatumEnde), c(names(dt), "Datum"), with = FALSE]
+  dtFilled <- dtFill[dt, on = .(Day >= DatumStart, Day <= DatumEnde), c(names(dt), "Day"), with = FALSE]
   setorder(dtFilled, "Startzeit")
   #dtFilled[, I := .I, by = .(Startzeit)]
-  dtFilled[, Datum := Datum + rowid(Startzeit) - 1]
+  dtFilled[, Day := Day + rowid(Startzeit) - 1]
   #dtFilled[, N := .N, by = .(Startzeit)]
   dtFilled
 }
 
 DT_MOVEMENT <- getMovementData("data/GoogleMaps/Semantic Location History/")
 
-DT_MOVEMENT[, a := sin(pi / 180 * (EndLatitude - StartLatitude)/2)^2 + cos(pi / 180 * StartLatitude) * cos(pi / 180 * EndLatitude) * sin(pi / 180 * (EndLongitude-StartLongitude)/2)^2]
-DT_MOVEMENT[, c := 2 * atan2(sqrt(a),sqrt(1-a))]
+if(nrow(DT_MOVEMENT) > 0) {
+  DT_MOVEMENT[, a := sin(pi / 180 * (EndLatitude - StartLatitude)/2)^2 + cos(pi / 180 * StartLatitude) * cos(pi / 180 * EndLatitude) * sin(pi / 180 * (EndLongitude-StartLongitude)/2)^2]
+  DT_MOVEMENT[, c := 2 * atan2(sqrt(a),sqrt(1-a))]
+  
+  DT_MOVEMENT[, `Distance by LatLon` := 6371000 * c]
+  
+}
 
-DT_MOVEMENT[, `Distance by LatLon` := 6371000 * c]
+
+if(nrow(DT_MOVEMENT) > 0 & nrow(DT_LOCATION) > 0) {
+  
+  dtAllPlacesVisited <- unique(rbindlist(list(
+    DT_LOCATION[, .(Latitude, Longitude, Zeit = Startzeit)],
+    DT_LOCATION[, .(Latitude, Longitude, Zeit = Endzeit)],
+    DT_MOVEMENT[, .(Latitude = StartLatitude, Longitude = StartLongitude, Zeit = Startzeit)],
+    DT_MOVEMENT[, .(Latitude = EndLatitude, Longitude = EndLongitude, Zeit = Endzeit)]
+  )))
+  dtPlaceInformation <- unique(DT_LOCATION[
+    !is.na(PLZ) | !is.na(Adresse),
+    .(Adresse = Adresse[!is.na(Adresse)][1], Adressname = Adressname[!is.na(Adressname)][1], AdresseFull = AdresseFull[!is.na(AdresseFull)][1], PLZ = PLZ[!is.na(PLZ)][1]),
+    by = .(Latitude, Longitude)])
+  dtFirstLastVisit <- dtAllPlacesVisited[, .(`Erster Besuch` = min(Zeit), `Letzter Besuch` = max(Zeit)), by = .(Latitude, Longitude)]
+  
+  DT_ALL_PLACES_VISITED <- merge(unique(dtAllPlacesVisited[, .(Latitude, Longitude)]), dtPlaceInformation, by = c("Latitude", "Longitude"), all.x = TRUE) %>%
+    merge(dtFirstLastVisit, by = c("Latitude", "Longitude"), all.x = TRUE)
+  DT_ALL_PLACES_VISITED[, Standortinformationen := ifelse(is.na(AdresseFull) & is.na(PLZ), 0, 1)]
+  DT_ALL_PLACES_VISITED[, Color := ifelse(Standortinformationen == 1, "blue", "black")]
+  
+} else {
+  DT_ALL_PLACES_VISITED <- data.table(
+    Latitude = NA_real_,
+    Longitude = NA_real_,
+    Adresse = "",
+    Adressname = "",
+    AdresseFull = "",
+    PLZ = NA_integer_,
+    Standortinformationen = NA_integer_,
+    Color = ""
+  )
+}
 
 
-
-
-dtAllPlacesVisited <- unique(rbindlist(list(
-  DT_LOCATION[, .(Latitude, Longitude, Zeit = Startzeit)],
-  DT_LOCATION[, .(Latitude, Longitude, Zeit = Endzeit)],
-  DT_MOVEMENT[, .(Latitude = StartLatitude, Longitude = StartLongitude, Zeit = Startzeit)],
-  DT_MOVEMENT[, .(Latitude = EndLatitude, Longitude = EndLongitude, Zeit = Endzeit)]
-)))
-dtPlaceInformation <- unique(DT_LOCATION[
-  !is.na(PLZ) | !is.na(Adresse),
-  .(Adresse = Adresse[!is.na(Adresse)][1], Adressname = Adressname[!is.na(Adressname)][1], AdresseFull = AdresseFull[!is.na(AdresseFull)][1], PLZ = PLZ[!is.na(PLZ)][1]),
-  by = .(Latitude, Longitude)])
-dtFirstLastVisit <- dtAllPlacesVisited[, .(`Erster Besuch` = min(Zeit), `Letzter Besuch` = max(Zeit)), by = .(Latitude, Longitude)]
-
-DT_ALL_PLACES_VISITED <- merge(unique(dtAllPlacesVisited[, .(Latitude, Longitude)]), dtPlaceInformation, by = c("Latitude", "Longitude"), all.x = TRUE) %>%
-  merge(dtFirstLastVisit, by = c("Latitude", "Longitude"), all.x = TRUE)
-DT_ALL_PLACES_VISITED[, Standortinformationen := ifelse(is.na(AdresseFull) & is.na(PLZ), 0, 1)]
-DT_ALL_PLACES_VISITED[, Color := ifelse(Standortinformationen == 1, "blue", "black")]
 
 
 
