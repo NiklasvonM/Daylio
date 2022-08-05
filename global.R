@@ -20,6 +20,8 @@ library(jsonlite) # json reading
 library(scico) # scale_color_scico
 library(ggdark)
 library(DataExplorer)
+library(tm) # stopwords
+library(wordcloud2)
 source("config.R")
 
 DATA <- fread(paste0("data/", fileName, ".csv"), encoding = "UTF-8")
@@ -27,7 +29,7 @@ DATA[, Day := as.Date(Day)]
 
 
 ACTIVITIES <- names(DATA)
-ACTIVITIES <- ACTIVITIES[!ACTIVITIES %in% c("Day", "Weekday", "Mood", "Notiz")]
+ACTIVITIES <- ACTIVITIES[!ACTIVITIES %in% c("Day", "Weekday", "Mood", "Note")]
 ACTIVITIES <- sort(ACTIVITIES)
 ACTIVITIES_MOOD <- c(ACTIVITIES, "Mood")
 DATA[, Month := month(Day)]

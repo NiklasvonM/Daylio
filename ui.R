@@ -36,6 +36,7 @@ shinyUI(
                 menuItem("Distribution day with/without activity", tabName = "days_distr_wwo_activity"),
                 menuItem("Network", tabName = "network"),
                 menuItem("Activity Counts", tabName = "count_activities"),
+                menuItem("Word Cloud", tabName = "wordcloud"),
                 menuItem("Location data", tabName = "worldmap"),
                 menuItem("Visited places (coarse)", tabName = "plz_visited"),
                 menuItem("Visited places (fine)", tabName = "places_visited"),
@@ -151,10 +152,13 @@ shinyUI(
                     )
                 ),
                 tabItem(tabName = "network",
-                      visNetworkOutput("forcenetwork", height = "1000px")  
+                        visNetworkOutput("forcenetwork", height = "1000px")  
                 ),
                 tabItem(tabName = "count_activities",
-                      plotOutput("count_activities_plot", height = "1000px")      
+                        plotOutput("count_activities_plot", height = "1000px")      
+                ),
+                tabItem(tabName = "wordcloud",
+                        wordcloud2Output("wordcloud", height = "1000px")
                 ),
                 tabItem(tabName = "worldmap",
                         leafletOutput("worldmap", height = "1000px")

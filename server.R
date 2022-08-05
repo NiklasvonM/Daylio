@@ -61,7 +61,7 @@ shinyServer(function(input, output) {
                   activity, ": ", .(activity), "<br>",
                   "7-day mood average: ", round(RunningAvg7, 2), "<br>",
                   "30-day mood average: ", round(RunningAvg30, 2), "<br>",
-                  ifelse(Note == "", "", "<br>"), Note, ifelse(Notiz == "", "", "<br><br>"),
+                  ifelse(Note == "", "", "<br>"), Note, ifelse(Note == "", "", "<br><br>"),
                   'Places visited :<br>', HovertextOrte
                 )
               )))
@@ -599,6 +599,22 @@ shinyServer(function(input, output) {
         geom_text(data=label_data, aes(x=id, y=`Average Activity`*10+maxVal/10, label=Activity, hjust=hjust), color="black", fontface="bold",alpha=0.6, size=5, angle= label_data$angle, inherit.aes = FALSE) 
       
       p
+    })
+    
+    output$wordcloud <- renderWordcloud2({
+      dt <- data.table(Word = unlist(str_split(paste0(DATA$Note, collapse = " "), " ")))
+      
+      # Remove all entries that contain two digits in a row
+      dt <- dt[!grepl("[[:digit:][:digit:]]", Word)]
+      # Remove most common English and German words
+      dt <- dt[!tolower(Word) %in% stopwords('english')]
+      dt <- dt[!tolower(Word) %in% stopwords('de')]
+      # Remove punctuation
+      dt[, Word := gsub("[[:punct:]]", "", Word)]
+      
+      dt <- dt[, .(N = .N), by = .(Word)]
+      
+      wordcloud2(dt, size = 20)
     })
     
     
