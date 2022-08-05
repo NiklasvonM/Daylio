@@ -557,6 +557,53 @@ shinyServer(function(input, output) {
       
     })
     
+    
+    output$count_activities_plot <- renderPlot({
+      dtPlot <- copy(DT_COR)
+      
+      dtPlot[Correlation < -0.05, `correlation with mood` := "negative"]
+      dtPlot[-0.05 <= Correlation & Correlation <= 0.05, `correlation with mood` := "neutral"]
+      dtPlot[0.05 < Correlation, `correlation with mood` := "positive"]
+      dtPlot[, `correlation with mood` := as.factor(`correlation with mood`)]
+      
+      
+      empty_bar <- ceiling(nrow(dtPlot) / 20)
+      to_add <- as.data.table(matrix(NA, empty_bar*nlevels(dtPlot$`correlation with mood`), ncol(dtPlot)))
+      colnames(to_add) <- copy(colnames(dtPlot))
+      to_add[, `correlation with mood` := rep(levels(dtPlot$`correlation with mood`), each=empty_bar)]
+      dtPlot <- rbindlist(list(dtPlot, to_add))
+      
+      setorder(dtPlot, "correlation with mood", -"Average Activity")
+      dtPlot[, id := .I]
+      
+      maxVal <- max(dtPlot$`Average Activity`, na.rm = TRUE)*10
+      label_data <- copy(dtPlot)
+      number_of_bar <- nrow(label_data)
+      angle <- 90 - 360 * (label_data$id-0.5) / number_of_bar     # I substract 0.5 because the letter must have the angle of the center of the bars. Not extreme right(1) or extreme left (0)
+      label_data$hjust <- ifelse(angle < -90, 1, 0)
+      label_data$angle <- ifelse(angle < -90, angle+180, angle)
+      
+      setnames(dtPlot, "Correlation", "Correlation with Mood")
+      p <- ggplot(dtPlot, aes(x=id, y = `Average Activity`*10, fill = `Correlation with Mood`)) +       
+        geom_bar(stat="identity") +
+        ylim(c(-8, maxVal*1.1+1)) +
+        theme_minimal() +
+        theme(
+          axis.text = element_blank(),
+          axis.title = element_blank(),
+          panel.grid = element_blank(),
+          plot.margin = unit(rep(-1,4), "cm")
+        ) +
+        scale_fill_gradient2() +
+        coord_polar(start = 0) + 
+        geom_text(data=label_data, aes(x=id, y=`Average Activity`*10+maxVal/10, label=Activity, hjust=hjust), color="black", fontface="bold",alpha=0.6, size=5, angle= label_data$angle, inherit.aes = FALSE) 
+      
+      p
+    })
+    
+    
+    
+    
     # world map with daily visits 
     output$worldmap <- renderLeaflet({
       

@@ -60,6 +60,7 @@ for (activity in ACTIVITIES) {
     `Average Mood without Activity` := round(mean(DATA[get(activity) <= 0, Mood], na.rm = TRUE), 2)
   ]
   DT_COR[Activity == activity, `Sum Activity` := sum(DATA[[activity]], na.rm = TRUE)]
+  DT_COR[Activity == activity, `Average Activity` := mean(DATA[[activity]], na.rm = TRUE)]
 }
 
 # correlation of activities with each other
