@@ -22,10 +22,12 @@ library(ggdark)
 library(DataExplorer)
 library(tm) # stopwords
 library(wordcloud2)
+library(stringr)
 source("config.R")
 
 DATA <- fread(paste0("data/", fileName, ".csv"), encoding = "UTF-8")
 DATA[, Day := as.Date(Day)]
+setorder(DATA, "Day")
 
 
 ACTIVITIES <- names(DATA)
@@ -36,6 +38,49 @@ DATA[, Month := month(Day)]
 DATA[, `Weekday Number` := wday(Day, week_start = 1)]
 DATA[, `Day of Month` := mday(Day)]
 N <- nrow(DATA)
+
+
+
+
+
+
+# Mutual information (transinformation)
+mutualInformation <- function(x, y) {
+  n <- length(x)
+  stopifnot(n == length(y))
+  res <- 0
+  for(xi in unique(x)) {
+    nX <- length(which(x == xi)) / n
+    if(nX == 0)
+      next
+    for(yi in unique(y)) {
+      nBoth <- length(which(x == xi & y == yi)) / n
+      nY <- length(which(y == yi)) / n
+      if(nBoth == 0)
+        next
+      res <- res + nBoth * log(nBoth / (nX * nY)) # / (nX * nY)?
+    }
+  }
+  res
+}
+entropy <- function(x) {
+  res <- 0
+  n <- length(x)
+  for(xi in unique(x)) {
+    nX <- length(which(x == xi)) / n
+    res <- res - nX * log(nX)
+  }
+  res
+}
+
+mutualInformationNormed <- function(x, y) {
+  mutualInformation(x, y) / sqrt(entropy(x) * entropy(y))
+}
+
+measureOfDependence <- 
+  #mutualInformationNormed
+  cor
+
 
 
 # DataExplorer::create_report(
@@ -52,7 +97,7 @@ DT_COR <- data.table(
 )
 for (activity in ACTIVITIES) {
   if(is.numeric(DATA[[activity]]))
-    DT_COR[Activity == activity, Correlation := round(cor(DATA$Mood, DATA[[activity]]), 2)]
+    DT_COR[Activity == activity, Correlation := round(measureOfDependence(DATA$Mood, DATA[[activity]]), 2)]
   DT_COR[
     Activity == activity,
     `Average Mood with Activity` := round(mean(DATA[get(activity) > 0, Mood], na.rm = TRUE), 2)
@@ -65,15 +110,25 @@ for (activity in ACTIVITIES) {
   DT_COR[Activity == activity, `Average Activity` := mean(DATA[[activity]], na.rm = TRUE)]
 }
 
+
+
+
 # correlation of activities with each other
 MAT_COR <- matrix(data = 0, nrow = length(ACTIVITIES_MOOD), ncol = length(ACTIVITIES_MOOD))
 colnames(MAT_COR) <- ACTIVITIES_MOOD
 rownames(MAT_COR) <- ACTIVITIES_MOOD
 for (i in ACTIVITIES_MOOD) {
   for (j in ACTIVITIES_MOOD) {
-    MAT_COR[i, j] <- round(cor(DATA[[i]], DATA[[j]]), 2)
+    MAT_COR[i, j] <- round(measureOfDependence(DATA[[i]], DATA[[j]]), 2)
   }
 }
+
+
+
+
+
+
+
 
 
 # correlation of activities with each other with lag 1 for columns
@@ -82,22 +137,34 @@ colnames(MAT_COR_LAG) <- ACTIVITIES_MOOD
 rownames(MAT_COR_LAG) <- ACTIVITIES_MOOD
 for (i in ACTIVITIES_MOOD) {
   for (j in ACTIVITIES_MOOD) {
-    MAT_COR_LAG[i, j] <- round(cor(DATA[1:(N-1)][[i]], DATA[2:N][[j]]), 2)
+    MAT_COR_LAG[i, j] <- round(measureOfDependence(DATA[1:(N-1)][[i]], DATA[2:N][[j]]), 2)
   }
 }
 
 
 
 
-WEEKDAYS <- c(
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday"
-)
+WEEKDAYS <- if(LANGUAGE == "en") {
+  c(
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday"
+  )
+} else if(LANGUAGE == "de") {
+  c(
+    "Montag",
+    "Dienstag",
+    "Mittwoch",
+    "Donnerstag",
+    "Freitag",
+    "Samstag",
+    "Sonntag"
+  )
+}
 
 
 
@@ -394,7 +461,7 @@ for(activity in dtDependencies$Activity) {
       # Tautologically, an activity implies itself
       # Skip if the (potentially) dependent activity has little variance
       # because in that case, dependence is uninteresting.
-      if(activity == dependentActivity | var(DATA[[dependentActivity]]) < 0.1)
+      if(activity == dependentActivity | var(DATA[[dependentActivity]], na.rm = TRUE) < 0.1)
         next
       if(length(unique(dtCur[[dependentActivity]])) == 1) {
         dependentVal <- unique(dtCur[[dependentActivity]])
