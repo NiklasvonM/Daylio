@@ -75,7 +75,7 @@ shinyUI(
                         plotlyOutput("day_of_year_activity_plot")
                 ),
                 tabItem(tabName = "weekday",
-                    shiny::h2("Occurances during the week"),
+                    shiny::h2("Occurences during the week"),
                     plotlyOutput("weekday_hist")
                 ),
                 tabItem(tabName = "correlation_table",
