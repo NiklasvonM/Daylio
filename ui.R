@@ -45,6 +45,7 @@ shinyUI(
                 menuItem("Accord diagram", tabName = "chord_diagram"),
                 menuItem("Dependencies", tabName = "dependencies"),
                 menuItem("Cycles", tabName = "cycles"),
+                menuItem("Auto Correlation", tabName = "autocorrelation"),
                 width = "400px"
             ),
             downloadButton("download")
@@ -202,6 +203,9 @@ shinyUI(
                           step = 1
                         ),
                         plotlyOutput("cycles_heatmap")
+                ),
+                tabItem(tabName = "autocorrelation",
+                        plotlyOutput("autocorrelation_plot")
                 )
             )
         )
