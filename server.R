@@ -99,7 +99,7 @@ shinyServer(function(input, output) {
     
     output$correlation <- renderValueBox({
         activity <- cur_activity()
-        correlation <- cor(DATA$Mood, DATA[[activity]])
+        correlation <- measureOfDependence(DATA$Mood, DATA[[activity]])
         correlation <- round(correlation, 2)
         valueBox(
             value = correlation,
@@ -387,9 +387,16 @@ shinyServer(function(input, output) {
         dt <- dt[!is.na(Count)]
         dt[, N := .N, by = c("Count")]
         dtPlot <- dt[, .(Mood = mean(Mood, na.rm = TRUE)), by = c("Count", "N")]
+        dtForLM <- data.table()
+        for(i in seq_len(nrow(dtPlot))) {
+          dtForLM <- rbindlist(list(dtForLM, data.table(Count = rep(dtPlot[i]$Count, dtPlot[i]$N), Mood = dtPlot[i]$Mood)))
+        }
+        mdl <- lm(Mood ~ Count + 1, dtForLM)
+        dtPlotLM <- data.table(Count = range(dtPlot$Count), Mood = mdl$coefficients["(Intercept)"] + range(dtPlot$Count) * mdl$coefficients["Count"])
         p <- ggplot(dtPlot, aes(Count, Mood)) +
             geom_point(aes(size = N)) +
             geom_line() +
+            geom_line(aes(Count, Mood), dtPlotLM, linetype = "dashed") +
             scale_y_continuous(limits = c(1, 5))
         p <- ggplotly(p)
         p
