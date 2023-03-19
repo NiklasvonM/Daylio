@@ -938,4 +938,17 @@ shinyServer(function(input, output) {
       ggplotly(p)
     })
     
+    output$partial_autocorrelation_plot <- renderPlotly({
+      autoCorrelation <- stats::pacf(DATA[[input$activity]], plot = FALSE)
+      dtAutoCorrelation <- data.table(Lag = as.integer(autoCorrelation$lag), `Auto Correlation` = as.numeric(autoCorrelation$acf))[Lag > 0]
+      p <- ggplot(dtAutoCorrelation, aes(Lag, `Auto Correlation`)) +
+        geom_bar(stat = "identity", width = 0.5) +
+        geom_hline(yintercept = 0.1, color = "blue", linetype = "dashed") +
+        geom_hline(yintercept = -0.1, color = "blue", linetype = "dashed") +
+        geom_hline(yintercept = 0, color = "black") +
+        theme_minimal() +
+        ggtitle(paste0("Partial Auto Correlation of '", input$activity,"'"))
+      ggplotly(p)
+    })
+    
 })

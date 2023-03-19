@@ -205,7 +205,8 @@ shinyUI(
                         plotlyOutput("cycles_heatmap")
                 ),
                 tabItem(tabName = "autocorrelation",
-                        plotlyOutput("autocorrelation_plot")
+                        plotlyOutput("autocorrelation_plot"),
+                        plotlyOutput("partial_autocorrelation_plot")
                 )
             )
         )
