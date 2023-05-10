@@ -108,9 +108,10 @@ shinyUI(
                     #dataTableOutput("single_day")
                 ),
                 tabItem(tabName = "lookback",
-                    shiny::h2("Average mood by activity during the previous days"),
+                        fluidRow(titlePanel(title=textOutput("previous_days_title")
+                        )),
                     plotlyOutput("lookback_pointplot"),
-                    sliderInput("lookback_pointplot_n", "Anzahl Tage: ", min = 1, max = 365, step = 1, value = 14)
+                    sliderInput("lookback_pointplot_n", "Number of days: ", min = 1, max = 365, step = 1, value = 14)
                 ),
                 tabItem(tabName = "mood_distribution_by_activity_value",
                     shiny::h2("Mood distribution by activity value"),

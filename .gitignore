@@ -40,3 +40,11 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+# Custom
+data/*
+OTA/*
+*.html
+
+# Only config_template.yaml is supposed to be versioned
+config.yaml

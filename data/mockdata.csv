@@ -1,506 +1,701 @@
-Day;Weekday;Mood;Chess;Spanish;Groceries;Shaved;Trip;Work;Laundry;Family;Restaurant;Canteen;Longboard;Barber;Exam;Allergy
-2022-01-17;Monday;5;1;1;0;0;0;0;0;0;0;0;0;0;0;0
-2022-01-16;Sunday;3;0;1;0;0;0;0;0;0;0;0;0;0;0;0
-2022-01-15;Saturday;2;1;0;1;1;0;0;0;0;0;0;0;0;0;0
-2022-01-14;Friday;1;0;1;1;0;1;0;0;0;0;0;0;0;0;0
-2022-01-13;Thursday;4;0;0;1;0;1;1;0;0;0;0;0;0;0;0
-2022-01-12;Wednesday;5;1;1;0;0;0;0;0;0;0;0;0;0;0;0
-2022-01-11;Tuesday;5;1;1;1;0;0;1;0;0;0;0;0;0;0;0
-2022-01-10;Monday;4;1;1;0;1;0;1;1;0;0;0;0;0;0;0
-2022-01-09;Sunday;5;0;1;0;0;0;1;0;0;0;0;0;0;0;0
-2022-01-08;Saturday;5;1;1;0;0;0;0;0;0;0;0;0;0;0;0
-2022-01-07;Friday;5;0;1;0;0;0;0;1;0;0;0;0;0;0;0
-2022-01-06;Thursday;1;0;1;1;0;0;1;0;0;0;0;0;0;0;0
-2022-01-05;Wednesday;1;0;0;0;0;0;0;0;1;0;0;0;0;0;0
-2022-01-04;Tuesday;4;0;1;0;0;0;1;0;0;0;0;0;0;0;0
-2022-01-03;Monday;5;0;1;1;1;0;0;0;0;1;0;0;0;0;0
-2022-01-02;Sunday;3;0;1;0;0;0;0;0;0;0;0;0;0;0;0
-2022-01-01;Saturday;4;1;1;0;0;0;0;1;0;0;0;0;0;0;0
-2021-12-31;Friday;5;1;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-12-30;Thursday;3;0;1;1;0;0;1;0;0;0;0;0;0;0;0
-2021-12-29;Wednesday;2;0;1;0;0;0;1;0;0;0;0;0;0;0;0
-2021-12-28;Tuesday;3;1;1;0;0;0;1;0;0;0;0;0;0;0;0
-2021-12-27;Monday;5;1;1;0;0;0;1;0;0;0;0;0;0;0;0
-2021-12-26;Sunday;5;1;1;0;1;0;0;0;0;0;0;0;0;0;0
-2021-12-25;Saturday;5;1;1;0;0;0;0;1;1;0;0;0;0;0;0
-2021-12-24;Friday;5;1;1;0;0;0;0;0;1;0;0;0;0;0;0
-2021-12-23;Thursday;5;0;1;1;0;0;1;0;0;0;0;0;0;0;0
-2021-12-22;Wednesday;3;0;1;0;0;0;1;0;0;0;0;0;0;0;0
-2021-12-21;Tuesday;3;0;1;0;1;0;1;0;0;0;0;0;0;0;0
-2021-12-20;Monday;5;1;1;1;0;0;0;1;0;0;0;0;0;0;0
-2021-12-19;Sunday;5;1;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-12-18;Saturday;5;1;1;1;0;0;1;0;0;0;0;0;0;0;0
-2021-12-17;Friday;1;0;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-12-16;Thursday;1;1;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-12-15;Wednesday;1;1;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-12-14;Tuesday;1;0;1;1;0;0;1;0;0;0;0;0;0;0;0
-2021-12-13;Monday;1;0;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-12-12;Sunday;1;0;1;0;1;0;0;1;0;0;0;0;0;0;0
-2021-12-11;Saturday;1;0;1;0;0;0;0;0;1;0;0;0;0;0;0
-2021-12-10;Friday;1;0;1;0;0;0;0;0;0;0;1;0;0;0;0
-2021-12-09;Thursday;1;0;0;0;0;0;1;0;1;0;0;0;0;0;0
-2021-12-08;Wednesday;2;0;1;0;0;0;1;0;0;0;0;0;0;0;0
-2021-12-07;Tuesday;5;0;1;1;0;0;1;0;0;0;1;0;0;0;0
-2021-12-06;Monday;5;0;1;0;1;0;0;0;0;0;0;0;0;0;0
-2021-12-05;Sunday;5;0;1;0;0;0;0;0;1;0;0;0;0;0;0
-2021-12-04;Saturday;3;0;1;1;0;0;0;1;0;0;0;0;0;0;0
-2021-12-03;Friday;3;0;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-12-02;Thursday;4;0;1;0;0;0;1;0;0;0;1;0;0;0;0
-2021-12-01;Wednesday;4;0;1;1;0;0;0;0;0;0;0;0;0;0;0
-2021-11-30;Tuesday;2;0;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-11-29;Monday;1;1;1;0;0;0;0;1;0;0;0;0;0;0;0
-2021-11-28;Sunday;2;0;1;0;1;0;1;0;1;0;0;0;0;0;0
-2021-11-27;Saturday;4;0;1;1;0;0;0;0;1;1;0;0;0;0;0
-2021-11-26;Friday;3;0;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-11-25;Thursday;3;0;1;0;0;0;0;0;0;0;1;0;0;0;0
-2021-11-24;Wednesday;3;0;1;1;0;0;0;0;0;0;0;0;0;0;0
-2021-11-23;Tuesday;1;0;1;0;1;0;1;0;0;0;1;0;0;0;0
-2021-11-22;Monday;1;0;1;0;0;0;0;1;0;0;0;0;0;0;0
-2021-11-21;Sunday;2;0;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-11-20;Saturday;4;0;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-11-19;Friday;4;0;1;1;0;0;1;0;0;0;1;0;0;0;0
-2021-11-18;Thursday;1;0;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-11-17;Wednesday;4;0;1;0;1;0;0;0;0;0;0;0;0;0;0
-2021-11-16;Tuesday;5;0;1;1;0;0;1;0;0;0;0;0;0;0;0
-2021-11-15;Monday;2;0;1;0;0;0;1;0;0;0;1;0;0;0;0
-2021-11-14;Sunday;5;0;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-11-13;Saturday;5;0;1;1;0;0;0;0;0;0;0;0;0;0;0
-2021-11-12;Friday;4;0;1;0;0;0;0;1;0;0;1;0;0;0;0
-2021-11-11;Thursday;4;0;1;0;0;0;1;0;0;0;1;0;0;0;0
-2021-11-10;Wednesday;5;0;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-11-09;Tuesday;5;0;1;0;0;0;1;0;0;0;1;1;0;0;0
-2021-11-08;Monday;4;0;1;1;0;0;1;0;0;0;1;0;0;0;0
-2021-11-07;Sunday;5;0;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-11-06;Saturday;5;0;0;1;0;0;0;0;0;0;0;0;0;0;0
-2021-11-05;Friday;4;0;1;1;1;0;0;1;0;1;0;0;0;0;0
-2021-11-04;Thursday;2;0;1;0;0;0;1;0;1;1;0;0;0;0;0
-2021-11-03;Wednesday;5;0;1;1;0;0;1;0;0;0;1;0;0;0;0
-2021-11-02;Tuesday;5;0;1;0;0;0;1;0;0;0;1;0;0;0;0
-2021-11-01;Monday;5;0;1;1;0;0;1;1;0;0;0;0;0;0;0
-2021-10-31;Sunday;5;0;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-10-30;Saturday;2;0;1;1;1;0;1;0;0;0;0;0;0;0;0
-2021-10-29;Friday;3;0;1;0;0;0;0;0;0;1;0;0;0;0;0
-2021-10-28;Thursday;5;0;1;0;0;0;1;0;0;0;1;0;0;0;0
-2021-10-27;Wednesday;4;0;1;0;0;0;1;0;0;0;1;0;0;0;0
-2021-10-26;Tuesday;3;0;1;1;0;0;1;0;0;0;0;0;0;0;0
-2021-10-25;Monday;5;0;1;0;0;0;1;0;0;0;0;0;0;0;0
-2021-10-24;Sunday;5;0;1;0;1;0;1;1;0;0;0;0;0;0;0
-2021-10-23;Saturday;5;0;1;1;0;0;1;0;0;0;0;0;0;0;0
-2021-10-22;Friday;5;0;1;1;0;0;1;0;0;0;0;0;0;0;0
-2021-10-21;Thursday;5;0;1;0;0;0;1;0;1;0;0;0;0;0;0
-2021-10-20;Wednesday;2;0;1;1;0;0;1;1;0;0;0;0;0;0;0
-2021-10-19;Tuesday;1;0;1;0;1;0;1;0;0;0;0;0;0;0;0
-2021-10-18;Monday;3;0;1;0;0;0;1;0;0;0;1;0;0;0;0
-2021-10-17;Sunday;4;0;1;0;0;0;0;0;1;1;0;0;0;0;0
-2021-10-16;Saturday;2;0;1;1;0;0;0;0;0;0;0;0;0;0;0
-2021-10-15;Friday;3;0;0;1;0;0;1;0;0;0;0;0;0;0;0
-2021-10-14;Thursday;2;0;1;1;1;0;1;1;0;0;0;0;1;0;0
-2021-10-13;Wednesday;2;0;1;0;0;0;1;0;1;0;0;0;0;0;0
-2021-10-12;Tuesday;4;0;1;0;0;0;1;0;0;0;0;0;0;0;0
-2021-10-11;Monday;5;0;1;1;0;0;1;0;0;0;0;0;0;0;0
-2021-10-10;Sunday;5;0;1;0;1;0;0;0;0;0;0;0;0;0;0
-2021-10-09;Saturday;5;0;0;1;0;0;1;0;0;0;0;0;0;0;0
-2021-10-08;Friday;5;0;1;0;0;0;1;1;0;0;0;0;0;0;0
-2021-10-07;Thursday;5;0;1;1;0;0;1;0;0;0;1;0;0;0;0
-2021-10-06;Wednesday;5;0;1;1;1;0;1;0;0;0;0;0;0;0;0
-2021-10-05;Tuesday;5;0;1;1;0;0;1;0;0;0;1;0;0;0;0
-2021-10-04;Monday;5;0;1;0;0;0;1;0;0;0;1;0;0;0;0
-2021-10-03;Sunday;4;0;1;0;0;0;1;0;0;0;0;0;0;0;0
-2021-10-02;Saturday;5;0;1;0;0;0;0;0;1;1;0;0;0;0;0
-2021-10-01;Friday;5;0;1;1;0;0;0;0;1;1;1;0;0;0;0
-2021-09-30;Thursday;4;0;1;1;1;0;1;0;0;1;0;0;0;0;0
-2021-09-29;Wednesday;3;0;1;0;0;0;1;0;0;0;0;0;0;0;0
-2021-09-28;Tuesday;4;0;1;1;0;0;1;1;0;0;1;0;0;0;0
-2021-09-27;Monday;4;0;1;1;0;0;1;0;0;0;0;0;0;0;0
-2021-09-26;Sunday;1;0;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-09-25;Saturday;3;0;0;0;1;0;1;0;0;0;0;0;0;0;0
-2021-09-24;Friday;5;0;1;1;0;0;0;1;1;0;0;0;0;0;0
-2021-09-23;Thursday;5;0;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-09-22;Wednesday;5;0;1;1;1;0;1;0;0;0;1;0;0;0;0
-2021-09-21;Tuesday;4;0;1;0;0;0;1;0;0;0;0;0;0;0;0
-2021-09-20;Monday;3;0;1;1;0;0;1;0;0;0;1;0;0;0;0
-2021-09-19;Sunday;2;0;1;0;0;0;1;0;0;0;0;0;0;0;0
-2021-09-18;Saturday;3;0;1;1;1;0;0;0;0;0;0;0;0;0;0
-2021-09-17;Friday;5;0;1;0;0;0;1;0;1;0;0;0;0;0;0
-2021-09-16;Thursday;2;1;1;0;0;0;1;0;0;0;1;0;0;0;0
-2021-09-15;Wednesday;1;0;1;1;0;0;1;0;0;0;0;0;0;0;0
-2021-09-14;Tuesday;1;0;0;0;0;0;1;0;0;0;1;0;0;0;0
-2021-09-13;Monday;3;0;1;0;0;0;1;0;0;0;1;0;0;0;0
-2021-09-12;Sunday;3;0;1;0;1;0;0;0;0;0;0;0;0;0;0
-2021-09-11;Saturday;3;0;1;1;0;0;0;1;0;0;0;0;0;0;0
-2021-09-10;Friday;3;0;1;1;0;0;1;0;0;0;1;0;0;0;0
-2021-09-09;Thursday;2;0;1;0;0;0;1;0;0;0;1;0;0;0;0
-2021-09-08;Wednesday;1;0;1;1;0;0;1;0;0;0;1;1;0;0;0
-2021-09-07;Tuesday;2;0;1;1;1;0;1;0;0;0;0;0;0;0;0
-2021-09-06;Monday;3;0;1;0;0;0;1;0;0;0;0;0;0;0;0
-2021-09-05;Sunday;4;0;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-09-04;Saturday;1;0;1;1;1;0;1;1;0;0;0;0;0;0;0
-2021-09-03;Friday;1;0;1;1;0;0;0;0;0;0;1;0;0;0;0
-2021-09-02;Thursday;3;0;1;0;0;0;1;0;0;0;1;0;0;0;0
-2021-09-01;Wednesday;5;0;1;0;0;0;0;0;1;0;1;1;0;0;0
-2021-08-31;Tuesday;5;0;1;0;1;0;1;1;1;0;1;0;0;0;0
-2021-08-30;Monday;5;0;1;1;0;0;1;0;1;0;1;0;0;0;0
-2021-08-29;Sunday;4;0;1;0;0;1;1;0;0;0;0;0;0;0;0
-2021-08-28;Saturday;5;0;1;1;0;0;0;0;0;1;0;0;0;0;0
-2021-08-27;Friday;5;0;1;1;1;0;0;0;0;0;0;0;0;0;0
-2021-08-26;Thursday;4;0;1;1;0;1;1;0;0;1;0;0;0;0;0
-2021-08-25;Wednesday;3;0;1;0;0;1;0;0;0;1;0;0;0;0;0
-2021-08-24;Tuesday;5;0;1;0;0;1;0;0;0;1;0;0;0;0;0
-2021-08-23;Monday;5;0;1;1;0;1;0;0;0;1;0;0;0;0;0
-2021-08-22;Sunday;2;0;1;1;0;1;0;0;0;0;0;0;0;0;0
-2021-08-21;Saturday;3;0;1;1;0;0;0;0;0;0;0;0;0;0;0
-2021-08-20;Friday;5;0;1;1;0;0;1;1;0;0;0;0;0;0;0
-2021-08-19;Thursday;3;0;1;0;0;0;1;0;0;0;1;0;0;0;0
-2021-08-18;Wednesday;3;0;1;0;1;0;1;0;0;0;0;0;0;1;0
-2021-08-17;Tuesday;1;0;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-08-16;Monday;4;0;1;1;0;0;1;0;0;0;0;0;0;0;0
-2021-08-15;Sunday;5;0;1;0;1;0;0;0;0;0;0;0;0;0;0
-2021-08-14;Saturday;3;0;1;0;0;0;0;0;0;1;0;0;0;0;0
-2021-08-13;Friday;1;0;1;1;0;0;0;1;0;0;0;0;0;0;0
-2021-08-12;Thursday;1;0;1;0;0;0;1;0;1;0;0;0;0;0;0
-2021-08-11;Wednesday;1;0;1;1;0;0;1;0;1;0;0;0;0;0;0
-2021-08-10;Tuesday;4;0;1;1;1;0;0;1;1;0;0;0;0;1;0
-2021-08-09;Monday;4;0;1;0;0;0;1;0;0;0;0;0;0;0;0
-2021-08-08;Sunday;4;1;1;0;0;0;1;0;0;0;0;0;0;0;0
-2021-08-07;Saturday;5;0;1;0;0;1;0;0;0;0;0;0;0;0;0
-2021-08-06;Friday;4;0;1;1;0;0;0;0;0;0;0;0;1;0;1
-2021-08-05;Thursday;3;1;1;0;0;0;1;0;0;0;0;0;0;0;0
-2021-08-04;Wednesday;3;0;1;1;0;0;1;0;0;0;0;0;0;0;0
-2021-08-03;Tuesday;2;0;1;0;1;0;0;0;0;0;0;0;0;0;0
-2021-08-02;Monday;2;0;1;1;0;0;0;0;1;0;0;0;0;0;0
-2021-08-01;Sunday;5;0;1;0;0;0;1;0;0;0;0;0;0;0;0
-2021-07-31;Saturday;5;0;1;0;0;0;0;1;0;0;0;0;0;0;0
-2021-07-30;Friday;2;0;1;1;0;1;0;0;0;1;0;0;0;0;0
-2021-07-29;Thursday;4;0;1;0;0;0;1;0;0;0;0;0;0;0;1
-2021-07-28;Wednesday;4;0;1;1;1;0;0;0;0;1;0;0;0;0;0
-2021-07-27;Tuesday;4;0;0;1;0;0;1;0;0;1;0;0;0;0;0
-2021-07-26;Monday;2;0;1;1;0;0;1;0;0;0;0;0;0;0;0
-2021-07-25;Sunday;1;0;1;0;0;0;0;1;0;0;0;0;0;0;0
-2021-07-24;Saturday;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-07-23;Friday;2;0;1;0;1;0;0;1;1;1;0;0;0;0;0
-2021-07-22;Thursday;2;0;0;1;0;0;0;0;0;0;0;0;0;0;0
-2021-07-21;Wednesday;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-07-20;Tuesday;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-07-19;Monday;1;0;0;1;1;0;0;0;0;0;0;0;0;0;0
-2021-07-18;Sunday;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-07-17;Saturday;3;0;0;1;0;0;0;0;0;0;0;0;0;0;1
-2021-07-16;Friday;4;0;0;1;0;0;0;0;0;0;0;0;0;0;1
-2021-07-15;Thursday;2;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2021-07-14;Wednesday;1;0;0;0;1;0;1;0;0;0;0;0;0;0;0
-2021-07-13;Tuesday;5;0;0;1;0;0;1;1;0;0;0;0;0;0;0
-2021-07-12;Monday;5;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2021-07-11;Sunday;4;0;0;0;0;0;0;0;1;0;0;0;0;0;0
-2021-07-10;Saturday;3;0;0;1;0;0;0;0;1;0;0;0;0;0;0
-2021-07-09;Friday;3;0;0;1;0;0;1;1;0;0;0;0;0;0;1
-2021-07-08;Thursday;2;0;0;0;1;0;1;0;0;0;0;0;0;0;0
-2021-07-07;Wednesday;3;0;1;0;0;0;0;0;0;0;0;0;0;0;1
-2021-07-06;Tuesday;4;0;1;1;0;0;0;0;0;0;0;0;0;0;0
-2021-07-05;Monday;3;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2021-07-04;Sunday;1;1;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-07-03;Saturday;2;0;1;1;0;0;0;1;0;0;0;0;0;0;1
-2021-07-02;Friday;5;0;1;1;0;0;1;0;0;0;0;0;0;0;1
-2021-07-01;Thursday;3;0;1;0;0;0;1;0;0;0;0;0;0;0;1
-2021-06-30;Wednesday;4;1;0;1;1;0;0;0;0;0;0;0;0;0;1
-2021-06-29;Tuesday;5;1;0;1;0;0;0;0;0;0;0;0;0;0;1
-2021-06-28;Monday;2;0;0;0;0;0;1;0;0;0;0;0;0;0;1
-2021-06-27;Sunday;1;0;0;0;0;1;0;0;1;0;0;0;0;0;1
-2021-06-26;Saturday;4;1;0;1;1;0;0;1;1;0;0;0;0;0;0
-2021-06-25;Friday;3;1;0;0;0;0;1;0;1;0;0;0;0;0;1
-2021-06-24;Thursday;3;1;1;0;0;0;1;0;0;0;0;0;0;0;0
-2021-06-23;Wednesday;3;0;1;1;0;0;1;0;0;0;0;0;0;0;0
-2021-06-22;Tuesday;4;1;1;0;0;0;1;0;0;0;0;0;0;0;0
-2021-06-21;Monday;2;0;1;1;0;0;1;0;0;0;0;0;0;0;1
-2021-06-20;Sunday;1;1;1;0;0;0;1;0;0;0;0;0;0;0;1
-2021-06-19;Saturday;3;1;1;0;0;0;0;0;0;0;0;0;0;0;1
-2021-06-18;Friday;5;0;0;1;1;0;0;1;0;0;0;0;0;1;1
-2021-06-17;Thursday;4;1;0;1;0;0;1;1;0;0;0;0;0;0;1
-2021-06-16;Wednesday;2;1;0;1;0;0;1;0;0;0;0;0;1;0;1
-2021-06-15;Tuesday;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-06-14;Monday;1;0;0;1;0;0;1;0;0;0;0;0;0;0;0
-2021-06-13;Sunday;1;1;0;0;0;0;0;0;0;0;0;0;0;0;1
-2021-06-12;Saturday;2;0;0;0;1;0;0;0;0;0;0;0;0;0;0
-2021-06-11;Friday;5;0;0;1;0;0;1;0;0;0;0;0;0;0;0
-2021-06-10;Thursday;3;1;0;1;0;0;1;0;0;0;0;0;0;0;1
-2021-06-09;Wednesday;1;1;0;0;0;0;1;0;0;0;0;0;0;0;1
-2021-06-08;Tuesday;2;1;0;1;0;0;1;0;0;0;0;0;0;0;0
-2021-06-07;Monday;1;1;0;1;0;0;1;1;0;0;0;0;0;0;1
-2021-06-06;Sunday;2;1;0;0;1;0;0;0;0;0;0;0;0;0;0
-2021-06-05;Saturday;4;0;1;1;0;0;0;1;0;0;0;0;0;0;1
-2021-06-04;Friday;4;0;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-06-03;Thursday;5;0;1;1;0;0;1;0;0;0;0;0;0;0;0
-2021-06-02;Wednesday;5;0;1;0;0;0;0;0;0;0;0;1;0;0;0
-2021-06-01;Tuesday;4;0;1;1;0;0;0;0;0;0;0;0;0;0;1
-2021-05-31;Monday;3;0;0;1;1;0;0;0;0;0;0;0;0;0;0
-2021-05-30;Sunday;3;0;0;0;0;0;0;1;1;0;0;0;0;0;0
-2021-05-29;Saturday;4;0;0;1;0;0;0;0;0;0;0;0;0;0;0
-2021-05-28;Friday;5;1;0;1;0;1;0;0;0;0;0;0;0;0;0
-2021-05-27;Thursday;3;1;0;1;0;0;1;0;0;0;0;0;0;0;0
-2021-05-26;Wednesday;1;0;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-05-25;Tuesday;1;0;1;0;0;0;1;0;0;0;0;0;0;0;0
-2021-05-24;Monday;2;0;1;0;0;0;0;1;0;0;0;0;0;0;1
-2021-05-23;Sunday;5;0;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-05-22;Saturday;5;1;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-05-21;Friday;2;1;0;0;1;0;0;0;0;0;0;0;0;0;0
-2021-05-20;Thursday;1;1;1;1;0;0;1;0;0;0;0;1;0;0;0
-2021-05-19;Wednesday;1;1;0;0;0;0;1;0;0;0;0;0;0;0;0
-2021-05-18;Tuesday;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-05-17;Monday;1;1;0;1;0;0;1;0;1;0;0;0;0;0;0
-2021-05-16;Sunday;3;0;0;0;0;0;0;1;0;0;0;0;0;0;0
-2021-05-15;Saturday;3;1;0;1;0;0;0;0;1;0;0;0;0;0;0
-2021-05-14;Friday;3;1;0;1;0;0;0;1;0;0;0;0;1;0;0
-2021-05-13;Thursday;3;1;0;0;0;0;1;0;0;0;0;0;0;0;0
-2021-05-12;Wednesday;2;1;0;1;0;0;0;0;0;0;0;0;0;0;0
-2021-05-11;Tuesday;4;1;0;1;0;0;0;0;0;0;0;0;0;0;0
-2021-05-10;Monday;4;0;0;1;0;0;1;1;0;0;0;0;0;0;0
-2021-05-09;Sunday;3;1;0;0;0;0;1;0;1;0;0;0;0;0;0
-2021-05-08;Saturday;5;0;1;0;0;0;0;1;0;0;0;0;0;0;0
-2021-05-07;Friday;5;0;0;1;1;0;0;0;0;0;0;0;0;0;0
-2021-05-06;Thursday;3;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2021-05-05;Wednesday;2;0;1;1;0;0;0;0;0;0;0;0;0;0;0
-2021-05-04;Tuesday;2;0;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-05-03;Monday;4;0;0;1;0;0;1;0;0;0;0;0;0;0;0
-2021-05-02;Sunday;4;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2021-05-01;Saturday;5;0;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-04-30;Friday;5;0;0;1;1;0;0;1;0;0;0;0;0;0;0
-2021-04-29;Thursday;4;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2021-04-28;Wednesday;2;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-04-27;Tuesday;3;0;0;1;0;0;0;0;0;0;0;1;0;0;0
-2021-04-26;Monday;3;0;0;1;1;0;1;1;0;0;0;0;0;0;0
-2021-04-25;Sunday;4;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-04-24;Saturday;3;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-04-23;Friday;5;0;0;1;0;0;1;0;0;0;0;1;0;0;0
-2021-04-22;Thursday;4;0;0;0;0;0;1;1;0;0;0;0;0;0;0
-2021-04-21;Wednesday;3;0;0;1;1;0;1;0;0;0;0;1;0;0;0
-2021-04-20;Tuesday;5;0;1;1;0;0;1;0;0;0;0;1;0;0;0
-2021-04-19;Monday;5;0;1;1;0;0;1;0;0;0;0;1;0;0;0
-2021-04-18;Sunday;5;1;1;0;0;0;0;0;0;0;0;0;0;0;0
-2021-04-17;Saturday;4;0;1;1;1;1;0;0;1;0;0;0;0;0;0
-2021-04-16;Friday;5;0;1;0;0;0;1;1;0;0;0;1;0;0;0
-2021-04-15;Thursday;5;0;1;0;0;0;1;0;0;0;0;0;0;0;0
-2021-04-14;Wednesday;4;0;0;1;0;0;0;0;1;0;0;1;1;1;0
-2021-04-13;Tuesday;3;1;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-04-12;Monday;4;1;0;0;0;0;1;0;0;0;0;1;0;0;0
-2021-04-11;Sunday;2;1;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-04-10;Saturday;1;1;0;1;0;0;0;0;0;0;0;1;0;0;0
-2021-04-09;Friday;1;0;0;0;0;0;1;1;0;0;0;0;0;0;0
-2021-04-08;Thursday;4;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2021-04-07;Wednesday;3;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-04-06;Tuesday;3;1;1;1;1;0;1;0;0;0;0;0;0;0;0
-2021-04-05;Monday;5;1;1;0;0;0;1;0;0;0;0;0;0;0;0
-2021-04-04;Sunday;5;1;1;0;0;0;0;0;1;0;0;0;0;0;0
-2021-04-03;Saturday;2;1;0;0;0;0;0;1;1;0;0;0;0;0;0
-2021-04-02;Friday;2;1;0;0;0;0;0;0;0;0;0;1;0;0;0
-2021-04-01;Thursday;2;1;0;1;0;0;1;0;0;0;0;0;0;0;0
-2021-03-31;Wednesday;1;1;0;0;0;1;0;0;0;0;0;0;0;0;0
-2021-03-30;Tuesday;5;1;0;1;1;0;0;0;0;0;0;1;0;0;0
-2021-03-29;Monday;4;1;0;0;0;0;0;0;0;0;0;0;0;1;0
-2021-03-28;Sunday;2;1;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-03-27;Saturday;3;0;0;1;0;0;0;0;0;0;0;0;0;0;0
-2021-03-26;Friday;1;1;0;1;0;0;1;0;0;0;0;1;0;0;0
-2021-03-25;Thursday;2;1;0;0;0;0;1;0;0;0;0;0;0;0;0
-2021-03-24;Wednesday;4;1;0;0;1;0;0;0;1;0;0;1;0;0;0
-2021-03-23;Tuesday;4;0;0;1;0;0;1;0;0;0;0;1;0;0;0
-2021-03-22;Monday;2;1;0;0;0;0;1;0;1;0;0;1;0;0;0
-2021-03-21;Sunday;2;0;0;0;0;0;0;1;0;0;0;0;0;0;0
-2021-03-20;Saturday;2;0;0;1;0;0;0;1;0;0;0;0;0;0;0
-2021-03-19;Friday;2;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2021-03-18;Thursday;3;0;0;0;1;0;1;0;0;0;0;0;0;0;0
-2021-03-17;Wednesday;4;1;0;1;0;0;1;0;0;0;0;1;0;0;0
-2021-03-16;Tuesday;4;0;0;0;0;0;1;1;0;0;0;0;0;0;0
-2021-03-15;Monday;4;1;0;0;0;0;1;0;0;0;0;0;0;0;0
-2021-03-14;Sunday;5;0;0;0;0;0;1;0;1;0;0;0;0;0;0
-2021-03-13;Saturday;5;1;0;1;0;0;0;0;0;0;0;0;0;0;0
-2021-03-12;Friday;5;1;0;0;1;0;1;0;0;0;0;0;0;0;0
-2021-03-11;Thursday;3;0;0;1;0;0;1;0;1;0;0;0;0;0;0
-2021-03-10;Wednesday;2;0;0;0;0;0;1;0;1;0;0;0;0;0;0
-2021-03-09;Tuesday;2;1;0;1;0;0;0;0;1;0;0;0;1;0;0
-2021-03-08;Monday;4;1;0;1;0;0;1;0;1;0;0;0;0;0;0
-2021-03-07;Sunday;3;1;0;0;1;0;0;1;1;0;0;0;0;0;0
-2021-03-06;Saturday;4;1;0;1;0;0;0;0;1;0;0;0;0;0;0
-2021-03-05;Friday;5;1;0;1;0;0;1;0;0;0;0;1;0;0;0
-2021-03-04;Thursday;5;1;0;0;0;0;1;1;1;0;0;0;0;0;0
-2021-03-03;Wednesday;5;1;0;0;0;0;0;0;0;0;0;0;0;1;0
-2021-03-02;Tuesday;5;1;0;1;1;0;0;0;0;0;0;0;0;0;0
-2021-03-01;Monday;5;1;0;0;0;0;1;0;1;0;0;0;0;0;0
-2021-02-28;Sunday;4;1;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-02-27;Saturday;5;1;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-02-26;Friday;5;1;0;0;0;0;0;0;0;0;0;1;0;0;0
-2021-02-25;Thursday;4;1;0;1;0;0;1;0;1;0;0;0;0;0;0
-2021-02-24;Wednesday;5;1;0;0;1;0;0;0;1;0;0;1;0;0;0
-2021-02-23;Tuesday;5;1;0;0;0;0;0;1;1;0;0;1;0;0;0
-2021-02-22;Monday;5;1;0;0;0;0;0;0;1;0;0;0;0;0;0
-2021-02-21;Sunday;5;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-02-20;Saturday;5;0;0;1;0;0;0;0;0;0;0;0;0;0;0
-2021-02-19;Friday;2;0;0;0;1;0;1;0;0;0;0;0;0;0;0
-2021-02-18;Thursday;3;0;0;1;0;0;0;0;0;0;0;0;0;0;0
-2021-02-17;Wednesday;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-02-16;Tuesday;1;0;0;0;0;0;0;0;0;0;0;0;0;1;0
-2021-02-15;Monday;3;0;0;1;1;0;0;0;0;0;0;0;0;0;0
-2021-02-14;Sunday;2;0;0;0;0;0;0;0;1;0;0;0;0;0;0
-2021-02-13;Saturday;3;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-02-12;Friday;5;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2021-02-11;Thursday;5;0;0;1;0;0;1;1;0;0;0;0;0;0;0
-2021-02-10;Wednesday;3;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-02-09;Tuesday;3;0;0;1;1;0;0;0;0;0;0;0;0;0;0
-2021-02-08;Monday;4;0;0;0;0;0;0;0;1;0;0;0;0;0;0
-2021-02-07;Sunday;2;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-02-06;Saturday;3;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-02-05;Friday;5;0;0;1;0;0;1;0;0;0;0;0;0;0;0
-2021-02-04;Thursday;5;0;0;1;0;0;0;0;0;0;0;0;0;0;0
-2021-02-03;Wednesday;4;0;0;0;1;0;0;1;0;0;0;0;0;0;0
-2021-02-02;Tuesday;4;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2021-02-01;Monday;5;0;0;1;1;0;1;0;0;0;0;0;0;0;0
-2021-01-31;Sunday;3;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-01-30;Saturday;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-01-29;Friday;3;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2021-01-28;Thursday;3;0;0;1;0;0;1;0;0;0;0;0;0;0;0
-2021-01-27;Wednesday;3;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2021-01-26;Tuesday;5;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-01-25;Monday;5;0;0;1;0;0;1;0;1;0;0;0;0;0;0
-2021-01-24;Sunday;4;0;0;0;0;0;1;1;0;0;0;0;0;0;0
-2021-01-23;Saturday;5;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-01-22;Friday;4;0;0;0;1;0;0;0;0;0;0;0;0;0;0
-2021-01-21;Thursday;3;0;0;0;0;0;1;1;0;0;0;0;0;0;0
-2021-01-20;Wednesday;5;0;0;1;0;0;1;0;0;0;0;0;0;0;0
-2021-01-19;Tuesday;5;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-01-18;Monday;5;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2021-01-17;Sunday;5;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2021-01-16;Saturday;2;0;0;1;0;0;0;0;0;0;0;0;0;0;0
-2021-01-15;Friday;1;0;0;0;1;0;0;1;0;0;0;0;0;0;0
-2021-01-14;Thursday;2;0;0;1;0;0;1;1;1;0;0;0;0;0;0
-2021-01-13;Wednesday;1;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2021-01-12;Tuesday;1;0;0;1;0;0;0;0;0;0;0;0;0;0;0
-2021-01-11;Monday;3;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2021-01-10;Sunday;5;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-01-09;Saturday;3;0;0;1;0;0;0;0;0;0;0;0;0;0;0
-2021-01-08;Friday;5;0;0;0;0;0;0;1;0;0;0;0;0;0;0
-2021-01-07;Thursday;5;0;0;1;1;0;1;1;0;0;0;0;0;0;0
-2021-01-06;Wednesday;4;0;0;1;0;0;1;0;0;0;0;0;0;0;0
-2021-01-05;Tuesday;2;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-01-04;Monday;4;0;0;1;0;0;1;0;0;0;0;0;0;0;0
-2021-01-03;Sunday;5;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2021-01-02;Saturday;4;0;0;0;1;0;0;0;0;0;0;0;0;0;0
-2021-01-01;Friday;3;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2020-12-31;Thursday;5;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2020-12-30;Wednesday;4;0;0;1;0;0;0;1;0;0;0;0;0;0;0
-2020-12-29;Tuesday;1;0;0;0;0;0;0;1;0;0;0;0;0;0;0
-2020-12-28;Monday;3;0;0;1;0;0;1;0;0;0;0;0;0;0;0
-2020-12-27;Sunday;3;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2020-12-26;Saturday;3;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2020-12-25;Friday;5;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2020-12-24;Thursday;5;0;0;0;0;0;0;1;1;0;0;0;0;0;0
-2020-12-23;Wednesday;4;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2020-12-22;Tuesday;4;0;0;0;1;0;0;0;1;0;0;0;0;0;0
-2020-12-21;Monday;5;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2020-12-20;Sunday;5;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2020-12-19;Saturday;5;0;0;1;0;0;0;0;0;0;0;0;0;0;0
-2020-12-18;Friday;5;0;0;1;1;0;1;0;0;0;0;0;0;0;0
-2020-12-17;Thursday;5;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2020-12-16;Wednesday;5;0;0;1;0;0;1;1;0;0;0;0;0;0;0
-2020-12-15;Tuesday;4;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2020-12-14;Monday;5;0;0;1;0;0;1;0;0;0;0;0;0;0;0
-2020-12-13;Sunday;5;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2020-12-12;Saturday;5;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2020-12-11;Friday;5;0;0;0;1;0;0;0;0;0;0;0;0;0;0
-2020-12-10;Thursday;4;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2020-12-09;Wednesday;2;0;0;1;0;0;1;0;0;0;0;0;0;0;0
-2020-12-08;Tuesday;5;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2020-12-07;Monday;5;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2020-12-06;Sunday;4;0;0;0;1;0;0;1;0;0;0;0;0;0;0
-2020-12-05;Saturday;4;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2020-12-04;Friday;1;0;0;1;0;0;0;0;0;0;0;0;0;0;0
-2020-12-03;Thursday;1;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2020-12-02;Wednesday;1;0;0;0;0;0;0;1;0;0;0;0;0;0;0
-2020-12-01;Tuesday;1;0;0;0;1;0;0;0;0;0;0;0;0;0;0
-2020-11-30;Monday;1;0;0;1;0;0;1;0;0;0;0;0;0;0;0
-2020-11-29;Sunday;5;0;0;0;0;0;0;1;0;0;0;0;0;0;0
-2020-11-28;Saturday;4;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2020-11-27;Friday;1;0;0;1;0;0;1;0;0;0;0;0;1;0;0
-2020-11-26;Thursday;2;0;0;0;1;0;1;0;0;0;0;0;0;0;0
-2020-11-25;Wednesday;2;0;0;1;0;0;1;0;0;0;0;0;0;0;0
-2020-11-24;Tuesday;2;0;0;1;0;0;0;0;0;0;0;0;0;0;0
-2020-11-23;Monday;3;0;0;0;0;0;1;1;0;0;0;0;0;0;0
-2020-11-22;Sunday;2;0;0;0;1;0;0;0;0;0;0;0;0;0;0
-2020-11-21;Saturday;2;0;0;1;0;0;0;0;0;0;0;0;0;0;0
-2020-11-20;Friday;2;0;0;0;1;0;0;1;0;0;0;0;0;0;0
-2020-11-19;Thursday;4;0;0;1;0;0;1;0;0;0;0;0;0;0;0
-2020-11-18;Wednesday;4;0;0;1;1;0;1;0;0;0;0;0;0;0;0
-2020-11-17;Tuesday;3;0;0;0;0;0;0;1;0;0;0;0;0;0;0
-2020-11-16;Monday;2;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2020-11-15;Sunday;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2020-11-14;Saturday;1;0;0;1;0;0;0;0;0;0;0;0;0;0;0
-2020-11-13;Friday;1;0;0;1;0;0;0;0;0;0;0;0;0;0;0
-2020-11-12;Thursday;1;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2020-11-11;Wednesday;1;0;0;0;1;0;0;0;0;0;0;0;0;0;0
-2020-11-10;Tuesday;5;0;0;1;0;0;0;0;0;0;0;0;0;0;0
-2020-11-09;Monday;3;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2020-11-08;Sunday;3;0;0;0;0;0;0;1;0;0;0;0;0;0;0
-2020-11-07;Saturday;4;0;0;0;0;0;0;0;1;0;0;0;0;0;0
-2020-11-06;Friday;5;0;0;1;1;0;1;0;0;0;0;0;0;0;0
-2020-11-05;Thursday;5;0;0;0;0;0;1;0;1;0;0;0;0;0;0
-2020-11-04;Wednesday;5;0;0;0;0;0;1;0;1;0;0;0;0;0;0
-2020-11-03;Tuesday;3;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2020-11-02;Monday;3;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2020-11-01;Sunday;4;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2020-10-31;Saturday;3;0;0;0;0;0;0;1;0;0;0;0;0;0;0
-2020-10-30;Friday;3;0;0;1;1;0;0;0;1;0;0;0;0;0;0
-2020-10-29;Thursday;2;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2020-10-28;Wednesday;1;0;0;0;0;0;0;0;1;0;0;0;0;0;0
-2020-10-27;Tuesday;2;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2020-10-26;Monday;2;0;0;1;0;0;1;1;0;0;0;0;0;0;0
-2020-10-25;Sunday;2;0;0;0;0;0;0;0;1;0;0;0;0;0;0
-2020-10-24;Saturday;4;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2020-10-23;Friday;2;0;0;1;1;0;0;1;0;0;0;0;0;0;0
-2020-10-22;Thursday;3;0;0;0;0;0;0;0;0;0;1;0;0;1;0
-2020-10-21;Wednesday;5;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2020-10-20;Tuesday;5;0;0;1;0;0;0;0;0;0;0;0;1;0;0
-2020-10-19;Monday;5;0;0;0;0;0;0;0;1;0;0;0;0;0;0
-2020-10-18;Sunday;3;0;0;0;0;0;0;1;1;0;0;0;0;0;0
-2020-10-17;Saturday;4;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2020-10-16;Friday;5;0;0;1;0;0;0;0;1;0;0;0;0;0;0
-2020-10-15;Thursday;4;0;0;1;1;0;0;0;0;0;0;0;0;0;0
-2020-10-14;Wednesday;3;0;0;1;0;0;0;0;1;0;0;0;0;0;0
-2020-10-13;Tuesday;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2020-10-12;Monday;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2020-10-11;Sunday;5;0;0;0;1;0;0;0;0;1;0;0;0;0;0
-2020-10-10;Saturday;4;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2020-10-09;Friday;3;0;0;1;0;0;0;1;0;0;0;0;0;0;0
-2020-10-08;Thursday;4;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2020-10-07;Wednesday;3;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2020-10-06;Tuesday;2;0;0;1;0;0;0;0;0;0;0;0;0;0;0
-2020-10-05;Monday;3;0;0;1;0;0;1;0;0;0;1;0;0;0;0
-2020-10-04;Sunday;3;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2020-10-03;Saturday;3;0;0;0;0;0;0;1;0;0;0;0;0;0;0
-2020-10-02;Friday;4;0;0;1;0;0;0;1;1;0;0;0;0;0;0
-2020-10-01;Thursday;4;0;0;1;0;0;1;0;0;0;0;1;0;0;0
-2020-09-30;Wednesday;5;0;0;1;0;0;0;0;0;0;0;0;0;0;0
-2020-09-29;Tuesday;4;0;0;0;0;0;0;1;0;0;0;0;0;0;0
-2020-09-28;Monday;1;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2020-09-27;Sunday;2;0;0;0;0;0;0;0;1;0;0;0;0;0;0
-2020-09-26;Saturday;5;0;0;1;0;0;0;0;1;0;0;0;0;0;0
-2020-09-25;Friday;2;0;0;1;1;0;0;1;1;0;0;0;0;0;0
-2020-09-24;Thursday;1;0;0;1;0;0;1;0;1;0;0;1;0;0;0
-2020-09-23;Wednesday;4;0;0;1;0;0;1;0;1;0;1;0;0;0;0
-2020-09-22;Tuesday;2;0;0;0;0;0;0;0;1;0;0;0;0;0;0
-2020-09-21;Monday;1;0;0;0;0;0;0;0;0;0;0;0;0;1;0
-2020-09-20;Sunday;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2020-09-19;Saturday;3;0;0;1;0;0;0;0;0;0;0;0;0;0;0
-2020-09-18;Friday;4;0;0;0;0;0;0;1;0;0;0;0;0;0;0
-2020-09-17;Thursday;5;0;0;0;0;0;1;0;0;0;1;0;0;0;0
-2020-09-16;Wednesday;5;0;0;1;0;0;0;0;0;0;1;0;0;0;0
-2020-09-15;Tuesday;5;0;0;0;0;0;0;0;0;0;0;0;0;0;0
-2020-09-14;Monday;5;0;0;0;0;0;1;0;0;0;1;0;0;0;0
-2020-09-13;Sunday;5;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2020-09-12;Saturday;5;0;0;1;1;0;1;0;0;0;0;0;0;0;0
-2020-09-11;Friday;4;0;0;0;0;0;1;1;0;0;0;0;0;0;0
-2020-09-10;Thursday;3;0;0;0;0;0;1;0;0;0;1;0;0;0;0
-2020-09-09;Wednesday;1;0;0;1;0;0;1;0;1;0;0;0;0;0;0
-2020-09-08;Tuesday;1;0;0;1;0;0;0;1;0;0;0;0;0;0;0
-2020-09-07;Monday;2;0;0;0;0;0;1;0;0;0;1;0;0;0;0
-2020-09-06;Sunday;4;0;0;0;1;0;0;1;1;0;0;0;0;0;0
-2020-09-05;Saturday;5;0;0;1;0;0;0;0;0;0;0;0;0;0;0
-2020-09-04;Friday;5;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2020-09-03;Thursday;5;0;0;0;0;0;1;0;0;0;0;0;0;0;0
-2020-09-02;Wednesday;5;0;0;1;0;0;1;1;0;0;0;0;0;0;0
-2020-09-01;Tuesday;5;0;0;1;0;0;0;0;0;0;0;1;0;0;0
-2020-08-31;Monday;5;0;0;0;0;0;1;0;0;0;0;0;0;0;0
+full_date,weekday,mood,activities,note
+2020-08-31,Montag,Gut,Mäßig | Arbeit,""
+2020-09-01,Dienstag,Ok,Variable08 | Mäßig | Einkaufen | Longboard,""
+2020-09-02,Mittwoch,Gut,Gut | Variable06 | Arbeit | Wäsche | Einkaufen | Schlafqualitaet,""
+2020-09-03,Donnerstag,Schlecht,Gut | Variable07 | Variable13 | Arbeit | Schlafqualitaet,""
+2020-09-04,Freitag,Gut,Variable03 | Variable07 | Mäßig | Arbeit,""
+2020-09-05,Samstag,Ok,Variable03 | Variable06 | Variable07 | Variable13 | Mäßig | Einkaufen,""
+2020-09-06,Sonntag,Ok,Familie | Variable03 | Variable07 | Variable11 | Variable13 | Mäßig | Wäsche | Rasiert,""
+2020-09-07,Montag,Gut,Variable13 | Variable15 | Variable16 | Mäßig | Arbeit | Mensa,""
+2020-09-08,Dienstag,Ok,Variable03 | Gut | Variable07 | Variable09 | Variable11 | Variable13 | Variable16 | Wäsche | Einkaufen | Schlafqualitaet,""
+2020-09-09,Mittwoch,Schlecht,Familie | Variable03 | Variable06 | Variable08 | Variable13 | Mäßig | Arbeit | Einkaufen,""
+2020-09-10,Donnerstag,Gut,Mäßig | Arbeit | Mensa,""
+2020-09-11,Freitag,Schlecht,Variable03 | Variable07 | Variable13 | Arbeit | Wäsche | Schlecht,""
+2020-09-12,Samstag,Lausig,Variable06 | Variable08 | Variable10 | Variable15 | Variable17 | Variable18 | Mäßig | Arbeit | Einkaufen | Rasiert,""
+2020-09-13,Sonntag,Schlecht,Variable06 | Variable08 | Variable15 | Variable17 | Mäßig | Arbeit,""
+2020-09-14,Montag,Ok,Variable03 | Gut | Variable06 | Arbeit | Mensa | Schlafqualitaet,""
+2020-09-15,Dienstag,Ok,Gut | Variable11 | Variable13 | Variable15 | Schlafqualitaet,""
+2020-09-16,Mittwoch,Super,Gut | Variable06 | Variable10 | Variable13 | Variable15 | Variable18 | Mensa | Einkaufen | Schlafqualitaet,""
+2020-09-17,Donnerstag,Gut,Variable03 | Variable07 | Variable10 | Variable14 | Variable15 | Variable17 | Mäßig | Arbeit | Mensa,""
+2020-09-18,Freitag,Ok,Gut | Variable07 | Variable10 | Variable13 | Wäsche | Schlafqualitaet,""
+2020-09-19,Samstag,Super,Variable04 | Variable06 | Variable08 | Variable13 | Variable15 | Variable17 | Variable18 | Mäßig | Einkaufen,""
+2020-09-20,Sonntag,Ok,Variable03 | Variable07 | Variable09 | Variable13 | Variable18 | Mäßig,""
+2020-09-21,Montag,Lausig,Gut | Variable06 | Variable08 | Variable13 | Klausur | Schlafqualitaet,""
+2020-09-22,Dienstag,Lausig,Familie | Variable03 | Variable04 | Gut | Variable07 | Variable10 | Variable11 | Schlafqualitaet,""
+2020-09-23,Mittwoch,Ok,Familie | Variable10 | Arbeit | Mensa | Schlecht | Einkaufen,""
+2020-09-24,Donnerstag,Super,Familie | Variable03 | Variable04 | Variable06 | Variable07 | Arbeit | Schlecht | Einkaufen | Longboard,""
+2020-09-25,Freitag,Schlecht,Familie | Variable03 | Gut | Variable06 | Variable10 | Wäsche | Einkaufen | Rasiert | Schlafqualitaet,""
+2020-09-26,Samstag,Lausig,Familie | Variable03 | Variable04 | Variable06 | Variable07 | Variable10 | Schlecht | Einkaufen,""
+2020-09-27,Sonntag,Schlecht,Familie | Variable03 | Variable04 | Variable07 | Variable10 | Variable15 | Mäßig,""
+2020-09-28,Montag,Ok,Variable06 | Variable07 | Variable18 | Mäßig | Arbeit,""
+2020-09-29,Dienstag,Gut,Variable04 | Variable07 | Variable10 | Variable11 | Variable14 | Mäßig | Wäsche,""
+2020-09-30,Mittwoch,Super,Variable07 | Variable09 | Variable10 | Variable13 | Variable17 | Mäßig | Einkaufen,""
+2020-10-01,Donnerstag,Gut,Variable07 | Variable10 | Variable14 | Mäßig | Arbeit | Einkaufen | Longboard,""
+2020-10-02,Freitag,Schlecht,Familie | Variable03 | Gut | Variable07 | Variable17 | Wäsche | Einkaufen | Schlafqualitaet,""
+2020-10-03,Samstag,Ok,Variable07 | Variable09 | Variable11 | Variable13 | Mäßig | Wäsche,""
+2020-10-04,Sonntag,Gut,Gut | Variable07 | Variable09 | Variable10 | Variable11 | Variable13 | Schlafqualitaet,""
+2020-10-05,Montag,Gut,Variable03 | Variable07 | Variable14 | Variable15 | Variable17 | Arbeit | Mensa | Schlecht | Einkaufen,""
+2020-10-06,Dienstag,Super,Variable03 | Variable04 | Variable07 | Variable11 | Mäßig | Einkaufen,""
+2020-10-07,Mittwoch,Super,Variable03 | Variable04 | Variable07 | Variable13 | Mäßig | Arbeit,""
+2020-10-08,Donnerstag,Ok,Variable07 | Variable14 | Arbeit | Schlecht,""
+2020-10-09,Freitag,Schlecht,Gut | Variable07 | Variable10 | Variable13 | Wäsche | Einkaufen | Schlafqualitaet,""
+2020-10-10,Samstag,Ok,Variable03 | Gut | Variable07 | Variable11 | Schlafqualitaet,""
+2020-10-11,Sonntag,Gut,Gut | Rasiert | Restaurant | Schlafqualitaet,""
+2020-10-12,Montag,Super,Gut | Variable13 | Variable18 | Schlafqualitaet,""
+2020-10-13,Dienstag,Ok,Variable03 | Variable07 | Variable13 | Variable14 | Variable18 | Schlecht,""
+2020-10-14,Mittwoch,Ok,Familie | Gut | Variable07 | Variable13 | Einkaufen | Schlafqualitaet,""
+2020-10-15,Donnerstag,Super,Variable03 | Variable04 | Gut | Variable07 | Variable13 | Variable14 | Einkaufen | Rasiert | Schlafqualitaet,""
+2020-10-16,Freitag,Schlecht,Familie | Variable03 | Variable04 | Variable07 | Variable13 | Variable14 | Mäßig | Einkaufen,""
+2020-10-17,Samstag,Ok,Variable15 | Mäßig,""
+2020-10-18,Sonntag,Gut,Familie | Variable03 | Variable08 | Variable13 | Wäsche | Schlecht,""
+2020-10-19,Montag,Ok,Familie | Variable07 | Variable13 | Variable14 | Variable15 | Mäßig,""
+2020-10-20,Dienstag,Super,Variable02 | Variable03 | Variable04 | Gut | Variable06 | Variable08 | Variable10 | Variable13 | Variable15 | Variable18 | Friseur | Einkaufen | Schlafqualitaet,""
+2020-10-21,Mittwoch,Super,Variable03 | Variable06 | Variable08 | Variable10 | Variable13 | Variable15 | Variable18 | Variable19 | Mäßig,""
+2020-10-22,Donnerstag,Super,Variable02 | Variable03 | Variable04 | Variable07 | Variable10 | Variable14 | Variable15 | Variable18 | Variable19 | Mensa | Schlecht | Klausur,""
+2020-10-23,Freitag,Super,Variable03 | Variable04 | Variable06 | Variable08 | Wäsche | Schlecht | Einkaufen | Rasiert,""
+2020-10-24,Samstag,Ok,Variable04 | Variable07 | Variable14 | Variable15 | Mäßig,""
+2020-10-25,Sonntag,Lausig,Familie | Variable03 | Variable04 | Gut | Variable06 | Variable07 | Schlafqualitaet,""
+2020-10-26,Montag,Ok,Variable03 | Variable04 | Gut | Variable07 | Variable10 | Variable13 | Variable14 | Arbeit | Wäsche | Einkaufen | Schlafqualitaet,""
+2020-10-27,Dienstag,Super,Variable07 | Variable11 | Variable13 | Variable14 | Mäßig | Arbeit,""
+2020-10-28,Mittwoch,Lausig,Familie | Variable03 | Variable04 | Variable07 | Variable08 | Variable17 | Variable18 | Variable19 | Mäßig,""
+2020-10-29,Donnerstag,Lausig,Variable03 | Variable07 | Variable14 | Schlecht,""
+2020-10-30,Freitag,Lausig,Familie | Variable04 | Variable07 | Variable14 | Schlecht | Einkaufen | Rasiert,""
+2020-10-31,Samstag,Lausig,Variable06 | Variable08 | Variable10 | Mäßig | Wäsche,""
+2020-11-01,Sonntag,Ok,Gut | Variable07 | Variable09 | Variable13 | Variable15 | Schlafqualitaet,""
+2020-11-02,Montag,Gut,Gut | Variable07 | Variable13 | Variable14 | Variable15 | Arbeit | Schlafqualitaet,""
+2020-11-03,Dienstag,Ok,Variable04 | Gut | Variable07 | Variable09 | Variable11 | Variable13 | Variable14 | Variable15 | Schlafqualitaet,""
+2020-11-04,Mittwoch,Schlecht,Familie | Variable06 | Variable08 | Variable09 | Variable13 | Variable15 | Variable17 | Mäßig | Arbeit,""
+2020-11-05,Donnerstag,Ok,Familie | Variable04 | Variable07 | Variable13 | Variable14 | Variable15 | Variable17 | Variable18 | Mäßig | Arbeit,""
+2020-11-06,Freitag,Super,Variable06 | Variable08 | Variable13 | Variable18 | Variable19 | Mäßig | Arbeit | Einkaufen | Rasiert,""
+2020-11-07,Samstag,Super,Familie | Variable04 | Variable07 | Variable11 | Variable13 | Variable14 | Variable15 | Variable17 | Variable18 | Mäßig,""
+2020-11-08,Sonntag,Gut,Variable07 | Variable10 | Variable13 | Mäßig | Wäsche,""
+2020-11-09,Montag,Schlecht,Variable06 | Variable07 | Arbeit | Schlecht,""
+2020-11-10,Dienstag,Schlecht,Variable04 | Gut | Variable11 | Variable13 | Variable15 | Variable17 | Einkaufen | Schlafqualitaet,""
+2020-11-11,Mittwoch,Ok,Variable07 | Variable13 | Variable15 | Variable17 | Mäßig | Rasiert,""
+2020-11-12,Donnerstag,Schlecht,Gut | Variable07 | Variable13 | Variable14 | Variable15 | Variable18 | Arbeit | Schlafqualitaet,""
+2020-11-13,Freitag,Lausig,Variable03 | Variable04 | Variable13 | Variable18 | Variable19 | Mäßig | Einkaufen,""
+2020-11-14,Samstag,Lausig,Variable03 | Variable07 | Variable10 | Variable11 | Variable13 | Variable14 | Mäßig | Einkaufen,""
+2020-11-15,Sonntag,Lausig,Variable03 | Variable04 | Variable07 | Variable13 | Variable18 | Mäßig,""
+2020-11-16,Montag,Lausig,Variable03 | Gut | Variable07 | Variable09 | Variable13 | Variable14 | Variable16 | Arbeit | Schlafqualitaet,""
+2020-11-17,Dienstag,Ok,Variable03 | Variable04 | Gut | Variable07 | Variable10 | Variable13 | Variable14 | Variable15 | Variable16 | Variable17 | Wäsche | Schlafqualitaet,""
+2020-11-18,Mittwoch,Super,Variable03 | Variable07 | Variable13 | Variable14 | Variable15 | Mäßig | Arbeit | Einkaufen | Rasiert,""
+2020-11-19,Donnerstag,Super,Variable03 | Variable04 | Gut | Variable07 | Variable13 | Arbeit | Einkaufen | Schlafqualitaet,""
+2020-11-20,Freitag,Super,Variable03 | Variable04 | Gut | Variable06 | Variable08 | Wäsche | Rasiert | Schlafqualitaet,""
+2020-11-21,Samstag,Gut,Variable03 | Variable04 | Variable07 | Variable13 | Variable14 | Variable18 | Mäßig | Einkaufen,""
+2020-11-22,Sonntag,Super,Variable03 | Variable04 | Variable06 | Variable07 | Variable10 | Variable13 | Variable14 | Mäßig | Rasiert,""
+2020-11-23,Montag,Super,Variable04 | Variable06 | Variable08 | Variable13 | Variable15 | Variable18 | Mäßig | Arbeit | Wäsche,""
+2020-11-24,Dienstag,Super,Variable04 | Variable06 | Variable07 | Variable09 | Variable10 | Variable11 | Variable13 | Variable14 | Variable15 | Mäßig | Einkaufen,""
+2020-11-25,Mittwoch,Schlecht,Variable03 | Variable04 | Variable06 | Variable07 | Variable10 | Variable13 | Variable14 | Variable17 | Mäßig | Arbeit | Einkaufen,""
+2020-11-26,Donnerstag,Schlecht,Variable04 | Variable07 | Variable09 | Variable11 | Variable13 | Variable14 | Mäßig | Arbeit | Rasiert,""
+2020-11-27,Freitag,Gut,Variable06 | Variable07 | Variable10 | Variable13 | Variable14 | Mäßig | Friseur | Arbeit | Einkaufen,""
+2020-11-28,Samstag,Lausig,Variable06 | Variable07 | Variable11 | Variable13 | Variable14 | Mäßig,""
+2020-11-29,Sonntag,Lausig,Variable04 | Gut | Variable07 | Variable13 | Variable14 | Variable15 | Wäsche | Schlafqualitaet,""
+2020-11-30,Montag,Ok,Gut | Variable07 | Variable10 | Variable13 | Variable15 | Arbeit | Einkaufen | Schlafqualitaet,""
+2020-12-01,Dienstag,Ok,Variable04 | Gut | Variable07 | Variable11 | Variable13 | Variable14 | Variable15 | Variable18 | Rasiert | Schlafqualitaet,""
+2020-12-02,Mittwoch,Schlecht,Variable03 | Variable04 | Variable06 | Variable07 | Variable13 | Mäßig | Wäsche,""
+2020-12-03,Donnerstag,Lausig,Variable03 | Variable07 | Variable13 | Variable14 | Mäßig | Arbeit,""
+2020-12-04,Freitag,Lausig,Variable03 | Variable06 | Mäßig | Einkaufen,""
+2020-12-05,Samstag,Lausig,Variable06 | Variable08 | Variable09 | Variable11 | Variable13 | Mäßig,""
+2020-12-06,Sonntag,Lausig,Variable07 | Variable10 | Variable13 | Variable14 | Mäßig | Wäsche | Rasiert,""
+2020-12-07,Montag,Schlecht,Variable04 | Variable07 | Variable13 | Variable15 | Variable16 | Variable19 | Mäßig | Arbeit,""
+2020-12-08,Dienstag,Lausig,Variable07 | Variable13 | Variable14 | Schlecht,""
+2020-12-09,Mittwoch,Schlecht,Variable03 | Variable04 | Variable06 | Variable07 | Variable13 | Variable15 | Variable18 | Mäßig | Arbeit | Einkaufen,""
+2020-12-10,Donnerstag,Ok,Variable03 | Variable04 | Variable07 | Variable13 | Variable14 | Variable17 | Variable18 | Arbeit | Schlecht,""
+2020-12-11,Freitag,Super,Variable04 | Gut | Variable06 | Variable07 | Variable19 | Rasiert | Schlafqualitaet,""
+2020-12-12,Samstag,Super,Variable04 | Gut | Variable06 | Variable08 | Variable11 | Schlafqualitaet,""
+2020-12-13,Sonntag,Super,Variable06 | Variable08 | Variable13 | Mäßig | Arbeit,""
+2020-12-14,Montag,Super,Variable07 | Variable13 | Variable14 | Variable18 | Mäßig | Arbeit | Einkaufen,""
+2020-12-15,Dienstag,Super,Variable04 | Variable07 | Variable11 | Variable13 | Schlecht,""
+2020-12-16,Mittwoch,Lausig,Variable04 | Variable07 | Variable13 | Variable14 | Mäßig | Arbeit | Wäsche | Einkaufen,""
+2020-12-17,Donnerstag,Lausig,Variable04 | Variable07 | Variable13 | Variable15 | Variable19 | Mäßig | Arbeit,""
+2020-12-18,Freitag,Schlecht,Variable04 | Gut | Variable07 | Variable14 | Variable19 | Arbeit | Einkaufen | Rasiert | Schlafqualitaet,""
+2020-12-19,Samstag,Super,Variable04 | Variable07 | Variable10 | Variable11 | Variable13 | Variable17 | Variable18 | Mäßig | Einkaufen,""
+2020-12-20,Sonntag,Schlecht,Variable04 | Variable06 | Variable08 | Variable13 | Mäßig | Arbeit,""
+2020-12-21,Montag,Schlecht,Variable03 | Variable04 | Variable07 | Variable13 | Mäßig | Arbeit,""
+2020-12-22,Dienstag,Gut,Familie | Variable04 | Variable07 | Variable14 | Mäßig | Rasiert,""
+2020-12-23,Mittwoch,Ok,Variable03 | Variable04 | Variable07 | Mäßig | Arbeit,""
+2020-12-24,Donnerstag,Gut,Familie | Variable03 | Variable04 | Gut | Variable10 | Wäsche | Schlafqualitaet,""
+2020-12-25,Freitag,Super,Variable04 | Gut | Variable07 | Variable11 | Variable13 | Variable14 | Schlafqualitaet,""
+2020-12-26,Samstag,Gut,Variable04 | Variable07 | Variable10 | Variable13 | Mäßig,""
+2020-12-27,Sonntag,Ok,Variable04 | Variable06 | Variable07 | Variable11 | Variable13 | Mäßig,""
+2020-12-28,Montag,Schlecht,Variable03 | Variable08 | Variable16 | Mäßig | Arbeit | Einkaufen,""
+2020-12-29,Dienstag,Super,Variable03 | Variable04 | Variable07 | Variable11 | Mäßig | Wäsche,""
+2020-12-30,Mittwoch,Gut,Variable06 | Variable07 | Mäßig | Wäsche | Einkaufen,""
+2020-12-31,Donnerstag,Schlecht,Variable04 | Variable07 | Variable14 | Mäßig,""
+2021-01-01,Freitag,Ok,Variable03 | Variable04 | Variable06 | Variable07 | Variable11 | Variable13 | Variable14 | Variable17 | Mäßig,""
+2021-01-02,Samstag,Schlecht,Variable03 | Variable04 | Variable08 | Variable17 | Variable19 | Mäßig | Rasiert,""
+2021-01-03,Sonntag,Super,Variable04 | Variable13 | Variable17 | Schlecht,""
+2021-01-04,Montag,Super,Variable04 | Gut | Variable06 | Variable07 | Variable13 | Variable14 | Variable15 | Arbeit | Einkaufen | Schlafqualitaet,""
+2021-01-05,Dienstag,Gut,Variable04 | Variable07 | Variable13 | Variable14 | Mäßig,""
+2021-01-06,Mittwoch,Ok,Variable04 | Variable07 | Variable13 | Mäßig | Arbeit | Einkaufen,""
+2021-01-07,Donnerstag,Schlecht,Variable04 | Variable06 | Variable07 | Variable14 | Arbeit | Wäsche | Schlecht | Einkaufen | Rasiert,""
+2021-01-08,Freitag,Super,Variable02 | Variable03 | Variable04 | Variable07 | Variable14 | Variable19 | Wäsche | Schlecht,""
+2021-01-09,Samstag,Super,Variable04 | Variable07 | Variable17 | Mäßig | Einkaufen,""
+2021-01-10,Sonntag,Ok,Variable04 | Variable07 | Variable13 | Variable14 | Variable16 | Mäßig,""
+2021-01-11,Montag,Super,Variable02 | Variable03 | Variable04 | Gut | Variable07 | Variable13 | Arbeit | Schlafqualitaet,""
+2021-01-12,Dienstag,Ok,Variable04 | Variable07 | Variable13 | Variable16 | Mäßig | Einkaufen,""
+2021-01-13,Mittwoch,Lausig,Variable08 | Variable10 | Variable11 | Variable13 | Variable15 | Mäßig | Arbeit,""
+2021-01-14,Donnerstag,Schlecht,Familie | Variable04 | Variable07 | Variable19 | Arbeit | Wäsche | Schlecht | Einkaufen,""
+2021-01-15,Freitag,Schlecht,Variable02 | Variable03 | Variable04 | Variable07 | Variable14 | Variable19 | Mäßig | Wäsche | Rasiert,""
+2021-01-16,Samstag,Schlecht,Variable04 | Variable07 | Variable13 | Variable16 | Mäßig | Einkaufen,""
+2021-01-17,Sonntag,Lausig,Variable04 | Variable06 | Variable08 | Variable10 | Variable13 | Variable16 | Arbeit | Schlecht,""
+2021-01-18,Montag,Gut,Variable02 | Variable04 | Variable07 | Variable13 | Mäßig | Arbeit,""
+2021-01-19,Dienstag,Super,Variable07 | Variable13 | Variable14 | Variable16 | Variable18 | Schlecht,""
+2021-01-20,Mittwoch,Super,Gut | Variable07 | Variable13 | Variable15 | Variable16 | Variable18 | Arbeit | Einkaufen | Schlafqualitaet,""
+2021-01-21,Donnerstag,Gut,Variable04 | Variable07 | Variable13 | Variable16 | Mäßig | Arbeit | Wäsche,""
+2021-01-22,Freitag,Ok,Variable02 | Variable03 | Variable04 | Variable07 | Variable13 | Variable14 | Schlecht | Rasiert,""
+2021-01-23,Samstag,Gut,Variable03 | Variable04 | Variable07 | Variable13 | Variable14 | Mäßig,""
+2021-01-24,Sonntag,Gut,Variable04 | Variable08 | Variable13 | Mäßig | Arbeit | Wäsche,""
+2021-01-25,Montag,Ok,Familie | Variable03 | Variable04 | Variable07 | Variable13 | Variable14 | Mäßig | Arbeit | Einkaufen,""
+2021-01-26,Dienstag,Super,Variable02 | Variable04 | Gut | Variable07 | Variable13 | Variable14 | Variable15 | Schlafqualitaet,""
+2021-01-27,Mittwoch,Super,Variable07 | Variable13 | Mäßig | Arbeit,""
+2021-01-28,Donnerstag,Super,Variable04 | Variable07 | Variable13 | Mäßig | Arbeit | Einkaufen,""
+2021-01-29,Freitag,Super,Variable02 | Variable04 | Variable07 | Variable10 | Variable14 | Arbeit | Schlecht,""
+2021-01-30,Samstag,Super,Variable05 | Variable07 | Variable08 | Variable10 | Variable17 | Mäßig,""
+2021-01-31,Sonntag,Schlecht,Variable04 | Variable05 | Variable06 | Mäßig,""
+2021-02-01,Montag,Schlecht,Variable04 | Variable06 | Variable07 | Variable11 | Arbeit | Schlecht | Einkaufen | Rasiert,""
+2021-02-02,Dienstag,Gut,Variable02 | Variable07 | Variable11 | Variable14 | Variable15 | Mäßig | Arbeit,""
+2021-02-03,Mittwoch,Gut,Variable04 | Variable07 | Variable11 | Variable14 | Mäßig | Wäsche | Rasiert,""
+2021-02-04,Donnerstag,Super,Variable10 | Variable11 | Variable13 | Variable15 | Variable18 | Mäßig | Einkaufen,""
+2021-02-05,Freitag,Super,Variable02 | Variable03 | Variable04 | Variable07 | Variable11 | Variable14 | Mäßig | Arbeit | Einkaufen,""
+2021-02-06,Samstag,Schlecht,Variable04 | Gut | Variable07 | Variable11 | Schlafqualitaet,""
+2021-02-07,Sonntag,Ok,Gut | Variable07 | Variable09 | Variable13 | Variable14 | Schlafqualitaet,""
+2021-02-08,Montag,Super,Familie | Variable03 | Variable04 | Variable07 | Variable11 | Variable17 | Mäßig,""
+2021-02-09,Dienstag,Gut,Variable02 | Variable03 | Variable04 | Variable07 | Variable11 | Variable14 | Mäßig | Einkaufen | Rasiert,""
+2021-02-10,Mittwoch,Schlecht,Variable03 | Variable04 | Variable07 | Variable09 | Variable11 | Mäßig,""
+2021-02-11,Donnerstag,Lausig,Variable04 | Variable07 | Variable11 | Variable13 | Variable19 | Mäßig | Arbeit | Wäsche | Einkaufen,""
+2021-02-12,Freitag,Ok,Variable02 | Variable04 | Variable07 | Variable13 | Variable14 | Variable15 | Arbeit | Schlecht,""
+2021-02-13,Samstag,Super,Variable03 | Variable04 | Variable05 | Gut | Variable07 | Variable13 | Variable14 | Variable18 | Schlafqualitaet,""
+2021-02-14,Sonntag,Super,Familie | Variable03 | Variable04 | Variable05 | Gut | Variable07 | Variable11 | Variable13 | Schlafqualitaet,""
+2021-02-15,Montag,Schlecht,Gut | Variable07 | Variable13 | Einkaufen | Rasiert | Schlafqualitaet,""
+2021-02-16,Dienstag,Ok,Variable07 | Variable14 | Variable19 | Mäßig | Klausur,""
+2021-02-17,Mittwoch,Schlecht,Variable03 | Gut | Variable06 | Variable07 | Variable17 | Schlafqualitaet,""
+2021-02-18,Donnerstag,Lausig,Variable03 | Gut | Variable06 | Variable08 | Einkaufen | Schlafqualitaet,""
+2021-02-19,Freitag,Gut,Variable02 | Variable04 | Gut | Variable07 | Variable14 | Arbeit | Rasiert | Schlafqualitaet,""
+2021-02-20,Samstag,Super,Variable03 | Variable04 | Gut | Variable07 | Variable14 | Variable18 | Einkaufen | Schlafqualitaet,""
+2021-02-21,Sonntag,Super,Variable04 | Variable06 | Variable07 | Mäßig,""
+2021-02-22,Montag,Ok,Familie | Variable04 | Schach | Gut | Variable06 | Variable07 | Schlafqualitaet,""
+2021-02-23,Dienstag,Schlecht,Familie | Variable04 | Schach | Variable06 | Variable08 | Variable13 | Wäsche | Schlecht | Longboard,""
+2021-02-24,Mittwoch,Gut,Familie | Schach | Variable13 | Variable14 | Mäßig | Rasiert | Longboard,""
+2021-02-25,Donnerstag,Gut,Familie | Schach | Variable06 | Variable08 | Variable15 | Mäßig | Arbeit | Einkaufen,""
+2021-02-26,Freitag,Lausig,Variable04 | Schach | Variable06 | Variable07 | Variable11 | Variable16 | Mäßig | Longboard,""
+2021-02-27,Samstag,Ok,Variable02 | Variable04 | Schach | Gut | Variable06 | Variable07 | Variable14 | Variable16 | Schlafqualitaet,""
+2021-02-28,Sonntag,Gut,Variable04 | Schach | Gut | Variable06 | Variable07 | Variable13 | Variable14 | Variable19 | Schlafqualitaet,""
+2021-03-01,Montag,Lausig,Familie | Variable04 | Schach | Variable07 | Variable13 | Variable14 | Variable15 | Variable19 | Mäßig | Arbeit,""
+2021-03-02,Dienstag,Lausig,Variable03 | Variable04 | Variable05 | Schach | Gut | Variable07 | Variable13 | Variable17 | Variable19 | Einkaufen | Rasiert | Schlafqualitaet,""
+2021-03-03,Mittwoch,Schlecht,Variable04 | Schach | Variable07 | Variable14 | Variable19 | Mäßig | Klausur,""
+2021-03-04,Donnerstag,Ok,Familie | Variable04 | Schach | Variable07 | Mäßig | Arbeit | Wäsche,""
+2021-03-05,Freitag,Super,Variable02 | Variable03 | Variable04 | Schach | Variable07 | Variable13 | Variable14 | Variable15 | Arbeit | Schlecht | Einkaufen | Longboard,""
+2021-03-06,Samstag,Super,Familie | Variable03 | Variable04 | Schach | Gut | Variable07 | Variable14 | Einkaufen | Schlafqualitaet,""
+2021-03-07,Sonntag,Super,Familie | Variable04 | Schach | Variable06 | Variable07 | Variable13 | Variable14 | Variable15 | Mäßig | Wäsche | Rasiert,""
+2021-03-08,Montag,Gut,Familie | Variable03 | Variable04 | Schach | Variable07 | Variable11 | Variable15 | Mäßig | Arbeit | Einkaufen,""
+2021-03-09,Dienstag,Gut,Familie | Schach | Variable07 | Variable13 | Variable14 | Mäßig | Friseur | Einkaufen,""
+2021-03-10,Mittwoch,Gut,Familie | Variable03 | Variable04 | Variable06 | Variable08 | Mäßig | Arbeit,""
+2021-03-11,Donnerstag,Lausig,Familie | Variable04 | Variable06 | Variable08 | Variable15 | Variable17 | Mäßig | Arbeit | Einkaufen,""
+2021-03-12,Freitag,Schlecht,Variable03 | Variable04 | Schach | Variable07 | Variable13 | Variable14 | Mäßig | Arbeit | Rasiert,""
+2021-03-13,Samstag,Super,Variable03 | Variable04 | Schach | Variable07 | Variable11 | Variable13 | Mäßig | Einkaufen,""
+2021-03-14,Sonntag,Gut,Familie | Variable04 | Gut | Variable11 | Arbeit | Schlafqualitaet,""
+2021-03-15,Montag,Ok,Variable04 | Schach | Gut | Variable07 | Variable08 | Variable11 | Arbeit | Schlafqualitaet,""
+2021-03-16,Dienstag,Ok,Variable04 | Variable07 | Variable10 | Variable14 | Mäßig | Arbeit | Wäsche,""
+2021-03-17,Mittwoch,Ok,Variable04 | Schach | Variable06 | Variable08 | Variable10 | Variable11 | Variable13 | Variable19 | Mäßig | Arbeit | Einkaufen | Longboard,""
+2021-03-18,Donnerstag,Schlecht,Variable04 | Variable06 | Variable07 | Variable11 | Variable13 | Variable14 | Variable16 | Mäßig | Arbeit | Rasiert,""
+2021-03-19,Freitag,Schlecht,Variable03 | Variable04 | Variable06 | Variable07 | Variable08 | Variable13 | Variable14 | Variable15 | Variable18 | Mäßig | Arbeit,""
+2021-03-20,Samstag,Schlecht,Variable03 | Variable04 | Variable07 | Variable13 | Variable14 | Variable17 | Wäsche | Schlecht | Einkaufen,""
+2021-03-21,Sonntag,Schlecht,Variable02 | Variable03 | Variable04 | Variable07 | Variable11 | Variable13 | Variable18 | Mäßig | Wäsche,""
+2021-03-22,Montag,Gut,Familie | Variable03 | Variable04 | Schach | Variable06 | Variable08 | Variable13 | Variable18 | Mäßig | Arbeit | Longboard,""
+2021-03-23,Dienstag,Super,Variable03 | Variable04 | Gut | Variable08 | Variable13 | Variable15 | Arbeit | Einkaufen | Longboard | Schlafqualitaet,""
+2021-03-24,Mittwoch,Ok,Familie | Variable04 | Schach | Gut | Variable06 | Variable07 | Variable08 | Variable13 | Variable16 | Rasiert | Longboard | Schlafqualitaet,""
+2021-03-25,Donnerstag,Gut,Schach | Variable07 | Variable08 | Variable11 | Variable13 | Variable15 | Mäßig | Arbeit,""
+2021-03-26,Freitag,Super,Schach | Gut | Variable08 | Variable13 | Arbeit | Einkaufen | Longboard | Schlafqualitaet,""
+2021-03-27,Samstag,Ok,Variable02 | Gut | Variable13 | Variable19 | Einkaufen | Schlafqualitaet,""
+2021-03-28,Sonntag,Ok,Schach | Variable08 | Variable13 | Variable16 | Variable18 | Mäßig,""
+2021-03-29,Montag,Lausig,Schach | Variable06 | Variable07 | Variable08 | Variable13 | Variable14 | Variable16 | Variable19 | Mäßig | Klausur,""
+2021-03-30,Dienstag,Ok,Variable02 | Variable04 | Schach | Variable07 | Variable11 | Mäßig | Einkaufen | Rasiert | Longboard,""
+2021-03-31,Mittwoch,Super,Variable02 | Variable04 | Schach | Variable08 | Variable10 | Schlecht | Ausflug,""
+2021-04-01,Donnerstag,Super,Variable03 | Variable04 | Schach | Gut | Variable07 | Variable08 | Arbeit | Einkaufen | Schlafqualitaet,""
+2021-04-02,Freitag,Gut,Variable02 | Variable03 | Variable04 | Schach | Gut | Variable07 | Variable11 | Variable14 | Longboard | Schlafqualitaet,""
+2021-04-03,Samstag,Lausig,Familie | Variable03 | Schach | Gut | Variable07 | Variable13 | Variable14 | Wäsche | Schlafqualitaet,""
+2021-04-04,Sonntag,Lausig,Familie | Variable03 | Schach | Variable07 | Variable11 | Variable13 | Chinesisch | Variable14 | Variable18 | Schlecht,""
+2021-04-05,Montag,Gut,Variable02 | Variable04 | Schach | Variable07 | Variable08 | Variable13 | Chinesisch | Variable16 | Variable18 | Mäßig | Arbeit,""
+2021-04-06,Dienstag,Super,Variable02 | Variable04 | Schach | Gut | Variable07 | Variable13 | Chinesisch | Variable14 | Arbeit | Einkaufen | Rasiert | Schlafqualitaet,""
+2021-04-07,Mittwoch,Gut,Variable07 | Variable11 | Variable13 | Variable16 | Mäßig,""
+2021-04-08,Donnerstag,Schlecht,Variable08 | Variable11 | Variable13 | Variable15 | Variable17 | Mäßig | Arbeit,""
+2021-04-09,Freitag,Schlecht,Variable02 | Variable04 | Variable06 | Variable08 | Mäßig | Arbeit | Wäsche,""
+2021-04-10,Samstag,Schlecht,Variable02 | Variable04 | Schach | Variable06 | Variable07 | Variable08 | Variable13 | Variable14 | Variable16 | Schlecht | Einkaufen | Longboard,""
+2021-04-11,Sonntag,Lausig,Schach | Variable13 | Variable16 | Variable18 | Mäßig,""
+2021-04-12,Montag,Lausig,Variable02 | Variable04 | Schach | Gut | Variable07 | Variable13 | Variable14 | Variable16 | Arbeit | Longboard | Schlafqualitaet,""
+2021-04-13,Dienstag,Lausig,Schach | Variable06 | Variable07 | Variable08 | Variable10 | Variable13 | Variable16 | Variable19 | Mäßig,""
+2021-04-14,Mittwoch,Lausig,Familie | Variable02 | Variable04 | Variable06 | Variable07 | Variable10 | Variable14 | Variable19 | Friseur | Schlecht | Einkaufen | Longboard | Klausur,""
+2021-04-15,Donnerstag,Gut,Variable03 | Variable04 | Variable08 | Variable11 | Variable13 | Chinesisch | Variable15 | Mäßig | Arbeit,""
+2021-04-16,Freitag,Super,Variable02 | Variable04 | Variable08 | Variable10 | Chinesisch | Variable19 | Mäßig | Arbeit | Wäsche | Longboard,""
+2021-04-17,Samstag,Super,Familie | Variable02 | Variable04 | Variable06 | Variable08 | Variable10 | Variable11 | Chinesisch | Variable17 | Variable19 | Mäßig | Einkaufen | Rasiert | Ausflug,""
+2021-04-18,Sonntag,Super,Schach | Variable06 | Variable08 | Variable11 | Chinesisch | Variable18 | Mäßig,""
+2021-04-19,Montag,Gut,Gut | Variable06 | Variable07 | Variable08 | Variable13 | Chinesisch | Variable14 | Variable15 | Variable17 | Arbeit | Einkaufen | Longboard | Schlafqualitaet,""
+2021-04-20,Dienstag,Super,Variable02 | Variable04 | Variable13 | Chinesisch | Mäßig | Arbeit | Einkaufen | Longboard,""
+2021-04-21,Mittwoch,Super,Variable02 | Variable04 | Variable07 | Variable13 | Variable14 | Mäßig | Arbeit | Einkaufen | Rasiert | Longboard,""
+2021-04-22,Donnerstag,Lausig,Variable07 | Mäßig | Arbeit | Wäsche,""
+2021-04-23,Freitag,Schlecht,Variable02 | Variable04 | Variable07 | Variable13 | Variable14 | Mäßig | Arbeit | Einkaufen | Longboard,""
+2021-04-24,Samstag,Gut,Variable02 | Variable04 | Variable07 | Variable14 | Mäßig,""
+2021-04-25,Sonntag,Super,Variable03 | Variable07 | Variable11 | Variable13 | Mäßig,""
+2021-04-26,Montag,Gut,Variable06 | Variable08 | Variable15 | Mäßig | Arbeit | Wäsche | Einkaufen | Rasiert,""
+2021-04-27,Dienstag,Super,Variable02 | Variable04 | Variable05 | Variable13 | Variable14 | Mäßig | Einkaufen | Longboard,""
+2021-04-28,Mittwoch,Super,Variable02 | Variable06 | Variable08 | Variable13 | Mäßig,""
+2021-04-29,Donnerstag,Ok,Variable03 | Variable06 | Variable07 | Variable08 | Variable10 | Variable11 | Variable14 | Variable15 | Mäßig | Arbeit,""
+2021-04-30,Freitag,Gut,Variable03 | Variable04 | Variable07 | Variable13 | Variable14 | Mäßig | Wäsche | Einkaufen | Rasiert,""
+2021-05-01,Samstag,Super,Variable02 | Variable04 | Variable08 | Chinesisch | Variable17 | Mäßig,""
+2021-05-02,Sonntag,Super,Variable06 | Variable07 | Variable08 | Variable13 | Variable15 | Arbeit | Schlecht,""
+2021-05-03,Montag,Super,Variable03 | Variable04 | Variable06 | Variable08 | Variable11 | Variable15 | Mäßig | Arbeit | Einkaufen,""
+2021-05-04,Dienstag,Super,Variable02 | Variable07 | Variable13 | Chinesisch | Variable14 | Variable19 | Mäßig,""
+2021-05-05,Mittwoch,Super,Variable02 | Variable04 | Variable07 | Variable10 | Variable13 | Chinesisch | Variable14 | Variable16 | Mäßig | Einkaufen,""
+2021-05-06,Donnerstag,Super,Variable07 | Variable11 | Variable13 | Mäßig | Arbeit,""
+2021-05-07,Freitag,Super,Variable02 | Variable05 | Variable07 | Variable13 | Variable14 | Variable17 | Mäßig | Einkaufen | Rasiert,""
+2021-05-08,Samstag,Super,Variable02 | Variable03 | Variable04 | Variable06 | Variable08 | Variable13 | Chinesisch | Variable17 | Wäsche | Schlecht,""
+2021-05-09,Sonntag,Super,Familie | Variable04 | Schach | Gut | Variable10 | Variable13 | Variable14 | Arbeit | Schlafqualitaet,""
+2021-05-10,Montag,Gut,Variable04 | Variable06 | Variable08 | Variable11 | Variable13 | Variable15 | Mäßig | Arbeit | Wäsche | Einkaufen,""
+2021-05-11,Dienstag,Super,Variable02 | Schach | Variable07 | Variable11 | Variable13 | Variable14 | Variable15 | Schlecht | Einkaufen,""
+2021-05-12,Mittwoch,Super,Variable02 | Variable04 | Schach | Variable06 | Variable13 | Variable14 | Mäßig | Einkaufen,""
+2021-05-13,Donnerstag,Lausig,Schach | Variable08 | Variable13 | Variable18 | Mäßig | Arbeit,""
+2021-05-14,Freitag,Lausig,Variable02 | Variable04 | Schach | Variable06 | Variable07 | Variable11 | Variable13 | Variable14 | Mäßig | Friseur | Wäsche | Einkaufen,""
+2021-05-15,Samstag,Ok,Familie | Variable02 | Variable04 | Schach | Variable07 | Variable08 | Variable13 | Variable14 | Mäßig | Einkaufen,""
+2021-05-16,Sonntag,Ok,Variable11 | Variable13 | Variable15 | Variable17 | Variable18 | Mäßig | Wäsche,""
+2021-05-17,Montag,Ok,Familie | Variable04 | Schach | Variable06 | Variable08 | Mäßig | Arbeit | Einkaufen,""
+2021-05-18,Dienstag,Lausig,Variable02 | Variable04 | Schlecht,""
+2021-05-19,Mittwoch,Schlecht,Variable03 | Variable04 | Schach | Gut | Variable07 | Variable13 | Variable14 | Arbeit | Schlafqualitaet,""
+2021-05-20,Donnerstag,Ok,Variable02 | Schach | Variable08 | Chinesisch | Mäßig | Arbeit | Einkaufen | Longboard,""
+2021-05-21,Freitag,Schlecht,Variable03 | Variable04 | Schach | Gut | Variable07 | Variable10 | Variable11 | Variable14 | Variable19 | Rasiert | Schlafqualitaet,""
+2021-05-22,Samstag,Ok,Variable02 | Variable03 | Variable04 | Schach | Gut | Variable07 | Variable11 | Chinesisch | Variable14 | Variable15 | Schlafqualitaet,""
+2021-05-23,Sonntag,Ok,Variable03 | Variable05 | Gut | Variable07 | Variable13 | Chinesisch | Variable15 | Variable17 | Schlafqualitaet,""
+2021-05-24,Montag,Gut,Variable05 | Variable07 | Variable08 | Variable11 | Variable13 | Chinesisch | Variable15 | Mäßig | Wäsche | Allergie,""
+2021-05-25,Dienstag,Schlecht,Variable02 | Variable04 | Variable05 | Variable06 | Variable08 | Variable11 | Variable13 | Chinesisch | Mäßig | Arbeit,""
+2021-05-26,Mittwoch,Lausig,Variable04 | Variable06 | Variable07 | Variable08 | Variable13 | Chinesisch | Mäßig,""
+2021-05-27,Donnerstag,Ok,Variable04 | Schach | Variable06 | Variable08 | Variable15 | Mäßig | Arbeit | Einkaufen,""
+2021-05-28,Freitag,Ok,Variable03 | Variable04 | Schach | Variable07 | Variable11 | Variable13 | Variable14 | Mäßig | Einkaufen | Ausflug,""
+2021-05-29,Samstag,Ok,Variable02 | Variable03 | Variable04 | Variable08 | Schlecht | Einkaufen,""
+2021-05-30,Sonntag,Super,Familie | Variable02 | Variable04 | Variable05 | Gut | Variable07 | Variable11 | Variable13 | Variable19 | Wäsche | Schlafqualitaet,""
+2021-05-31,Montag,Super,Variable04 | Variable05 | Variable07 | Variable13 | Variable14 | Mäßig | Einkaufen | Rasiert,""
+2021-06-01,Dienstag,Super,Variable02 | Variable04 | Variable05 | Variable08 | Variable13 | Chinesisch | Variable17 | Mäßig | Allergie | Einkaufen,""
+2021-06-02,Mittwoch,Super,Variable02 | Variable04 | Variable06 | Variable08 | Variable11 | Variable13 | Chinesisch | Mäßig | Longboard,""
+2021-06-03,Donnerstag,Gut,Variable04 | Variable05 | Variable07 | Variable08 | Variable09 | Variable10 | Variable11 | Chinesisch | Variable15 | Mäßig | Arbeit | Einkaufen,""
+2021-06-04,Freitag,Gut,Variable04 | Variable05 | Variable06 | Variable07 | Variable08 | Variable11 | Variable13 | Chinesisch | Variable15 | Mäßig,""
+2021-06-05,Samstag,Gut,Variable02 | Variable04 | Chinesisch | Variable14 | Mäßig | Wäsche | Allergie | Einkaufen,""
+2021-06-06,Sonntag,Super,Variable02 | Schach | Variable06 | Variable07 | Variable08 | Variable11 | Variable13 | Variable15 | Variable17 | Variable18 | Mäßig | Rasiert,""
+2021-06-07,Montag,Gut,Variable04 | Schach | Variable06 | Variable08 | Variable13 | Variable16 | Arbeit | Wäsche | Schlecht | Allergie | Einkaufen,""
+2021-06-08,Dienstag,Schlecht,Variable02 | Variable04 | Variable05 | Schach | Gut | Variable08 | Variable10 | Variable13 | Arbeit | Einkaufen | Schlafqualitaet,""
+2021-06-09,Mittwoch,Super,Schach | Gut | Variable11 | Variable13 | Arbeit | Allergie | Schlafqualitaet,""
+2021-06-10,Donnerstag,Gut,Variable04 | Schach | Variable06 | Variable07 | Variable08 | Variable11 | Mäßig | Arbeit | Allergie | Einkaufen,""
+2021-06-11,Freitag,Ok,Variable02 | Variable04 | Variable07 | Variable13 | Variable14 | Mäßig | Arbeit | Einkaufen,""
+2021-06-12,Samstag,Gut,Variable02 | Variable04 | Gut | Variable07 | Variable08 | Variable13 | Rasiert | Schlafqualitaet,""
+2021-06-13,Sonntag,Gut,Variable02 | Schach | Variable06 | Variable08 | Variable11 | Variable13 | Schlecht | Allergie,""
+2021-06-14,Montag,Ok,Gut | Variable06 | Variable08 | Variable13 | Variable16 | Arbeit | Einkaufen | Schlafqualitaet,""
+2021-06-15,Dienstag,Lausig,Variable03 | Schach | Variable07 | Variable11 | Variable13 | Variable14 | Variable16 | Variable17 | Variable19 | Mäßig,""
+2021-06-16,Mittwoch,Schlecht,Variable02 | Variable04 | Schach | Variable07 | Variable13 | Variable16 | Variable19 | Mäßig | Friseur | Arbeit | Allergie | Einkaufen,""
+2021-06-17,Donnerstag,Ok,Variable03 | Schach | Variable06 | Variable07 | Variable08 | Variable16 | Variable19 | Mäßig | Arbeit | Wäsche | Allergie | Einkaufen,""
+2021-06-18,Freitag,Schlecht,Variable02 | Variable04 | Variable07 | Variable13 | Variable14 | Variable15 | Variable16 | Variable19 | Mäßig | Wäsche | Allergie | Einkaufen | Rasiert | Klausur,""
+2021-06-19,Samstag,Gut,Variable02 | Variable04 | Schach | Gut | Variable06 | Variable08 | Variable11 | Chinesisch | Variable17 | Allergie | Schlafqualitaet,""
+2021-06-20,Sonntag,Gut,Variable03 | Schach | Variable06 | Variable07 | Variable08 | Variable11 | Variable13 | Chinesisch | Variable17 | Mäßig | Arbeit | Allergie,""
+2021-06-21,Montag,Schlecht,Variable03 | Variable04 | Variable06 | Variable07 | Variable08 | Chinesisch | Variable14 | Variable17 | Mäßig | Arbeit | Allergie | Einkaufen,""
+2021-06-22,Dienstag,Lausig,Variable03 | Variable04 | Schach | Variable07 | Variable11 | Variable13 | Chinesisch | Mäßig | Arbeit,""
+2021-06-23,Mittwoch,Gut,Variable02 | Variable04 | Variable05 | Variable13 | Chinesisch | Mäßig | Arbeit | Einkaufen,""
+2021-06-24,Donnerstag,Super,Schach | Variable08 | Chinesisch | Variable16 | Variable19 | Mäßig | Arbeit,""
+2021-06-25,Freitag,Schlecht,Familie | Variable03 | Variable04 | Variable05 | Schach | Variable08 | Variable13 | Variable16 | Mäßig | Arbeit | Allergie,""
+2021-06-26,Samstag,Gut,Familie | Variable02 | Variable03 | Variable04 | Schach | Gut | Variable07 | Variable13 | Variable14 | Wäsche | Einkaufen | Rasiert | Schlafqualitaet,""
+2021-06-27,Sonntag,Super,Familie | Variable02 | Variable04 | Variable07 | Variable17 | Mäßig | Allergie | Ausflug,""
+2021-06-28,Montag,Schlecht,Variable04 | Variable07 | Variable08 | Variable11 | Variable13 | Variable14 | Variable16 | Mäßig | Arbeit | Allergie,""
+2021-06-29,Dienstag,Lausig,Schach | Gut | Variable11 | Allergie | Einkaufen | Schlafqualitaet,""
+2021-06-30,Mittwoch,Ok,Variable02 | Variable03 | Variable04 | Schach | Variable08 | Variable10 | Variable13 | Variable17 | Mäßig | Allergie | Einkaufen | Rasiert,""
+2021-07-01,Donnerstag,Super,Variable07 | Variable11 | Chinesisch | Variable14 | Variable15 | Variable17 | Mäßig | Arbeit | Allergie,""
+2021-07-02,Freitag,Schlecht,Variable05 | Variable06 | Variable07 | Variable08 | Variable11 | Variable13 | Chinesisch | Variable15 | Variable17 | Variable18 | Mäßig | Arbeit | Allergie | Einkaufen,""
+2021-07-03,Samstag,Schlecht,Variable02 | Variable04 | Variable07 | Chinesisch | Variable14 | Mäßig | Wäsche | Allergie | Einkaufen,""
+2021-07-04,Sonntag,Lausig,Variable02 | Schach | Gut | Variable07 | Variable13 | Chinesisch | Variable14 | Variable18 | Schlafqualitaet,""
+2021-07-05,Montag,Lausig,Gut | Variable06 | Variable07 | Variable08 | Variable11 | Variable15 | Arbeit | Schlafqualitaet,""
+2021-07-06,Dienstag,Super,Variable02 | Variable07 | Variable13 | Chinesisch | Variable14 | Variable15 | Mäßig | Einkaufen,""
+2021-07-07,Mittwoch,Super,Variable05 | Gut | Variable07 | Variable13 | Chinesisch | Allergie | Schlafqualitaet,""
+2021-07-08,Donnerstag,Ok,Variable04 | Variable05 | Gut | Variable07 | Variable13 | Arbeit | Rasiert | Schlafqualitaet,""
+2021-07-09,Freitag,Ok,Variable02 | Variable03 | Variable07 | Variable13 | Variable14 | Variable17 | Arbeit | Wäsche | Schlecht | Allergie | Einkaufen,""
+2021-07-10,Samstag,Super,Familie | Variable02 | Variable04 | Variable07 | Variable08 | Variable10 | Variable14 | Mäßig | Einkaufen,""
+2021-07-11,Sonntag,Gut,Familie | Variable02 | Variable04 | Variable06 | Variable07 | Variable08 | Variable13 | Schlecht,""
+2021-07-12,Montag,Lausig,Variable04 | Variable07 | Variable11 | Variable13 | Variable14 | Variable15 | Variable19 | Mäßig | Arbeit,""
+2021-07-13,Dienstag,Ok,Variable02 | Variable03 | Variable04 | Variable07 | Variable13 | Variable16 | Variable17 | Variable19 | Mäßig | Arbeit | Wäsche | Einkaufen,""
+2021-07-14,Mittwoch,Gut,Variable04 | Variable16 | Variable18 | Variable19 | Mäßig | Arbeit | Rasiert,""
+2021-07-15,Donnerstag,Lausig,Variable06 | Variable08 | Variable11 | Mäßig | Arbeit,""
+2021-07-16,Freitag,Lausig,Variable02 | Gut | Variable07 | Variable13 | Variable14 | Variable16 | Allergie | Einkaufen | Schlafqualitaet,""
+2021-07-17,Samstag,Super,Variable02 | Variable04 | Variable07 | Variable11 | Variable13 | Variable14 | Variable16 | Variable17 | Mäßig | Allergie | Einkaufen,""
+2021-07-18,Sonntag,Gut,Variable02 | Variable07 | Variable13 | Variable14 | Variable16 | Mäßig,""
+2021-07-19,Montag,Lausig,Variable04 | Variable07 | Variable13 | Variable16 | Schlecht | Einkaufen | Rasiert,""
+2021-07-20,Dienstag,Lausig,Variable06 | Variable07 | Variable08 | Variable13 | Variable16 | Schlecht,""
+2021-07-21,Mittwoch,Lausig,Variable02 | Schlecht,""
+2021-07-22,Donnerstag,Lausig,Variable02 | Variable04 | Schlecht | Einkaufen,""
+2021-07-23,Freitag,Lausig,Familie | Variable02 | Variable04 | Chinesisch | Mäßig | Wäsche | Rasiert | Restaurant,""
+2021-07-24,Samstag,Ok,Variable02 | Gut | Schlafqualitaet,""
+2021-07-25,Sonntag,Ok,Variable06 | Variable08 | Chinesisch | Mäßig | Wäsche,""
+2021-07-26,Montag,Gut,Variable04 | Variable07 | Chinesisch | Mäßig | Arbeit | Einkaufen,""
+2021-07-27,Dienstag,Ok,Variable02 | Variable04 | Variable17 | Mäßig | Arbeit | Einkaufen | Restaurant,""
+2021-07-28,Mittwoch,Schlecht,Variable02 | Variable03 | Variable04 | Chinesisch | Variable17 | Mäßig | Einkaufen | Rasiert | Restaurant,""
+2021-07-29,Donnerstag,Lausig,Variable04 | Variable06 | Variable08 | Chinesisch | Mäßig | Arbeit | Allergie,""
+2021-07-30,Freitag,Schlecht,Variable02 | Variable11 | Chinesisch | Variable16 | Mäßig | Einkaufen | Ausflug | Restaurant,""
+2021-07-31,Samstag,Gut,Variable02 | Gut | Variable11 | Chinesisch | Wäsche | Schlafqualitaet,""
+2021-08-01,Sonntag,Gut,Variable04 | Variable05 | Gut | Variable07 | Variable13 | Chinesisch | Variable14 | Variable19 | Arbeit | Schlafqualitaet,""
+2021-08-02,Montag,Gut,Familie | Variable03 | Variable04 | Variable07 | Variable10 | Chinesisch | Mäßig | Einkaufen,""
+2021-08-03,Dienstag,Ok,Variable02 | Variable03 | Variable04 | Variable09 | Variable13 | Chinesisch | Schlecht | Rasiert,""
+2021-08-04,Mittwoch,Gut,Variable02 | Variable03 | Variable04 | Gut | Variable06 | Variable08 | Variable13 | Chinesisch | Variable16 | Arbeit | Einkaufen | Schlafqualitaet,""
+2021-08-05,Donnerstag,Super,Variable03 | Variable04 | Schach | Variable07 | Variable08 | Variable11 | Chinesisch | Variable15 | Variable16 | Mäßig | Arbeit,""
+2021-08-06,Freitag,Ok,Variable02 | Variable03 | Variable04 | Variable06 | Variable07 | Variable08 | Variable11 | Variable13 | Chinesisch | Variable14 | Friseur | Schlecht | Allergie | Einkaufen,""
+2021-08-07,Samstag,Ok,Variable02 | Gut | Variable08 | Variable10 | Variable13 | Chinesisch | Variable16 | Variable17 | Ausflug | Schlafqualitaet,""
+2021-08-08,Sonntag,Super,Schach | Gut | Variable11 | Variable13 | Chinesisch | Arbeit | Schlafqualitaet,""
+2021-08-09,Montag,Super,Variable04 | Variable06 | Variable08 | Variable13 | Chinesisch | Variable19 | Mäßig | Arbeit,""
+2021-08-10,Dienstag,Schlecht,Familie | Variable02 | Variable04 | Chinesisch | Variable15 | Variable17 | Variable19 | Mäßig | Wäsche | Einkaufen | Rasiert | Klausur,""
+2021-08-11,Mittwoch,Lausig,Familie | Variable03 | Variable04 | Variable06 | Variable07 | Variable08 | Variable11 | Chinesisch | Variable17 | Arbeit | Schlecht | Einkaufen,""
+2021-08-12,Donnerstag,Lausig,Familie | Variable03 | Variable04 | Variable07 | Chinesisch | Variable14 | Variable16 | Mäßig | Arbeit,""
+2021-08-13,Freitag,Schlecht,Variable04 | Variable07 | Variable08 | Variable13 | Chinesisch | Variable16 | Mäßig | Wäsche | Einkaufen,""
+2021-08-14,Samstag,Ok,Variable02 | Variable04 | Gut | Variable07 | Variable11 | Variable13 | Chinesisch | Variable16 | Restaurant | Schlafqualitaet,""
+2021-08-15,Sonntag,Schlecht,Variable02 | Variable06 | Variable07 | Variable09 | Variable11 | Variable13 | Chinesisch | Variable15 | Variable16 | Mäßig | Rasiert,""
+2021-08-16,Montag,Lausig,Variable04 | Variable06 | Variable08 | Variable11 | Variable13 | Chinesisch | Variable16 | Arbeit | Schlecht | Einkaufen,""
+2021-08-17,Dienstag,Schlecht,Variable07 | Variable08 | Variable13 | Chinesisch | Variable16 | Variable19 | Mäßig,""
+2021-08-18,Mittwoch,Ok,Variable02 | Variable04 | Variable08 | Variable11 | Variable13 | Chinesisch | Variable18 | Variable19 | Mäßig | Arbeit | Rasiert | Klausur,""
+2021-08-19,Donnerstag,Lausig,Variable02 | Variable11 | Chinesisch | Variable16 | Arbeit | Mensa | Schlecht,""
+2021-08-20,Freitag,Lausig,Variable02 | Variable04 | Gut | Variable06 | Variable08 | Variable13 | Chinesisch | Arbeit | Wäsche | Einkaufen | Schlafqualitaet,""
+2021-08-21,Samstag,Gut,Variable02 | Gut | Variable07 | Variable10 | Variable11 | Chinesisch | Variable15 | Einkaufen | Schlafqualitaet,""
+2021-08-22,Sonntag,Ok,Variable02 | Variable04 | Variable08 | Variable13 | Chinesisch | Variable16 | Mäßig | Einkaufen | Ausflug,""
+2021-08-23,Montag,Gut,Variable02 | Gut | Variable06 | Variable08 | Chinesisch | Variable15 | Einkaufen | Ausflug | Restaurant | Schlafqualitaet,""
+2021-08-24,Dienstag,Super,Variable02 | Variable03 | Variable04 | Gut | Variable06 | Variable08 | Variable10 | Chinesisch | Ausflug | Restaurant | Schlafqualitaet,""
+2021-08-25,Mittwoch,Super,Variable02 | Variable04 | Variable06 | Chinesisch | Mäßig | Ausflug | Restaurant,""
+2021-08-26,Donnerstag,Super,Variable02 | Variable03 | Variable04 | Variable10 | Chinesisch | Mäßig | Arbeit | Einkaufen | Ausflug | Restaurant,""
+2021-08-27,Freitag,Super,Variable02 | Variable04 | Variable06 | Variable08 | Variable10 | Chinesisch | Variable18 | Schlecht | Einkaufen | Rasiert,""
+2021-08-28,Samstag,Super,Variable02 | Variable04 | Chinesisch | Variable18 | Mäßig | Einkaufen | Restaurant,""
+2021-08-29,Sonntag,Ok,Variable02 | Variable08 | Chinesisch | Mäßig | Arbeit | Ausflug,""
+2021-08-30,Montag,Ok,Familie | Chinesisch | Variable15 | Mäßig | Arbeit | Mensa | Einkaufen,""
+2021-08-31,Dienstag,Gut,Familie | Variable04 | Chinesisch | Mäßig | Arbeit | Mensa | Wäsche | Rasiert,""
+2021-09-01,Mittwoch,Super,Familie | Variable02 | Variable04 | Variable07 | Chinesisch | Variable14 | Mäßig | Mensa | Longboard,""
+2021-09-02,Donnerstag,Gut,Variable04 | Variable07 | Chinesisch | Mäßig | Arbeit | Mensa,""
+2021-09-03,Freitag,Lausig,Variable02 | Variable04 | Chinesisch | Variable18 | Mäßig | Mensa | Einkaufen,""
+2021-09-04,Samstag,Lausig,Variable02 | Variable04 | Variable07 | Chinesisch | Variable14 | Mäßig | Arbeit | Wäsche | Einkaufen | Rasiert,""
+2021-09-05,Sonntag,Schlecht,Variable02 | Variable04 | Variable05 | Variable07 | Variable08 | Variable09 | Variable11 | Chinesisch | Mäßig,""
+2021-09-06,Montag,Ok,Variable09 | Variable11 | Chinesisch | Mäßig | Arbeit,""
+2021-09-07,Dienstag,Gut,Variable03 | Variable07 | Variable08 | Chinesisch | Arbeit | Schlecht | Einkaufen | Rasiert,""
+2021-09-08,Mittwoch,Gut,Variable02 | Variable04 | Variable07 | Variable10 | Chinesisch | Variable18 | Arbeit | Mensa | Schlecht | Einkaufen | Longboard,""
+2021-09-09,Donnerstag,Super,Variable02 | Variable04 | Variable07 | Variable08 | Variable11 | Chinesisch | Variable14 | Variable19 | Mäßig | Arbeit | Mensa,""
+2021-09-10,Freitag,Super,Variable02 | Variable04 | Variable07 | Variable11 | Chinesisch | Variable15 | Mäßig | Arbeit | Mensa | Einkaufen,""
+2021-09-11,Samstag,Super,Variable02 | Variable04 | Variable07 | Variable10 | Chinesisch | Variable14 | Variable17 | Variable18 | Mäßig | Wäsche | Einkaufen,""
+2021-09-12,Sonntag,Super,Variable02 | Gut | Variable06 | Variable07 | Variable08 | Chinesisch | Rasiert | Schlafqualitaet,""
+2021-09-13,Montag,Super,Chinesisch | Variable15 | Variable17 | Mäßig | Arbeit | Mensa,""
+2021-09-14,Dienstag,Super,Variable02 | Variable07 | Variable11 | Variable17 | Mäßig | Arbeit | Mensa,""
+2021-09-15,Mittwoch,Ok,Variable02 | Variable04 | Chinesisch | Variable15 | Mäßig | Arbeit | Einkaufen,""
+2021-09-16,Donnerstag,Super,Variable04 | Schach | Variable07 | Variable09 | Chinesisch | Variable15 | Variable17 | Mäßig | Arbeit | Mensa,""
+2021-09-17,Freitag,Gut,Familie | Variable02 | Variable04 | Variable06 | Variable11 | Chinesisch | Mäßig | Arbeit,""
+2021-09-18,Samstag,Lausig,Variable02 | Variable04 | Gut | Variable06 | Variable07 | Variable10 | Variable11 | Chinesisch | Variable14 | Variable18 | Variable19 | Einkaufen | Rasiert | Schlafqualitaet,""
+2021-09-19,Sonntag,Schlecht,Variable02 | Variable04 | Variable06 | Chinesisch | Variable17 | Variable18 | Variable19 | Arbeit | Schlecht,""
+2021-09-20,Montag,Gut,Chinesisch | Variable16 | Variable17 | Mäßig | Arbeit | Mensa | Einkaufen,""
+2021-09-21,Dienstag,Schlecht,Variable04 | Gut | Variable06 | Variable07 | Variable08 | Variable13 | Chinesisch | Variable15 | Variable16 | Arbeit | Schlafqualitaet,""
+2021-09-22,Mittwoch,Ok,Variable02 | Variable04 | Chinesisch | Arbeit | Mensa | Schlecht | Einkaufen | Rasiert,""
+2021-09-23,Donnerstag,Schlecht,Chinesisch | Schlecht,""
+2021-09-24,Freitag,Lausig,Familie | Variable02 | Variable04 | Variable07 | Variable13 | Chinesisch | Variable16 | Variable18 | Mäßig | Wäsche | Einkaufen,""
+2021-09-25,Samstag,Super,Variable02 | Variable03 | Variable04 | Gut | Variable07 | Variable13 | Variable16 | Variable19 | Arbeit | Rasiert | Schlafqualitaet,""
+2021-09-26,Sonntag,Gut,Variable04 | Variable07 | Chinesisch | Variable16 | Mäßig,""
+2021-09-27,Montag,Lausig,Variable04 | Variable06 | Variable07 | Chinesisch | Mäßig | Arbeit | Einkaufen,""
+2021-09-28,Dienstag,Ok,Variable02 | Variable04 | Variable06 | Variable08 | Chinesisch | Variable16 | Variable18 | Variable19 | Arbeit | Mensa | Wäsche | Schlecht | Einkaufen,""
+2021-09-29,Mittwoch,Gut,Variable04 | Variable08 | Chinesisch | Arbeit | Schlecht,""
+2021-09-30,Donnerstag,Gut,Variable02 | Variable04 | Chinesisch | Variable15 | Arbeit | Schlecht | Einkaufen | Rasiert | Restaurant,""
+2021-10-01,Freitag,Gut,Familie | Variable02 | Variable04 | Gut | Variable10 | Chinesisch | Variable18 | Mensa | Einkaufen | Restaurant | Schlafqualitaet,""
+2021-10-02,Samstag,Gut,Familie | Variable02 | Variable04 | Variable06 | Variable08 | Chinesisch | Variable17 | Mäßig | Restaurant,""
+2021-10-03,Sonntag,Ok,Variable04 | Gut | Variable07 | Variable08 | Variable11 | Variable13 | Chinesisch | Variable15 | Variable17 | Arbeit | Schlafqualitaet,""
+2021-10-04,Montag,Schlecht,Variable02 | Variable04 | Chinesisch | Variable15 | Variable17 | Mäßig | Arbeit | Mensa,""
+2021-10-05,Dienstag,Schlecht,Variable04 | Variable11 | Chinesisch | Variable15 | Variable17 | Mäßig | Arbeit | Mensa | Einkaufen,""
+2021-10-06,Mittwoch,Gut,Variable02 | Variable04 | Variable07 | Variable08 | Chinesisch | Variable16 | Variable18 | Mäßig | Arbeit | Einkaufen | Rasiert,""
+2021-10-07,Donnerstag,Ok,Variable02 | Variable03 | Variable04 | Chinesisch | Variable15 | Variable16 | Variable17 | Mäßig | Arbeit | Mensa | Einkaufen,""
+2021-10-08,Freitag,Gut,Variable02 | Variable03 | Variable04 | Variable05 | Variable06 | Variable07 | Variable08 | Chinesisch | Variable14 | Mäßig | Arbeit | Wäsche,""
+2021-10-09,Samstag,Super,Variable02 | Variable03 | Variable04 | Gut | Variable07 | Variable11 | Arbeit | Einkaufen | Schlafqualitaet,""
+2021-10-10,Sonntag,Ok,Variable02 | Variable03 | Variable04 | Variable05 | Gut | Variable07 | Variable09 | Variable11 | Chinesisch | Variable14 | Variable15 | Variable17 | Rasiert | Schlafqualitaet,""
+2021-10-11,Montag,Super,Variable02 | Variable04 | Variable07 | Variable08 | Chinesisch | Variable17 | Mäßig | Arbeit | Einkaufen,""
+2021-10-12,Dienstag,Super,Variable02 | Variable04 | Variable07 | Chinesisch | Variable15 | Variable17 | Mäßig | Arbeit,""
+2021-10-13,Mittwoch,Super,Familie | Variable02 | Variable04 | Variable05 | Gut | Variable07 | Chinesisch | Variable14 | Variable15 | Arbeit | Schlafqualitaet,""
+2021-10-14,Donnerstag,Super,Variable02 | Variable04 | Variable06 | Variable07 | Variable08 | Variable09 | Chinesisch | Variable14 | Variable15 | Variable17 | Mäßig | Friseur | Arbeit | Wäsche | Einkaufen | Rasiert,""
+2021-10-15,Freitag,Ok,Variable02 | Variable04 | Variable06 | Variable08 | Variable11 | Variable18 | Mäßig | Arbeit | Einkaufen,""
+2021-10-16,Samstag,Lausig,Variable02 | Variable04 | Variable05 | Variable07 | Variable08 | Variable10 | Variable11 | Chinesisch | Variable17 | Schlecht | Einkaufen,""
+2021-10-17,Sonntag,Schlecht,Familie | Variable04 | Variable09 | Variable10 | Chinesisch | Schlecht | Restaurant,""
+2021-10-18,Montag,Gut,Variable02 | Variable06 | Chinesisch | Variable18 | Mäßig | Arbeit | Mensa,""
+2021-10-19,Dienstag,Lausig,Variable02 | Variable03 | Variable04 | Chinesisch | Arbeit | Schlecht | Rasiert,""
+2021-10-20,Mittwoch,Lausig,Variable03 | Variable04 | Variable05 | Variable07 | Chinesisch | Mäßig | Arbeit | Wäsche | Einkaufen,""
+2021-10-21,Donnerstag,Lausig,Familie | Variable02 | Variable03 | Variable04 | Variable07 | Variable11 | Chinesisch | Variable14 | Mäßig | Arbeit,""
+2021-10-22,Freitag,Gut,Variable02 | Variable04 | Chinesisch | Variable15 | Variable19 | Arbeit | Schlecht | Einkaufen,""
+2021-10-23,Samstag,Super,Variable02 | Variable04 | Variable05 | Variable07 | Variable11 | Chinesisch | Variable15 | Arbeit | Schlecht | Einkaufen,""
+2021-10-24,Sonntag,Gut,Variable03 | Variable04 | Variable05 | Variable07 | Variable10 | Variable13 | Chinesisch | Variable14 | Mäßig | Arbeit | Wäsche | Rasiert,""
+2021-10-25,Montag,Schlecht,Variable03 | Variable04 | Variable07 | Variable13 | Chinesisch | Variable15 | Variable17 | Variable19 | Mäßig | Arbeit,""
+2021-10-26,Dienstag,Gut,Variable02 | Variable03 | Variable04 | Variable08 | Variable09 | Variable13 | Chinesisch | Variable14 | Variable17 | Mäßig | Arbeit | Einkaufen,""
+2021-10-27,Mittwoch,Gut,Variable13 | Chinesisch | Variable15 | Variable17 | Mäßig | Arbeit | Mensa,""
+2021-10-28,Donnerstag,Ok,Variable05 | Variable07 | Variable13 | Chinesisch | Variable14 | Variable15 | Variable17 | Mäßig | Arbeit | Mensa,""
+2021-10-29,Freitag,Super,Variable02 | Variable03 | Variable04 | Variable05 | Variable08 | Variable13 | Chinesisch | Variable17 | Mäßig | Restaurant,""
+2021-10-30,Samstag,Super,Variable02 | Variable04 | Variable06 | Variable08 | Chinesisch | Variable17 | Variable18 | Variable19 | Mäßig | Arbeit | Einkaufen | Rasiert,""
+2021-10-31,Sonntag,Schlecht,Variable02 | Variable03 | Variable04 | Gut | Variable07 | Variable09 | Variable13 | Chinesisch | Variable14 | Variable18 | Schlafqualitaet,""
+2021-11-01,Montag,Gut,Variable03 | Variable04 | Variable06 | Variable09 | Variable13 | Chinesisch | Variable14 | Mäßig | Arbeit | Wäsche | Einkaufen,""
+2021-11-02,Dienstag,Super,Variable03 | Variable04 | Variable13 | Chinesisch | Mäßig | Arbeit | Mensa,""
+2021-11-03,Mittwoch,Schlecht,Variable02 | Variable03 | Variable04 | Variable13 | Chinesisch | Variable15 | Variable17 | Mäßig | Arbeit | Mensa | Einkaufen,""
+2021-11-04,Donnerstag,Gut,Familie | Variable02 | Variable03 | Variable04 | Variable08 | Variable09 | Variable13 | Chinesisch | Variable17 | Mäßig | Arbeit | Restaurant,""
+2021-11-05,Freitag,Super,Variable02 | Variable03 | Variable05 | Variable08 | Variable13 | Chinesisch | Wäsche | Schlecht | Einkaufen | Rasiert | Restaurant,""
+2021-11-06,Samstag,Gut,Variable02 | Variable04 | Variable05 | Variable07 | Variable13 | Variable14 | Mäßig | Einkaufen,""
+2021-11-07,Sonntag,Gut,Variable02 | Variable04 | Variable06 | Variable07 | Variable08 | Variable09 | Variable13 | Chinesisch | Variable16 | Mäßig,""
+2021-11-08,Montag,Gut,Variable02 | Variable10 | Variable13 | Chinesisch | Variable15 | Mäßig | Arbeit | Mensa | Einkaufen,""
+2021-11-09,Dienstag,Schlecht,Variable02 | Variable04 | Variable13 | Chinesisch | Variable18 | Arbeit | Mensa | Schlecht | Longboard,""
+2021-11-10,Mittwoch,Schlecht,Variable07 | Variable13 | Chinesisch | Variable14 | Variable15 | Variable17 | Mäßig,""
+2021-11-11,Donnerstag,Schlecht,Variable02 | Variable13 | Chinesisch | Mäßig | Arbeit | Mensa,""
+2021-11-12,Freitag,Schlecht,Variable02 | Variable05 | Variable13 | Chinesisch | Variable16 | Mäßig | Mensa | Wäsche,""
+2021-11-13,Samstag,Ok,Variable02 | Variable03 | Variable04 | Gut | Variable07 | Chinesisch | Variable14 | Variable18 | Einkaufen | Schlafqualitaet,""
+2021-11-14,Sonntag,Gut,Variable02 | Variable04 | Gut | Variable06 | Variable08 | Variable11 | Variable13 | Chinesisch | Variable15 | Variable17 | Schlafqualitaet,""
+2021-11-15,Montag,Gut,Variable06 | Variable13 | Chinesisch | Variable15 | Variable17 | Mäßig | Arbeit | Mensa,""
+2021-11-16,Dienstag,Ok,Variable04 | Variable13 | Chinesisch | Variable15 | Variable16 | Variable18 | Arbeit | Schlecht | Einkaufen,""
+2021-11-17,Mittwoch,Gut,Variable02 | Variable04 | Variable07 | Variable08 | Variable13 | Chinesisch | Variable15 | Variable17 | Mäßig | Rasiert,""
+2021-11-18,Donnerstag,Gut,Variable02 | Variable04 | Gut | Variable06 | Variable07 | Variable13 | Chinesisch | Variable14 | Variable18 | Schlafqualitaet,""
+2021-11-19,Freitag,Ok,Variable02 | Variable04 | Variable07 | Variable12 | Variable13 | Chinesisch | Variable17 | Arbeit | Mensa | Schlecht | Einkaufen,""
+2021-11-20,Samstag,Lausig,Variable02 | Variable03 | Variable04 | Gut | Variable07 | Variable12 | Variable13 | Chinesisch | Variable15 | Variable18 | Schlafqualitaet,""
+2021-11-21,Sonntag,Gut,Variable02 | Variable03 | Variable04 | Gut | Variable06 | Variable07 | Variable12 | Variable13 | Chinesisch | Variable14 | Schlafqualitaet,""
+2021-11-22,Montag,Schlecht,Variable02 | Variable03 | Variable04 | Variable06 | Variable07 | Variable09 | Variable13 | Chinesisch | Wäsche | Schlecht,""
+2021-11-23,Dienstag,Lausig,Variable02 | Variable03 | Variable04 | Variable12 | Chinesisch | Mäßig | Arbeit | Mensa | Rasiert,""
+2021-11-24,Mittwoch,Lausig,Variable02 | Variable03 | Variable04 | Variable05 | Variable06 | Variable07 | Variable08 | Variable12 | Variable13 | Chinesisch | Mäßig | Einkaufen,""
+2021-11-25,Donnerstag,Schlecht,Variable02 | Variable03 | Variable04 | Variable05 | Gut | Variable06 | Variable08 | Variable13 | Chinesisch | Mensa | Schlafqualitaet,""
+2021-11-26,Freitag,Ok,Variable02 | Variable04 | Variable05 | Gut | Variable06 | Variable08 | Variable11 | Variable12 | Chinesisch | Schlafqualitaet,""
+2021-11-27,Samstag,Schlecht,Familie | Variable02 | Variable04 | Gut | Variable13 | Chinesisch | Einkaufen | Restaurant | Schlafqualitaet,""
+2021-11-28,Sonntag,Lausig,Familie | Variable02 | Variable04 | Variable12 | Variable13 | Chinesisch | Variable16 | Arbeit | Schlecht | Rasiert,""
+2021-11-29,Montag,Lausig,Variable04 | Schach | Variable07 | Variable12 | Variable13 | Chinesisch | Variable14 | Wäsche | Schlecht,""
+2021-11-30,Dienstag,Lausig,Variable02 | Variable04 | Variable05 | Variable08 | Variable13 | Chinesisch | Schlecht,""
+2021-12-01,Mittwoch,Lausig,Variable02 | Variable04 | Variable07 | Variable13 | Chinesisch | Variable16 | Mäßig | Einkaufen,""
+2021-12-02,Donnerstag,Super,Variable02 | Variable04 | Variable05 | Variable07 | Variable12 | Variable13 | Chinesisch | Variable14 | Variable15 | Mäßig | Arbeit | Mensa,""
+2021-12-03,Freitag,Super,Variable02 | Variable04 | Variable06 | Variable07 | Variable08 | Variable11 | Variable12 | Variable13 | Chinesisch | Mäßig,""
+2021-12-04,Samstag,Ok,Variable02 | Variable04 | Variable07 | Variable12 | Variable13 | Chinesisch | Variable14 | Mäßig | Wäsche | Einkaufen,""
+2021-12-05,Sonntag,Ok,Familie | Variable02 | Variable04 | Variable05 | Variable07 | Variable12 | Variable13 | Chinesisch | Variable15 | Mäßig,""
+2021-12-06,Montag,Gut,Variable02 | Variable04 | Variable07 | Variable13 | Chinesisch | Variable15 | Variable16 | Mäßig | Rasiert,""
+2021-12-07,Dienstag,Ok,Variable02 | Variable04 | Variable05 | Variable07 | Variable08 | Variable11 | Variable12 | Variable13 | Chinesisch | Variable14 | Variable15 | Mäßig | Arbeit | Mensa | Einkaufen,""
+2021-12-08,Mittwoch,Lausig,Variable02 | Variable04 | Variable06 | Variable08 | Variable12 | Variable13 | Chinesisch | Variable15 | Variable16 | Mäßig | Arbeit,""
+2021-12-09,Donnerstag,Lausig,Familie | Variable02 | Variable04 | Variable06 | Variable08 | Variable12 | Variable13 | Arbeit | Schlecht,""
+2021-12-10,Freitag,Lausig,Variable02 | Variable04 | Variable07 | Variable13 | Chinesisch | Mäßig | Mensa,""
+2021-12-11,Samstag,Lausig,Familie | Variable02 | Variable04 | Variable07 | Chinesisch | Schlecht,""
+2021-12-12,Sonntag,Gut,Variable02 | Variable03 | Variable04 | Variable05 | Variable06 | Variable08 | Variable13 | Chinesisch | Variable14 | Variable15 | Wäsche | Schlecht | Rasiert,""
+2021-12-13,Montag,Gut,Variable02 | Variable03 | Variable04 | Variable05 | Variable07 | Variable13 | Chinesisch | Variable14 | Variable18 | Schlecht,""
+2021-12-14,Dienstag,Lausig,Variable02 | Variable03 | Variable04 | Variable07 | Variable12 | Chinesisch | Arbeit | Schlecht | Einkaufen,""
+2021-12-15,Mittwoch,Lausig,Variable02 | Schach | Variable06 | Variable07 | Variable08 | Variable13 | Chinesisch | Schlecht,""
+2021-12-16,Donnerstag,Lausig,Variable02 | Variable03 | Variable05 | Schach | Variable07 | Chinesisch | Variable14 | Schlecht,""
+2021-12-17,Freitag,Schlecht,Variable03 | Variable05 | Variable06 | Variable07 | Chinesisch | Mäßig,""
+2021-12-18,Samstag,Gut,Variable02 | Variable04 | Variable05 | Schach | Variable06 | Variable07 | Variable10 | Variable12 | Chinesisch | Variable14 | Mäßig | Arbeit | Einkaufen,""
+2021-12-19,Sonntag,Ok,Variable02 | Variable04 | Variable05 | Schach | Variable07 | Variable13 | Chinesisch | Variable14 | Mäßig,""
+2021-12-20,Montag,Lausig,Variable02 | Variable03 | Variable04 | Schach | Gut | Variable07 | Chinesisch | Variable14 | Variable17 | Wäsche | Einkaufen | Schlafqualitaet,""
+2021-12-21,Dienstag,Gut,Variable02 | Variable03 | Variable04 | Variable06 | Variable08 | Variable13 | Chinesisch | Variable15 | Variable17 | Mäßig | Arbeit | Rasiert,""
+2021-12-22,Mittwoch,Gut,Variable02 | Variable03 | Variable04 | Variable07 | Variable08 | Variable12 | Variable13 | Chinesisch | Variable14 | Variable17 | Arbeit | Schlecht,""
+2021-12-23,Donnerstag,Lausig,Variable02 | Variable03 | Variable04 | Variable07 | Variable12 | Chinesisch | Mäßig | Arbeit | Einkaufen,""
+2021-12-24,Freitag,Ok,Familie | Variable02 | Variable04 | Schach | Gut | Chinesisch | Schlafqualitaet,""
+2021-12-25,Samstag,Gut,Familie | Variable02 | Variable03 | Variable04 | Schach | Variable06 | Variable08 | Variable10 | Variable12 | Chinesisch | Wäsche | Schlecht,""
+2021-12-26,Sonntag,Gut,Variable02 | Variable04 | Schach | Variable06 | Variable07 | Variable08 | Chinesisch | Mäßig | Rasiert,""
+2021-12-27,Montag,Super,Variable02 | Variable03 | Schach | Variable07 | Variable12 | Chinesisch | Mäßig | Arbeit,""
+2021-12-28,Dienstag,Super,Variable02 | Variable03 | Variable04 | Schach | Variable07 | Chinesisch | Variable17 | Arbeit | Schlecht,""
+2021-12-29,Mittwoch,Super,Variable02 | Variable04 | Variable08 | Chinesisch | Variable15 | Variable17 | Mäßig | Arbeit,""
+2021-12-30,Donnerstag,Ok,Variable02 | Variable03 | Variable04 | Variable07 | Chinesisch | Variable16 | Mäßig | Arbeit | Einkaufen,""
+2021-12-31,Freitag,Schlecht,Variable02 | Variable04 | Schach | Variable07 | Variable13 | Mäßig,""
+2022-01-01,Samstag,Gut,Variable02 | Variable04 | Schach | Gut | Variable07 | Variable13 | Chinesisch | Variable14 | Wäsche | Schlafqualitaet,""
+2022-01-02,Sonntag,Ok,Variable02 | Variable04 | Variable06 | Variable08 | Variable13 | Chinesisch | Mäßig,""
+2022-01-03,Montag,Gut,Variable02 | Variable04 | Variable13 | Chinesisch | Variable18 | Mäßig | Einkaufen | Rasiert | Restaurant,""
+2022-01-04,Dienstag,Gut,Variable02 | Variable07 | Variable11 | Variable12 | Variable13 | Chinesisch | Variable15 | Arbeit | Schlecht,""
+2022-01-05,Mittwoch,Lausig,Familie | Variable02 | Variable06 | Variable08 | Schlecht,""
+2022-01-06,Donnerstag,Lausig,Variable02 | Variable07 | Chinesisch | Variable17 | Arbeit | Schlecht | Einkaufen,""
+2022-01-07,Freitag,Lausig,Variable02 | Variable03 | Variable04 | Variable07 | Variable08 | Variable13 | Chinesisch | Variable18 | Mäßig | Wäsche,""
+2022-01-08,Samstag,Schlecht,Variable02 | Variable03 | Variable04 | Variable05 | Schach | Variable07 | Variable08 | Variable12 | Variable13 | Chinesisch | Variable16 | Mäßig,""
+2022-01-09,Sonntag,Super,Variable02 | Variable04 | Variable08 | Variable12 | Variable13 | Chinesisch | Variable14 | Variable16 | Mäßig | Arbeit,""
+2022-01-10,Montag,Super,Variable02 | Variable04 | Schach | Variable06 | Variable07 | Variable08 | Variable12 | Variable13 | Chinesisch | Variable17 | Variable19 | Mäßig | Arbeit | Wäsche | Rasiert,""
+2022-01-11,Dienstag,Super,Variable02 | Variable05 | Schach | Variable07 | Variable11 | Variable12 | Variable13 | Chinesisch | Variable15 | Variable16 | Mäßig | Arbeit | Einkaufen,""
+2022-01-12,Mittwoch,Super,Variable02 | Variable04 | Variable05 | Schach | Variable07 | Variable13 | Chinesisch | Mäßig,""
+2022-01-13,Donnerstag,Super,Variable02 | Variable04 | Variable08 | Variable10 | Variable16 | Variable18 | Mäßig | Arbeit | Einkaufen | Ausflug,""
+2022-01-14,Freitag,Gut,Variable02 | Variable04 | Variable08 | Variable13 | Chinesisch | Mäßig | Einkaufen | Ausflug,""
+2022-01-15,Samstag,Super,Variable04 | Variable05 | Schach | Variable07 | Variable16 | Variable17 | Mäßig | Einkaufen | Rasiert,""
+2022-01-16,Sonntag,Ok,Variable04 | Variable05 | Variable08 | Variable13 | Chinesisch | Variable16 | Mäßig,""
+2022-01-17,Montag,Ok,Variable05 | Schach | Variable07 | Variable13 | Chinesisch | Variable15 | Schlecht,""
+2022-01-18,Dienstag,Ok,Variable04 | Variable05 | Variable06 | Variable08 | Variable09 | Variable13 | Chinesisch | Mäßig | Arbeit,""
+2022-01-19,Mittwoch,Schlecht,Variable05 | Variable07 | Variable08 | Variable13 | Chinesisch | Variable15 | Variable17 | Mäßig | Einkaufen,""
+2022-01-20,Donnerstag,Super,Variable07 | Variable12 | Variable13 | Chinesisch | Mäßig | Arbeit | Rasiert,""
+2022-01-21,Freitag,Ok,Variable04 | Gut | Variable07 | Variable12 | Variable13 | Chinesisch | Friseur | Schlafqualitaet,""
+2022-01-22,Samstag,Gut,Schach | Variable06 | Variable07 | Variable08 | Variable12 | Variable13 | Chinesisch | Mäßig,""
+2022-01-23,Sonntag,Super,Schach | Gut | Variable07 | Variable09 | Variable12 | Variable13 | Chinesisch | Variable14 | Variable16 | Variable17 | Wäsche | Schlafqualitaet,""
+2022-01-24,Montag,Gut,Variable04 | Schach | Gut | Variable07 | Variable12 | Variable13 | Chinesisch | Einkaufen | Schlafqualitaet,""
+2022-01-25,Dienstag,Lausig,Schach | Variable07 | Variable08 | Variable13 | Chinesisch | Variable14 | Schlecht | Einkaufen,""
+2022-01-26,Mittwoch,Lausig,Variable04 | Variable05 | Schach | Gut | Variable08 | Variable13 | Variable15 | Rasiert | Schlafqualitaet,""
+2022-01-27,Donnerstag,Lausig,Variable04 | Variable05 | Variable07 | Variable08 | Variable13 | Chinesisch | Variable15 | Variable17 | Arbeit | Schlecht,""
+2022-01-28,Freitag,Lausig,Variable04 | Variable05 | Schach | Gut | Variable08 | Variable13 | Variable17 | Arbeit | Schlafqualitaet,""
+2022-01-29,Samstag,Lausig,Variable04 | Schach | Variable07 | Variable08 | Variable13 | Chinesisch | Mäßig | Arbeit | Einkaufen,""
+2022-01-30,Sonntag,Lausig,Variable04 | Gut | Variable07 | Variable13 | Chinesisch | Variable14 | Variable15 | Variable16 | Rasiert | Schlafqualitaet,""
+2022-01-31,Montag,Schlecht,Variable04 | Variable06 | Variable13 | Chinesisch | Variable16 | Mäßig | Arbeit,""
+2022-02-01,Dienstag,Super,Variable04 | Variable07 | Variable08 | Variable11 | Variable17 | Variable18 | Mäßig | Arbeit | Wäsche | Einkaufen,""
+2022-02-02,Mittwoch,Super,Variable04 | Variable08 | Variable13 | Chinesisch | Variable17 | Variable19 | Mäßig | Arbeit | Wäsche,""
+2022-02-03,Donnerstag,Super,Variable04 | Variable05 | Variable06 | Variable08 | Chinesisch | Variable17 | Variable18 | Variable19 | Mäßig | Arbeit,""
+2022-02-04,Freitag,Ok,Variable04 | Schach | Gut | Variable07 | Variable13 | Chinesisch | Variable14 | Variable17 | Arbeit | Einkaufen | Schlafqualitaet,""
+2022-02-05,Samstag,Lausig,Variable03 | Variable04 | Schach | Gut | Variable07 | Variable11 | Chinesisch | Variable14 | Variable17 | Schlafqualitaet,""
+2022-02-06,Sonntag,Gut,Variable04 | Variable05 | Schach | Gut | Variable07 | Variable13 | Chinesisch | Variable18 | Schlafqualitaet,""
+2022-02-07,Montag,Schlecht,Variable05 | Schach | Variable08 | Variable13 | Variable15 | Variable17 | Variable18 | Variable19 | Mäßig | Rasiert,""
+2022-02-08,Dienstag,Lausig,Variable04 | Variable05 | Schach | Variable07 | Variable08 | Chinesisch | Variable15 | Variable17 | Mäßig | Arbeit | Einkaufen,""
+2022-02-09,Mittwoch,Gut,Variable04 | Variable05 | Variable07 | Variable08 | Chinesisch | Variable18 | Mäßig | Arbeit,""
+2022-02-10,Donnerstag,Super,Variable04 | Variable05 | Variable07 | Variable08 | Variable09 | Chinesisch | Variable14 | Variable15 | Variable16 | Variable17 | Mäßig | Arbeit | Einkaufen,""
+2022-02-11,Freitag,Super,Variable04 | Variable05 | Schach | Variable08 | Variable13 | Chinesisch | Variable17 | Mäßig | Einkaufen,""
+2022-02-12,Samstag,Lausig,Variable03 | Variable04 | Variable05 | Schach | Variable07 | Variable09 | Variable10 | Variable13 | Chinesisch | Variable14 | Variable16 | Mäßig,""
+2022-02-13,Sonntag,Schlecht,Variable04 | Variable05 | Gut | Variable07 | Variable09 | Variable13 | Chinesisch | Variable15 | Variable16 | Arbeit | Wäsche | Schlafqualitaet,""
+2022-02-14,Montag,Gut,Variable05 | Gut | Variable07 | Variable08 | Variable09 | Variable13 | Chinesisch | Variable14 | Variable15 | Variable17 | Variable18 | Arbeit | Schlafqualitaet,""
+2022-02-15,Dienstag,Ok,Variable04 | Variable07 | Variable13 | Chinesisch | Variable14 | Variable15 | Variable16 | Mäßig | Arbeit,""
+2022-02-16,Mittwoch,Ok,Variable04 | Variable05 | Variable13 | Chinesisch | Variable15 | Mäßig | Friseur | Mensa | Einkaufen | Rasiert,""
+2022-02-17,Donnerstag,Gut,Variable04 | Schach | Variable07 | Variable12 | Variable13 | Chinesisch | Variable16 | Variable17 | Arbeit | Mensa | Schlecht | Rasiert,""
+2022-02-18,Freitag,Super,Variable04 | Variable05 | Schach | Variable06 | Variable08 | Variable15 | Variable17 | Variable19 | Mäßig | Arbeit,""
+2022-02-19,Samstag,Super,Familie | Variable04 | Schach | Variable13 | Chinesisch | Mäßig | Einkaufen | Restaurant,""
+2022-02-20,Sonntag,Super,Familie | Variable04 | Schach | Gut | Variable07 | Variable08 | Variable09 | Variable13 | Chinesisch | Schlafqualitaet,""
+2022-02-21,Montag,Super,Variable04 | Schach | Variable07 | Variable09 | Variable10 | Variable13 | Chinesisch | Variable14 | Variable15 | Mäßig | Einkaufen,""
+2022-02-22,Dienstag,Super,Variable04 | Variable05 | Gut | Variable07 | Variable09 | Variable11 | Variable13 | Variable14 | Variable15 | Arbeit | Schlafqualitaet,""
+2022-02-23,Mittwoch,Super,Variable04 | Variable07 | Variable08 | Chinesisch | Variable17 | Variable18 | Mäßig | Arbeit | Einkaufen,""
+2022-02-24,Donnerstag,Gut,Variable05 | Chinesisch | Variable17 | Variable19 | Mäßig | Arbeit | Mensa,""
+2022-02-25,Freitag,Gut,Variable02 | Variable04 | Gut | Variable08 | Chinesisch | Ausflug | Schlafqualitaet,""
+2022-02-26,Samstag,Super,Variable02 | Variable04 | Variable08 | Mäßig | Wäsche | Einkaufen,""
+2022-02-27,Sonntag,Super,Variable02 | Variable04 | Variable05 | Gut | Variable07 | Variable09 | Variable14 | Arbeit | Schlafqualitaet,""
+2022-02-28,Montag,Super,Variable02 | Variable04 | Gut | Variable07 | Variable08 | Variable13 | Chinesisch | Schlafqualitaet,""
+2022-03-01,Dienstag,Super,Variable02 | Variable04 | Variable15 | Mäßig | Arbeit | Mensa,""
+2022-03-02,Mittwoch,Gut,Variable02 | Variable03 | Variable04 | Variable10 | Chinesisch | Variable19 | Mäßig | Einkaufen | Restaurant,""
+2022-03-03,Donnerstag,Lausig,Familie | Variable02 | Variable05 | Gut | Arbeit | Mensa | Restaurant | Schlafqualitaet,""
+2022-03-04,Freitag,Ok,Familie | Variable02 | Variable03 | Variable04 | Variable05 | Schach | Variable08 | Variable11 | Variable16 | Variable17 | Mäßig,""
+2022-03-05,Samstag,Super,Variable04 | Variable05 | Schach | Variable07 | Chinesisch | Variable14 | Variable16 | Mäßig | Arbeit | Einkaufen,""
+2022-03-06,Sonntag,Super,Variable04 | Variable05 | Gut | Variable07 | Variable09 | Variable13 | Chinesisch | Variable14 | Arbeit | Schlafqualitaet,""
+2022-03-07,Montag,Ok,Variable03 | Variable04 | Variable05 | Gut | Chinesisch | Variable17 | Arbeit | Mensa | Schlafqualitaet,""
+2022-03-08,Dienstag,Schlecht,Variable05 | Variable11 | Chinesisch | Variable17 | Mäßig | Arbeit | Mensa,""
+2022-03-09,Mittwoch,Gut,Variable03 | Variable04 | Variable06 | Variable10 | Chinesisch | Variable16 | Variable17 | Arbeit | Mensa | Schlecht | Rasiert,""
+2022-03-10,Donnerstag,Ok,Variable04 | Variable07 | Variable08 | Variable10 | Variable15 | Variable16 | Variable17 | Arbeit | Mensa | Schlecht | Einkaufen,""
+2022-03-11,Freitag,Schlecht,Variable03 | Variable04 | Schach | Variable08 | Mäßig | Arbeit | Wäsche,""
+2022-03-12,Samstag,Lausig,Variable03 | Variable04 | Variable05 | Variable07 | Chinesisch | Variable14 | Variable16 | Variable17 | Mäßig | Arbeit,""
+2022-03-13,Sonntag,Gut,Variable04 | Variable05 | Variable07 | Variable10 | Variable11 | Chinesisch | Variable16 | Mäßig | Arbeit,""
+2022-03-14,Montag,Super,Variable04 | Schach | Variable09 | Variable13 | Variable16 | Mäßig | Mensa | Einkaufen,""
+2022-03-15,Dienstag,Gut,Variable04 | Variable05 | Variable08 | Variable10 | Variable11 | Chinesisch | Variable15 | Variable17 | Mäßig | Arbeit | Wäsche | Einkaufen,""
+2022-03-16,Mittwoch,Ok,Variable03 | Variable04 | Variable05 | Variable06 | Variable07 | Variable08 | Variable09 | Chinesisch | Variable14 | Mäßig | Arbeit,""
+2022-03-17,Donnerstag,Ok,Variable04 | Variable09 | Mäßig | Arbeit | Mensa | Rasiert,""
+2022-03-18,Freitag,Ok,Variable04 | Schach | Variable07 | Variable08 | Variable14 | Variable16 | Variable18 | Variable19 | Mäßig | Einkaufen,""
+2022-03-19,Samstag,Gut,Familie | Variable05 | Schach | Variable06 | Variable07 | Variable08 | Variable13 | Variable14 | Variable16 | Mäßig | Restaurant | Longboard,""
+2022-03-20,Sonntag,Super,Variable04 | Variable05 | Schach | Gut | Variable07 | Variable09 | Variable10 | Variable11 | Variable13 | Chinesisch | Variable14 | Variable16 | Schlafqualitaet,""
+2022-03-21,Montag,Lausig,Variable04 | Schach | Variable07 | Variable13 | Chinesisch | Variable16 | Wäsche | Schlecht | Einkaufen | Rasiert,""
+2022-03-22,Dienstag,Lausig,Familie | Variable04 | Schach | Variable09 | Variable15 | Variable16 | Variable17 | Mäßig | Arbeit | Mensa,""
+2022-03-23,Mittwoch,Lausig,Variable04 | Schach | Variable07 | Variable09 | Variable12 | Variable13 | Chinesisch | Variable14 | Variable16 | Variable17 | Arbeit | Schlecht,""
+2022-03-24,Donnerstag,Schlecht,Variable04 | Schach | Variable08 | Variable09 | Variable12 | Variable13 | Variable15 | Variable16 | Variable17 | Mäßig | Arbeit,""
+2022-03-25,Freitag,Lausig,Variable04 | Schach | Variable06 | Variable08 | Variable09 | Variable13 | Variable16 | Mäßig | Friseur | Rasiert,""
+2022-03-26,Samstag,Lausig,Variable04 | Schach | Gut | Variable07 | Variable08 | Variable09 | Variable10 | Variable12 | Variable13 | Chinesisch | Variable14 | Variable16 | Variable17 | Einkaufen | Schlafqualitaet,""
+2022-03-27,Sonntag,Gut,Variable04 | Schach | Gut | Variable07 | Variable08 | Variable09 | Variable13 | Variable14 | Variable15 | Variable16 | Wäsche | Schlafqualitaet,""
+2022-03-28,Montag,Gut,Schach | Variable06 | Variable07 | Variable08 | Variable09 | Variable13 | Variable16 | Mäßig | Arbeit | Einkaufen,""
+2022-03-29,Dienstag,Gut,Variable04 | Schach | Variable09 | Variable13 | Variable16 | Arbeit | Mensa | Schlecht,""
+2022-03-30,Mittwoch,Ok,Schach | Variable08 | Variable09 | Variable10 | Variable13 | Variable16 | Variable18 | Variable19 | Mäßig | Wäsche,""
+2022-03-31,Donnerstag,Lausig,Familie | Variable04 | Schach | Variable08 | Variable13 | Variable16 | Variable19 | Schlecht | Rasiert | Restaurant | Klausur,""
+2022-04-01,Freitag,Ok,Familie | Variable02 | Variable06 | Variable08 | Variable13 | Chinesisch | Variable18 | Schlecht | Ausflug | Restaurant,""
+2022-04-02,Samstag,Super,Variable02 | Variable04 | Schach | Variable07 | Chinesisch | Mäßig | Einkaufen | Ausflug | Restaurant,""
+2022-04-03,Sonntag,Super,Variable02 | Variable04 | Gut | Variable09 | Chinesisch | Ausflug | Restaurant | Schlafqualitaet,""
+2022-04-04,Montag,Super,Variable02 | Variable04 | Schach | Variable07 | Variable13 | Chinesisch | Mäßig | Arbeit | Ausflug,""
+2022-04-05,Dienstag,Lausig,Variable02 | Variable04 | Schach | Gut | Variable06 | Variable08 | Variable09 | Chinesisch | Variable17 | Ausflug | Schlafqualitaet,""
+2022-04-06,Mittwoch,Lausig,Variable02 | Variable04 | Schach | Variable06 | Variable08 | Variable09 | Chinesisch | Mäßig | Wäsche | Einkaufen | Ausflug,""
+2022-04-07,Donnerstag,Lausig,Variable02 | Variable04 | Schach | Variable07 | Variable08 | Mäßig | Rasiert | Ausflug,""
+2022-04-08,Freitag,Lausig,Variable02 | Variable04 | Schach | Variable07 | Variable09 | Chinesisch | Mäßig | Einkaufen | Ausflug,""
+2022-04-09,Samstag,Gut,Variable02 | Variable04 | Schach | Chinesisch | Mäßig | Einkaufen | Ausflug,""
+2022-04-10,Sonntag,Schlecht,Familie | Variable02 | Variable03 | Variable04 | Schach | Variable12 | Variable13 | Chinesisch | Variable19 | Mäßig | Einkaufen | Ausflug | Restaurant,""
+2022-04-11,Montag,Lausig,Familie | Variable04 | Schach | Gut | Variable07 | Einkaufen | Schlafqualitaet,""
+2022-04-12,Dienstag,Schlecht,Variable04 | Schach | Variable06 | Variable07 | Variable08 | Chinesisch | Schlecht,""
+2022-04-13,Mittwoch,Ok,Variable04 | Variable05 | Schach | Variable06 | Variable08 | Variable09 | Variable14 | Variable18 | Mäßig | Arbeit,""
+2022-04-14,Donnerstag,Schlecht,Variable04 | Schach | Variable07 | Variable08 | Variable09 | Chinesisch | Mäßig,""
+2022-04-15,Freitag,Lausig,Variable04 | Variable07 | Variable09 | Variable10 | Chinesisch | Variable14 | Mäßig | Rasiert,""
+2022-04-16,Samstag,Lausig,Variable03 | Variable04 | Schach | Variable06 | Variable07 | Variable08 | Variable09 | Chinesisch | Mäßig,""
+2022-04-17,Sonntag,Lausig,Familie | Variable03 | Variable04 | Variable07 | Chinesisch | Mäßig,""
+2022-04-18,Montag,Schlecht,Variable03 | Variable04 | Variable05 | Schach | Variable07 | Variable08 | Variable09 | Chinesisch | Schlecht,""
+2022-04-19,Dienstag,Ok,Familie | Variable05 | Variable08 | Variable16 | Schlecht,""
+2022-04-20,Mittwoch,Gut,Variable03 | Variable04 | Variable09 | Chinesisch | Variable15 | Variable17 | Arbeit | Mensa | Schlecht | Einkaufen,""
+2022-04-21,Donnerstag,Super,Variable03 | Variable04 | Schach | Variable10 | Variable13 | Chinesisch | Variable16 | Variable19 | Arbeit | Mensa | Schlecht,""
+2022-04-22,Freitag,Super,Variable04 | Variable05 | Schach | Variable15 | Variable17 | Mäßig | Arbeit | Mensa | Wäsche | Einkaufen | Rasiert,""
+2022-04-23,Samstag,Super,Variable03 | Variable04 | Schach | Variable08 | Variable10 | Chinesisch | Arbeit | Schlecht,""
+2022-04-24,Sonntag,Gut,Variable03 | Variable04 | Schach | Variable08 | Variable09 | Chinesisch | Mäßig,""
+2022-04-25,Montag,Super,Variable03 | Variable04 | Schach | Gut | Variable06 | Variable08 | Variable09 | Variable12 | Chinesisch | Einkaufen | Schlafqualitaet,""
+2022-04-26,Dienstag,Gut,Variable03 | Variable04 | Variable05 | Schach | Variable06 | Variable07 | Variable08 | Variable16 | Variable17 | Mäßig | Arbeit,""
+2022-04-27,Mittwoch,Gut,Variable04 | Schach | Variable06 | Variable08 | Variable10 | Variable11 | Variable12 | Chinesisch | Variable16 | Variable17 | Variable19 | Mäßig | Einkaufen,""
+2022-04-28,Donnerstag,Super,Variable04 | Schach | Variable07 | Variable08 | Variable09 | Variable12 | Variable13 | Chinesisch | Variable17 | Variable19 | Mäßig | Arbeit,""
+2022-04-29,Freitag,Ok,Variable03 | Variable04 | Schach | Gut | Variable08 | Variable17 | Variable19 | Arbeit | Schlafqualitaet,""
+2022-04-30,Samstag,Ok,Familie | Variable04 | Schach | Gut | Variable12 | Chinesisch | Arbeit | Rasiert | Restaurant | Schlafqualitaet,""
+2022-05-01,Sonntag,Ok,Familie | Variable03 | Variable04 | Variable05 | Schach | Variable12 | Chinesisch | Variable19 | Mäßig | Arbeit | Restaurant,""
+2022-05-02,Montag,Schlecht,Variable05 | Schach | Chinesisch | Variable16 | Arbeit | Mensa | Schlecht | Einkaufen,""
+2022-05-03,Dienstag,Super,Variable04 | Variable05 | Variable07 | Variable09 | Variable11 | Variable14 | Variable15 | Variable16 | Variable17 | Variable18 | Mäßig | Arbeit | Mensa,""
+2022-05-04,Mittwoch,Super,Variable03 | Variable04 | Variable05 | Variable07 | Chinesisch | Variable14 | Variable16 | Variable17 | Variable19 | Mäßig | Arbeit | Mensa,""
+2022-05-05,Donnerstag,Lausig,Variable04 | Variable05 | Schach | Variable07 | Variable08 | Variable13 | Chinesisch | Variable14 | Mäßig | Arbeit | Wäsche | Einkaufen,""
+2022-05-06,Freitag,Schlecht,Variable03 | Variable04 | Schach | Gut | Variable08 | Chinesisch | Variable18 | Variable19 | Arbeit | Rasiert | Schlafqualitaet,""
+2022-05-07,Samstag,Lausig,Variable03 | Variable04 | Variable05 | Schach | Gut | Variable07 | Variable08 | Variable09 | Chinesisch | Variable17 | Arbeit | Schlafqualitaet,""
+2022-05-08,Sonntag,Lausig,Variable03 | Variable04 | Variable05 | Schach | Variable08 | Variable09 | Variable13 | Variable18 | Mäßig | Arbeit | Longboard,""
+2022-05-09,Montag,Super,Variable03 | Variable04 | Schach | Gut | Variable07 | Variable09 | Variable10 | Variable12 | Chinesisch | Variable14 | Variable16 | Variable18 | Wäsche | Einkaufen | Schlafqualitaet,""
+2022-05-10,Dienstag,Super,Variable03 | Variable04 | Schach | Gut | Variable07 | Variable09 | Variable12 | Chinesisch | Variable14 | Variable16 | Arbeit | Schlafqualitaet,""
+2022-05-11,Mittwoch,Super,Variable04 | Schach | Variable07 | Variable11 | Variable12 | Chinesisch | Variable15 | Mäßig | Friseur | Arbeit | Einkaufen | Restaurant,""
+2022-05-12,Donnerstag,Super,Variable03 | Variable04 | Variable09 | Variable12 | Variable13 | Chinesisch | Variable17 | Variable19 | Mäßig | Arbeit | Mensa,""
+2022-05-13,Freitag,Ok,Variable03 | Variable04 | Variable05 | Schach | Variable06 | Variable08 | Variable09 | Variable10 | Variable12 | Arbeit | Schlecht,""
+2022-05-14,Samstag,Lausig,Variable03 | Variable04 | Variable05 | Schach | Variable06 | Variable07 | Variable08 | Variable10 | Variable11 | Variable12 | Chinesisch | Mäßig | Arbeit,""
+2022-05-15,Sonntag,Ok,Familie | Variable03 | Variable04 | Variable05 | Schach | Variable06 | Variable08 | Variable09 | Variable12 | Chinesisch | Variable15 | Mäßig,""
+2022-05-16,Montag,Super,Variable04 | Schach | Gut | Variable07 | Chinesisch | Variable14 | Arbeit | Allergie | Rasiert | Schlafqualitaet,""
+2022-05-17,Dienstag,Super,Variable04 | Variable05 | Variable06 | Variable08 | Variable12 | Variable19 | Arbeit | Schlecht,""
+2022-05-18,Mittwoch,Super,Variable03 | Variable04 | Schach | Variable07 | Variable09 | Chinesisch | Variable15 | Variable16 | Variable17 | Variable19 | Mäßig | Arbeit | Mensa | Allergie | Einkaufen,""
+2022-05-19,Donnerstag,Gut,Variable03 | Variable04 | Variable05 | Schach | Variable07 | Variable08 | Variable11 | Variable12 | Variable13 | Mäßig | Arbeit | Wäsche | Allergie,""
+2022-05-20,Freitag,Schlecht,Variable04 | Schach | Gut | Variable07 | Variable10 | Variable12 | Chinesisch | Variable14 | Variable15 | Variable17 | Variable19 | Allergie | Einkaufen | Schlafqualitaet,""
+2022-05-21,Samstag,Schlecht,Variable03 | Variable04 | Schach | Gut | Variable08 | Variable09 | Chinesisch | Variable16 | Schlafqualitaet,""
+2022-05-22,Sonntag,Ok,Variable03 | Variable04 | Schach | Variable07 | Variable08 | Variable11 | Variable12 | Chinesisch | Mäßig,""
+2022-05-23,Montag,Gut,Variable04 | Variable08 | Chinesisch | Variable16 | Mäßig | Arbeit | Allergie | Einkaufen,""
+2022-05-24,Dienstag,Ok,Variable05 | Schach | Variable19 | Mäßig | Arbeit | Mensa | Allergie | Rasiert,""
+2022-05-25,Mittwoch,Super,Familie | Variable03 | Variable04 | Variable05 | Schach | Gut | Chinesisch | Arbeit | Schlafqualitaet,""
+2022-05-26,Donnerstag,Super,Familie | Variable03 | Variable04 | Variable17 | Variable18 | Schlecht | Ausflug | Restaurant,""
+2022-05-27,Freitag,Super,Familie | Variable03 | Variable04 | Schach | Variable06 | Variable09 | Chinesisch | Mäßig | Allergie | Einkaufen | Ausflug | Restaurant,""
+2022-05-28,Samstag,Super,Familie | Variable03 | Variable04 | Schach | Chinesisch | Variable18 | Mäßig | Allergie | Ausflug | Restaurant,""
+2022-05-29,Sonntag,Super,Familie | Variable04 | Variable08 | Chinesisch | Mäßig | Allergie | Ausflug,""
+2022-05-30,Montag,Super,Variable03 | Variable04 | Gut | Variable06 | Variable07 | Variable08 | Chinesisch | Variable16 | Arbeit | Schlafqualitaet,""
+2022-05-31,Dienstag,Ok,Variable03 | Variable04 | Variable06 | Variable07 | Variable08 | Variable11 | Chinesisch | Variable16 | Variable17 | Mäßig | Arbeit | Mensa | Allergie,""
+2022-06-01,Mittwoch,Schlecht,Variable03 | Variable04 | Schach | Variable06 | Variable07 | Variable08 | Variable09 | Variable13 | Variable16 | Variable19 | Mäßig | Rasiert,""
+2022-06-02,Donnerstag,Schlecht,Variable03 | Variable04 | Schach | Variable12 | Variable13 | Chinesisch | Variable16 | Mäßig | Arbeit | Mensa | Allergie | Einkaufen,""
+2022-06-03,Freitag,Gut,Variable03 | Variable04 | Schach | Gut | Variable08 | Chinesisch | Variable16 | Variable18 | Variable19 | Allergie | Schlafqualitaet,""
+2022-06-04,Samstag,Schlecht,Variable04 | Schach | Gut | Variable06 | Variable08 | Variable10 | Variable13 | Variable15 | Arbeit | Wäsche | Einkaufen | Schlafqualitaet,""
+2022-06-05,Sonntag,Lausig,Variable03 | Variable04 | Schach | Variable06 | Variable07 | Variable08 | Variable09 | Chinesisch | Schlecht,""
+2022-06-06,Montag,Gut,Variable03 | Variable04 | Variable05 | Schach | Variable06 | Variable08 | Variable09 | Chinesisch | Variable16 | Mäßig | Arbeit | Allergie,""
+2022-06-07,Dienstag,Gut,Variable03 | Variable04 | Variable05 | Schach | Arbeit | Mensa | Schlecht | Allergie | Rasiert,""
+2022-06-08,Mittwoch,Schlecht,Variable02 | Variable03 | Variable04 | Chinesisch | Schlecht | Allergie | Einkaufen | Restaurant,""
+2022-06-09,Donnerstag,Schlecht,Variable02 | Variable03 | Variable04 | Variable05 | Schach | Variable06 | Variable08 | Variable09 | Variable10 | Variable16 | Variable17 | Arbeit | Schlecht | Allergie,""
+2022-06-10,Freitag,Schlecht,Variable02 | Variable03 | Variable04 | Schach | Variable07 | Variable08 | Variable10 | Chinesisch | Mäßig | Allergie | Einkaufen,""
+2022-06-11,Samstag,Ok,Variable02 | Variable04 | Variable05 | Variable11 | Mäßig | Arbeit | Allergie | Einkaufen | Restaurant,""
+2022-06-12,Sonntag,Gut,Variable03 | Variable04 | Variable05 | Gut | Variable07 | Variable08 | Variable09 | Chinesisch | Allergie | Schlafqualitaet,""
+2022-06-13,Montag,Schlecht,Variable03 | Variable04 | Variable07 | Variable11 | Chinesisch | Variable14 | Variable16 | Mäßig | Arbeit | Allergie,""
+2022-06-14,Dienstag,Lausig,Variable02 | Variable03 | Variable04 | Variable13 | Variable15 | Arbeit | Mensa | Schlecht | Allergie,""
+2022-06-15,Mittwoch,Gut,Variable02 | Variable03 | Schach | Variable15 | Arbeit | Schlecht | Allergie | Einkaufen,""
+2022-06-16,Donnerstag,Super,Variable02 | Variable03 | Variable04 | Variable06 | Variable07 | Variable08 | Variable12 | Chinesisch | Variable14 | Variable16 | Variable18 | Arbeit | Wäsche | Schlecht | Allergie,""
+2022-06-17,Freitag,Gut,Variable02 | Variable04 | Variable06 | Variable08 | Variable11 | Variable12 | Chinesisch | Variable18 | Mäßig | Arbeit | Mensa | Allergie,""
+2022-06-18,Samstag,Schlecht,Variable02 | Variable04 | Variable08 | Variable09 | Variable11 | Variable12 | Variable16 | Schlecht | Allergie | Rasiert,""
+2022-06-19,Sonntag,Schlecht,Variable03 | Variable04 | Variable07 | Variable09 | Variable13 | Chinesisch | Variable14 | Mäßig | Arbeit | Allergie,""
+2022-06-20,Montag,Gut,Variable02 | Variable03 | Variable04 | Gut | Variable09 | Variable11 | Variable13 | Chinesisch | Mensa | Allergie | Restaurant | Schlafqualitaet,""
+2022-06-21,Dienstag,Super,Variable02 | Variable03 | Variable04 | Variable08 | Variable10 | Variable12 | Chinesisch | Variable15 | Mäßig | Arbeit | Allergie | Einkaufen,""
+2022-06-22,Mittwoch,Super,Variable02 | Variable03 | Variable04 | Variable05 | Gut | Variable07 | Variable08 | Variable11 | Variable12 | Chinesisch | Variable16 | Arbeit | Allergie | Schlafqualitaet,""
+2022-06-23,Donnerstag,Ok,Variable03 | Variable04 | Variable08 | Variable12 | Variable13 | Chinesisch | Variable15 | Variable16 | Mäßig | Arbeit | Allergie,""
+2022-06-24,Freitag,Lausig,Familie | Variable02 | Variable03 | Variable04 | Variable05 | Schach | Gut | Variable08 | Variable11 | Chinesisch | Variable16 | Mensa | Allergie | Longboard | Schlafqualitaet,""
+2022-06-25,Samstag,Schlecht,Familie | Variable02 | Variable04 | Gut | Variable08 | Variable09 | Chinesisch | Arbeit | Wäsche | Allergie | Einkaufen | Rasiert | Schlafqualitaet,""
+2022-06-26,Sonntag,Gut,Variable02 | Variable03 | Variable04 | Gut | Variable07 | Chinesisch | Variable14 | Arbeit | Allergie | Schlafqualitaet,""
+2022-06-27,Montag,Ok,Variable02 | Variable03 | Variable04 | Gut | Variable09 | Variable11 | Variable12 | Variable13 | Chinesisch | Variable15 | Arbeit | Mensa | Allergie | Schlafqualitaet,""
+2022-06-28,Dienstag,Ok,Variable02 | Variable03 | Variable04 | Variable09 | Variable12 | Chinesisch | Variable15 | Mäßig | Arbeit | Mensa | Allergie,""
+2022-06-29,Mittwoch,Super,Variable02 | Variable03 | Variable04 | Variable11 | Variable13 | Chinesisch | Mäßig | Arbeit | Mensa | Restaurant,""
+2022-06-30,Donnerstag,Super,Variable02 | Variable03 | Variable04 | Schach | Variable07 | Variable08 | Variable12 | Chinesisch | Mäßig | Arbeit | Allergie | Einkaufen,""
+2022-07-01,Freitag,Super,Variable02 | Variable03 | Variable04 | Variable05 | Schach | Variable08 | Variable09 | Variable11 | Variable12 | Chinesisch | Variable16 | Mäßig | Allergie | Einkaufen,""
+2022-07-02,Samstag,Schlecht,Variable02 | Variable14 | Variable16 | Mäßig | Einkaufen | Rasiert,""
+2022-07-03,Sonntag,Gut,Variable02 | Variable03 | Variable04 | Schach | Variable07 | Variable11 | Variable14 | Mäßig,""
+2022-07-04,Montag,Super,Variable02 | Variable04 | Schach | Gut | Variable11 | Variable13 | Chinesisch | Wäsche | Einkaufen | Restaurant | Schlafqualitaet,""
+2022-07-05,Dienstag,Ok,Variable02 | Variable04 | Variable07 | Variable12 | Chinesisch | Variable17 | Mäßig | Arbeit | Allergie,""
+2022-07-06,Mittwoch,Schlecht,Variable02 | Variable04 | Variable09 | Variable11 | Chinesisch | Variable17 | Mäßig | Arbeit | Mensa | Allergie | Einkaufen,""
+2022-07-07,Donnerstag,Schlecht,Variable02 | Variable03 | Variable04 | Schach | Chinesisch | Variable17 | Arbeit | Mensa | Schlecht | Allergie | Einkaufen | Restaurant,""
+2022-07-08,Freitag,Schlecht,Variable02 | Variable03 | Variable04 | Variable05 | Schach | Gut | Variable07 | Variable08 | Variable11 | Variable12 | Variable14 | Variable16 | Arbeit | Einkaufen | Rasiert | Schlafqualitaet,""
+2022-07-09,Samstag,Gut,Variable02 | Variable03 | Variable04 | Schach | Variable06 | Variable08 | Variable12 | Chinesisch | Variable16 | Arbeit | Schlecht | Allergie,""
+2022-07-10,Sonntag,Super,Variable02 | Variable03 | Variable04 | Schach | Gut | Variable07 | Variable11 | Variable13 | Chinesisch | Schlafqualitaet,""
+2022-07-11,Montag,Super,Variable02 | Variable03 | Variable04 | Schach | Gut | Variable07 | Variable13 | Chinesisch | Wäsche | Allergie | Einkaufen | Schlafqualitaet,""
+2022-07-12,Dienstag,Super,Variable02 | Variable03 | Variable04 | Variable05 | Schach | Variable06 | Variable08 | Variable11 | Variable12 | Chinesisch | Variable15 | Mäßig | Allergie | Einkaufen,""
+2022-07-13,Mittwoch,Gut,Variable02 | Variable03 | Variable04 | Variable05 | Schach | Gut | Variable07 | Variable13 | Chinesisch | Allergie | Schlafqualitaet,""
+2022-07-14,Donnerstag,Ok,Variable02 | Variable04 | Variable05 | Schach | Chinesisch | Variable18 | Mäßig | Mensa,""
+2022-07-15,Freitag,Gut,Familie | Variable02 | Variable03 | Variable04 | Variable05 | Schach | Gut | Variable08 | Variable11 | Chinesisch | Einkaufen | Schlafqualitaet,""
+2022-07-16,Samstag,Super,Variable02 | Variable03 | Variable04 | Variable05 | Schach | Gut | Variable07 | Variable08 | Chinesisch | Variable17 | Wäsche | Allergie | Rasiert | Restaurant | Schlafqualitaet,""
+2022-07-17,Sonntag,Gut,Variable02 | Variable03 | Variable04 | Variable05 | Variable07 | Variable11 | Chinesisch | Schlecht,""
+2022-07-18,Montag,Schlecht,Variable02 | Variable03 | Variable04 | Variable05 | Schach | Variable06 | Variable08 | Variable09 | Variable11 | Variable13 | Chinesisch | Variable18 | Mäßig | Arbeit | Allergie | Einkaufen,""
+2022-07-19,Dienstag,Lausig,Variable02 | Variable03 | Variable04 | Variable05 | Variable07 | Variable09 | Chinesisch | Arbeit | Mensa | Schlecht | Allergie,""
+2022-07-20,Mittwoch,Schlecht,Variable02 | Variable04 | Variable05 | Variable08 | Variable12 | Variable13 | Variable14 | Schlecht | Einkaufen,""
+2022-07-21,Donnerstag,Super,Variable02 | Variable03 | Variable04 | Variable05 | Variable07 | Variable17 | Mäßig | Arbeit | Mensa,""
+2022-07-22,Freitag,Gut,Variable02 | Variable03 | Variable04 | Variable08 | Variable10 | Variable19 | Mäßig | Einkaufen | Rasiert,""
+2022-07-23,Samstag,Ok,Familie | Variable02 | Variable03 | Variable04 | Gut | Variable09 | Variable12 | Variable13 | Variable19 | Allergie | Einkaufen | Schlafqualitaet,""
+2022-07-24,Sonntag,Gut,Familie | Variable02 | Variable03 | Variable04 | Variable05 | Schach | Variable06 | Variable08 | Variable10 | Variable12 | Mäßig | Allergie,""
+2022-07-25,Montag,Super,Familie | Variable02 | Variable03 | Variable04 | Variable05 | Schach | Variable06 | Variable08 | Variable11 | Variable12 | Variable13 | Variable18 | Variable19 | Mäßig | Allergie | Ausflug,""
+2022-07-26,Dienstag,Lausig,Variable02 | Variable03 | Variable04 | Variable05 | Schach | Variable07 | Chinesisch | Variable19 | Arbeit | Mensa | Schlecht | Allergie,""
+2022-07-27,Mittwoch,Lausig,Variable02 | Variable03 | Variable04 | Variable06 | Variable08 | Variable11 | Chinesisch | Variable16 | Variable18 | Variable19 | Mensa | Schlecht | Allergie | Einkaufen | Rasiert,""
+2022-07-28,Donnerstag,Schlecht,Variable02 | Variable04 | Variable05 | Schach | Variable07 | Variable08 | Variable12 | Variable15 | Variable18 | Mäßig | Arbeit | Wäsche,""
+2022-07-29,Freitag,Super,Variable02 | Variable03 | Variable04 | Variable05 | Schach | Gut | Variable12 | Variable17 | Arbeit | Mensa | Schlafqualitaet,""
+2022-07-30,Samstag,Super,Variable02 | Variable03 | Variable04 | Variable05 | Schach | Variable07 | Chinesisch | Variable14 | Variable16 | Variable17 | Variable18 | Mäßig | Friseur | Arbeit,""
+2022-07-31,Sonntag,Super,Familie | Variable02 | Variable03 | Variable04 | Variable05 | Schach | Gut | Variable06 | Variable07 | Variable08 | Variable09 | Variable10 | Variable11 | Variable12 | Variable13 | Chinesisch | Variable14 | Variable15 | Variable16 | Variable17 | Variable18 | Variable19 | Schlafqualitaet,""

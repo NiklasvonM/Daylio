@@ -124,7 +124,7 @@ shinyServer(function(input, output) {
       dtPlot[, `14 days rolling sum` := frollsum(get(activity), n = 14)]
       # https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/
       ggplot(dtPlot, aes(Day, `14 days rolling sum`)) +
-        geom_line(color="#69b3a2", size=2) +
+        geom_line(color="#69b3a2", linewidth=2) +
         geom_point(size = 5) +
         geom_point(
           aes(
@@ -949,6 +949,10 @@ shinyServer(function(input, output) {
         theme_minimal() +
         ggtitle(paste0("Partial Auto Correlation of '", input$activity,"'"))
       ggplotly(p)
+    })
+    
+    output$previous_days_title <- renderText({
+      paste0("Average mood by activity '", input$activity, "' during the previous days")
     })
     
 })
