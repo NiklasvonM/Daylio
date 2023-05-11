@@ -28,6 +28,7 @@ libraries <- c(
   "wordcloud2", # word cloud
   "stringr" # string manipulation
 )
+p_load(char=libraries)
 
 # chord diagram
 if(!require("chorddiag")) {
