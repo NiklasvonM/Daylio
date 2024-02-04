@@ -15,7 +15,7 @@ shinyServer(function(input, output) {
         dtPlot[, RunningAvg30 := frollmean(Mood, 30, algo = "exact", align = "left")]
         
         dtDailyPlacesVisitedHovertext <- DT_LOCATION[, .(HovertextOrte = paste0(
-          paste0(gsub("\n", " ", unique(AdresseFull))),
+          paste0(gsub("\n", " ", unique(AddressFull))),
           collapse = "<br>")), .(Day)]
         dtPlot <- merge(dtPlot, dtDailyPlacesVisitedHovertext, all.x = TRUE, by = "Day")
         
@@ -662,22 +662,22 @@ shinyServer(function(input, output) {
                 color = "#848484",
                 popup = popupArgs(
                   html = paste0(
-                    "Startzeit: ",
-                    ifelse(curMovement$DatumStart != curMovement$DatumEnde, paste0(format(curMovement$DatumStart, "%d.%m.%Y"), " "), ""),
-                    format(curMovement$Startzeit, "%H:%M"), " Uhr", "<br>",
-                    "Endzeit: ",
-                    ifelse(curMovement$DatumStart != curMovement$DatumEnde, paste0(format(curMovement$DatumEnde, "%d.%m.%Y"), " "), ""),
-                    format(curMovement$Endzeit, "%H:%M"), " Uhr", "<br>",
-                    "Distanz: ", ifelse(
-                      curMovement$Distanz >= 1000,
-                      paste0(round(curMovement$Distanz / 1000, 2), "km"),
-                      paste0(curMovement$Distanz, "m")
+                    "Start Time: ",
+                    ifelse(curMovement$DateStart != curMovement$DateEnd, paste0(format(curMovement$DateStart, "%d.%m.%Y"), " "), ""),
+                    format(curMovement$StartTime, "%H:%M"), " Uhr", "<br>",
+                    "End Time: ",
+                    ifelse(curMovement$DateStart != curMovement$DateEnd, paste0(format(curMovement$DateEnd, "%d.%m.%Y"), " "), ""),
+                    format(curMovement$EndTime, "%H:%M"), " Uhr", "<br>",
+                    "Distance: ", ifelse(
+                      curMovement$Distance >= 1000,
+                      paste0(round(curMovement$Distance / 1000, 2), "km"),
+                      paste0(curMovement$Distance, "m")
                     ), "<br>",
-                    "Fortbewegungsmittel: ", curMovement$Fortbewegungsmittel, "<br>",
-                    "Startbreitengrad: ", dtWayPoint[j]$Lat, "<br>",
-                    "Startlängengrad: ", dtWayPoint[j]$Lng, "<br>",
-                    "Endbreitengrad: ", dtWayPoint[j+1]$Lat, "<br>",
-                    "Endlängengrad: ", dtWayPoint[j+1]$Lng, "<br>"
+                    "Means Of Transport: ", curMovement$MeansOfTransport, "<br>",
+                    "Start Latitude: ", dtWayPoint[j]$Lat, "<br>",
+                    "Start Longitude: ", dtWayPoint[j]$Lng, "<br>",
+                    "End Latitude: ", dtWayPoint[j+1]$Lat, "<br>",
+                    "End Longitude: ", dtWayPoint[j+1]$Lng, "<br>"
                   )
                 )
               )
@@ -692,28 +692,28 @@ shinyServer(function(input, output) {
       # TODO: Handle overwriting if a location is visited more than once.
       for(i in seq(length = nrow(dtLocations))) {
         curLocation <- dtLocations[i]
-        curStartzeit <- curLocation$Startzeit
-        curEndzeit <- curLocation$Endzeit
+        curStartTime <- curLocation$StartTime
+        curEndTime <- curLocation$EndTime
         basemap <- basemap %>%
           addMinicharts(
             lng = curLocation$Longitude,
             lat = curLocation$Latitude,
-            #chartdata = curEndzeit - curStartzeit,
-            time = curEndzeit - curStartzeit,
+            #chartdata = curEndTime - curStartTime,
+            time = curEndTime - curStartTime,
             opacity = 0.5,
             # Currently not working
-            labelText = paste0(format(curStartzeit, "%H:%M"), " - ", format(curEndzeit, "%H:%M")),
+            labelText = paste0(format(curStartTime, "%H:%M"), " - ", format(curEndTime, "%H:%M")),
             showLabels = TRUE,
             # Hovertext
             popup = popupArgs(
               html = paste0(
-                "Adresse: ", curLocation$AdresseFull, "<br>",
-                "Startzeit: ",
-                  ifelse(curLocation$DatumStart != curLocation$DatumEnde, paste0(format(curLocation$DatumStart, "%d.%m.%Y"), " "), ""),
-                  format(curStartzeit, "%H:%M"), " Uhr", "<br>",
-                "Endzeit: ",
-                  ifelse(curLocation$DatumStart != curLocation$DatumEnde, paste0(format(curLocation$DatumEnde, "%d.%m.%Y"), " "), ""),
-                  format(curEndzeit, "%H:%M"), " Uhr<br>"
+                "Address: ", curLocation$AddressFull, "<br>",
+                "Start Time: ",
+                  ifelse(curLocation$DateStart != curLocation$DateEnd, paste0(format(curLocation$DateStart, "%d.%m.%Y"), " "), ""),
+                  format(curStartTime, "%H:%M"), " Uhr", "<br>",
+                "End Time: ",
+                  ifelse(curLocation$DateStart != curLocation$DateEnd, paste0(format(curLocation$DateEnd, "%d.%m.%Y"), " "), ""),
+                  format(curEndTime, "%H:%M"), " Uhr<br>"
               )
             )
           )
@@ -723,16 +723,16 @@ shinyServer(function(input, output) {
     })
     
     # world map with daily visits 
-    output$plz_visited <- renderLeaflet({
+    output$postcode_visited <- renderLeaflet({
       
       basemap <- leaflet()  %>%
         addTiles()
         #addProviderTiles(providers$Stamen.TonerLite, options = providerTileOptions(noWrap = TRUE))
       
-      for(i in seq(length = nrow(PLZ_VISITED))) {
-        curLocation <- PLZ_VISITED[i]
-        curStartzeit <- curLocation$Startzeit
-        curEndzeit <- curLocation$Endzeit
+      for(i in seq(length = nrow(POSTCODE_VISITED))) {
+        curLocation <- POSTCODE_VISITED[i]
+        curStartTime <- curLocation$StartTime
+        curEndTime <- curLocation$EndTime
         basemap <- basemap %>%
           addMinicharts(
             lng = curLocation$Longitude,
@@ -741,10 +741,10 @@ shinyServer(function(input, output) {
             # Hovertext
             popup = popupArgs(
               html = paste0(
-                "PLZ: ", curLocation$PLZ, "<br>",
-                "Erster Besuch: ", format(curLocation$FirstVisit, "%d.%m.%Y"), "<br>",
-                "Letzter Besuch: ", format(curLocation$LastVisit, "%d.%m.%Y"), "<br>",
-                "Anzahl Besuche: ", curLocation$TimesVisited, "<br>",
+                "Postal Code: ", curLocation$POSTCODE, "<br>",
+                "First Visit: ", format(curLocation$FirstVisit, "%d.%m.%Y"), "<br>",
+                "Last Visit: ", format(curLocation$LastVisit, "%d.%m.%Y"), "<br>",
+                "Unique Visits: ", curLocation$TimesVisited, "<br>",
                 "Latitude: ", curLocation$Latitude, "<br>",
                 "Longitude: ", curLocation$Longitude
               )
@@ -756,9 +756,7 @@ shinyServer(function(input, output) {
     })
     
     # timeline animation of places visited within the last year
-    output$plz_visited_timeline <- renderLeaflet({
-      #dtTimeline <- PLZ_VISITED[, .(Latitude, Longitude, start = FirstVisit, end = today())]
-      #dtTimeline <- dtAllPlacesVisited[, .(Latitude, Longitude, start = Zeit, end = today())]
+    output$postcode_visited_timeline <- renderLeaflet({
       dtTimeline <- PLACES_VISITED[, .(Latitude, Longitude, start = MinDate, end = pmin(max(MaxDate), MinDate+365))]
       geoTimeline <- geojsonio::geojson_json(dtTimeline,lat="Latitude",lon="Longitude")
       leaflet() %>%
@@ -783,10 +781,10 @@ shinyServer(function(input, output) {
               lat=~Latitude,
               label=~as.character(Standortinformationen),
               popup=paste0(
-                    "Adresse: ", dataCur$AdresseFull, "<br>",
-                    "PLZ: ", dataCur$PLZ, "<br>",
-                    "Erster Besuch: ", dataCur$`Erster Besuch`, "<br>",
-                    "Letzter Besuch: ", dataCur$`Letzter Besuch`, "<br>",
+                    "Address: ", dataCur$AddressFull, "<br>",
+                    "Postal Code: ", dataCur$POSTCODE, "<br>",
+                    "First Visit: ", dataCur$`First Visit`, "<br>",
+                    "Last Visit: ", dataCur$`Last Visit`, "<br>",
                     "Latitude: ", dataCur$Latitude, "<br>",
                     "Longitude: ", dataCur$Longitude
               ),

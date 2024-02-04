@@ -38,7 +38,7 @@ shinyUI(
                 menuItem("Activity Counts", tabName = "count_activities"),
                 menuItem("Word Cloud", tabName = "wordcloud"),
                 menuItem("Location data", tabName = "worldmap"),
-                menuItem("Visited places (coarse)", tabName = "plz_visited"),
+                menuItem("Visited places (coarse)", tabName = "postcode_visited"),
                 menuItem("Visited places (fine)", tabName = "places_visited"),
                 menuItem("Structural break", tabName = "strucutral_break_test"),
                 #menuItem("Animationsdemo", tabName = "animation"),
@@ -165,9 +165,9 @@ shinyUI(
                 tabItem(tabName = "worldmap",
                         leafletOutput("worldmap", height = "1000px")
                 ),
-                tabItem(tabName = "plz_visited",
-                        leafletOutput("plz_visited", height = "1000px"),
-                        leafletOutput("plz_visited_timeline", height = "1000px")
+                tabItem(tabName = "postcode_visited",
+                        leafletOutput("postcode_visited", height = "1000px"),
+                        leafletOutput("postcode_visited_timeline", height = "1000px")
                 ),
                 tabItem(tabName = "places_visited",
                         leafletOutput("places_visited", height = "1000px")
