@@ -1,9 +1,13 @@
+print("Preparing data for better app performance. This might take a minute...")
 
-if(!file.exists(paste0("data/", FILENAME, "_cleaned.csv"))) {
-  cleanData(FILENAME)
+cleaned_file_name <- add_suffix_to_filename(FILENAME, "_cleaned")
+
+if (!file.exists(cleaned_file_name)) {
+  print(paste0("Processing ", FILENAME, "..."))
+  process_data(FILENAME)
 }
 
-DATA <- fread(paste0("data/", FILENAME, "_cleaned.csv"), encoding = "UTF-8")
+DATA <- fread(cleaned_file_name, encoding = "UTF-8")
 DATA[, Day := as.Date(Day)]
 setorder(DATA, "Day")
 
@@ -23,8 +27,8 @@ DT_COR <- data.table(
   Activity = ACTIVITIES
 )
 for (activity in ACTIVITIES) {
-  if(is.numeric(DATA[[activity]]))
-    DT_COR[Activity == activity, Correlation := round(measureOfDependence(DATA$Mood, DATA[[activity]]), 2)]
+  if (is.numeric(DATA[[activity]]))
+    DT_COR[Activity == activity, Correlation := round(measure_of_dependence(DATA$Mood, DATA[[activity]]), 2)]
   DT_COR[
     Activity == activity,
     `Average Mood with Activity` := round(mean(DATA[get(activity) > 0, Mood], na.rm = TRUE), 2)
@@ -38,15 +42,13 @@ for (activity in ACTIVITIES) {
 }
 
 
-
-
 # correlation of activities with each other
 MAT_COR <- matrix(data = 0, nrow = length(ACTIVITIES_MOOD), ncol = length(ACTIVITIES_MOOD))
 colnames(MAT_COR) <- ACTIVITIES_MOOD
 rownames(MAT_COR) <- ACTIVITIES_MOOD
 for (i in ACTIVITIES_MOOD) {
   for (j in ACTIVITIES_MOOD) {
-    MAT_COR[i, j] <- round(measureOfDependence(DATA[[i]], DATA[[j]]), 2)
+    MAT_COR[i, j] <- round(measure_of_dependence(DATA[[i]], DATA[[j]]), 2)
   }
 }
 
@@ -57,7 +59,6 @@ colnames(MAT_COR_LAG) <- ACTIVITIES_MOOD
 rownames(MAT_COR_LAG) <- ACTIVITIES_MOOD
 for (i in ACTIVITIES_MOOD) {
   for (j in ACTIVITIES_MOOD) {
-    MAT_COR_LAG[i, j] <- round(measureOfDependence(DATA[1:(N-1)][[i]], DATA[2:N][[j]]), 2)
+    MAT_COR_LAG[i, j] <- round(measure_of_dependence(DATA[1:(N - 1)][[i]], DATA[2:N][[j]]), 2)
   }
 }
-

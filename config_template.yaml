@@ -1,5 +1,0 @@
----
-  # one of "de" and "en"
-  LANGUAGE: 'de'
-  # Name of the .csv file in ./data that is to be read
-  FILENAME: 'mockdata'

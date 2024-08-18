@@ -1,5 +1,5 @@
 print("Loading and installing packages...")
-if(!require("pacman")) {
+if (!require("pacman")) {
   install.packages("pacman")
   library("pacman")
 }
@@ -26,16 +26,17 @@ libraries <- c(
   "DataExplorer", # data exploration report
   "tm", # stopwords
   "wordcloud2", # word cloud
-  "stringr" # string manipulation
+  "stringr", # string manipulation
+  "tools" # file name manipulation
 )
-p_load(char=libraries)
+p_load(char = libraries)
 
 # chord diagram
-if(!require("chorddiag")) {
+if (!require("chorddiag")) {
   devtools::install_github("mattflor/chorddiag")
   library(chorddiag)
 }
-if(!require("dndselectr")) {
+if (!require("dndselectr")) {
   devtools::install_github("serenity-r/dndselectr")
   library(dndselectr)
 }

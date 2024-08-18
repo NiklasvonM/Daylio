@@ -1,5 +1,4 @@
-
-shinyUI(
+ui <- shinyUI(
     dashboardPage(
         dashboardHeader(
         ),
@@ -18,8 +17,8 @@ shinyUI(
               format = "yyyy-mm-dd",
               value = max(DATA$Day),
               max = today(),
-              language = "en"#,
-              #datesdisabled = DATES_NO_LOCATION_DATA # currently not working
+              language = "en" #,
+#datesdisabled = DATES_NO_LOCATION_DATA # currently not working
             ),
             sidebarMenu(
                 menuItem("Dashboard", tabName = "dashboard"),
@@ -41,7 +40,7 @@ shinyUI(
                 menuItem("Visited places (coarse)", tabName = "postcode_visited"),
                 menuItem("Visited places (fine)", tabName = "places_visited"),
                 menuItem("Structural break", tabName = "strucutral_break_test"),
-                #menuItem("Animationsdemo", tabName = "animation"),
+#menuItem("Animationsdemo", tabName = "animation"),
                 menuItem("Accord diagram", tabName = "chord_diagram"),
                 menuItem("Dependencies", tabName = "dependencies"),
                 menuItem("Cycles", tabName = "cycles"),
@@ -62,11 +61,11 @@ shinyUI(
                             infoBoxOutput("avg_mood")
                         ),
                         fluidRow(
-                            plotlyOutput("roll_sum_activity")   
+                            plotlyOutput("roll_sum_activity")
                         )
                     )
                 ),
-                
+
                 tabItem(tabName = "day_of_year",
                     shiny::h2("Average mood by day of the year"),
                     plotlyOutput("year_heatmap")
@@ -89,7 +88,7 @@ shinyUI(
                     sliderInput("correlationThreshold",
                                 "Minimum correlation",
                                 min = -1, max = 1, value = c(-1, 1), step = 0.01),
-                    #dataTableOutput("correlation_matrix")
+#dataTableOutput("correlation_matrix")
                     rHandsontableOutput("correlation_matrix")
                 ),
                 tabItem(tabName = "correlation_matrix_lag",
@@ -99,16 +98,16 @@ shinyUI(
                                     "Minimum correlation",
                                     min = -1, max = 1, value = c(-1, 1), step = 0.01),
                         h3("column represents next day"),
-                        #dataTableOutput("correlation_matrix")
+#dataTableOutput("correlation_matrix")
                         rHandsontableOutput("correlation_matrix_lag")
                 ),
                 tabItem(tabName = "single_day",
                     shiny::h2("What happen during this day?"),
                     rHandsontableOutput("single_day")
-                    #dataTableOutput("single_day")
+#dataTableOutput("single_day")
                 ),
                 tabItem(tabName = "lookback",
-                        fluidRow(titlePanel(title=textOutput("previous_days_title")
+                        fluidRow(titlePanel(title = textOutput("previous_days_title")
                         )),
                     plotlyOutput("lookback_pointplot"),
                     sliderInput("lookback_pointplot_n", "Number of days: ", min = 1, max = 365, step = 1, value = 14)
@@ -154,10 +153,10 @@ shinyUI(
                     )
                 ),
                 tabItem(tabName = "network",
-                        visNetworkOutput("forcenetwork", height = "1000px")  
+                        visNetworkOutput("forcenetwork", height = "1000px")
                 ),
                 tabItem(tabName = "count_activities",
-                        plotOutput("count_activities_plot", height = "1000px")      
+                        plotOutput("count_activities_plot", height = "1000px")
                 ),
                 tabItem(tabName = "wordcloud",
                         wordcloud2Output("wordcloud", height = "1000px")
@@ -196,11 +195,11 @@ shinyUI(
                           size = min(length(ACTIVITIES_MOOD), 15)
                         ),
                         sliderInput(
-                          "slider_cycles", 
+                          "slider_cycles",
                           label = "Cycle Length",
                           min = 1,
                           max = 50,
-                          value = 30,
+                          value = 7,
                           step = 1
                         ),
                         plotlyOutput("cycles_heatmap")

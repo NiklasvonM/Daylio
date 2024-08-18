@@ -47,4 +47,4 @@ OTA/*
 *.html
 
 # Only config_template.yaml is supposed to be versioned
-config.yaml
+config/config.yaml

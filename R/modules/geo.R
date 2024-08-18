@@ -1,6 +1,4 @@
-
-
-getLocationData <- function(directory) {
+get_location_data <- function(directory) {
   tryFormats <- c(
     "%Y-%m-%dT%H:%M:%SZ",
     "%Y-%m-%dT%H:%M:%S.%OSZ",
@@ -10,19 +8,19 @@ getLocationData <- function(directory) {
     "%Y-%m-%d",
     "%Y/%m/%d"
   )
-  
-  getLocationDataSingleMonth <- function(fileName) {
-    df0 <- fromJSON(fileName, flatten = FALSE)[[1]]$placeVisit
+
+  get_location_data_single_month <- function(file_name) {
+    df0 <- fromJSON(file_name, flatten = FALSE)[[1]]$placeVisit
     dt0 <- as.data.table(df0)
     if (!"centerLatE7" %in% names(dt0))
       return(data.table())
-    if(!"location.name" %in% colnames(dt0))
+    if (!"location.name" %in% colnames(dt0))
       dt0[, location.name := "UNKNOWN"]
     dt <- dt0[!is.na(centerLatE7), .(
       Latitude = location.latitudeE7,
       Longitude = location.longitudeE7,
       Address = location.address,
-      AddressName = location.name ,
+      AddressName = location.name,
       StartTime = as.POSIXct(
         duration.startTimestamp,
         tz = "Europe/Berlin",
@@ -36,7 +34,7 @@ getLocationData <- function(directory) {
     )]
     dt
   }
-  
+
   dt <- Reduce(
     f = function(x, y)
       rbindlist(list(x, y)),
@@ -46,47 +44,47 @@ getLocationData <- function(directory) {
         recursive = TRUE,
         full.names = TRUE
       ),
-      FUN = getLocationDataSingleMonth
+      FUN = get_location_data_single_month
     ),
     init = data.table()
   )
-  
+
   if (nrow(dt) == 0)
     return(dt)
-  
+
   dt[, DateStart := as.Date(StartTime)]
   dt[, DateEnd := as.Date(EndTime)]
   dt[, Latitude := Latitude / 10 ^ 7]
   dt[, Longitude := Longitude / 10 ^ 7]
   #View(dt[DateStart != DateEnd])
-  minDate <- min(as.Date(dt$StartTime))
-  maxDate <- max(as.Date(dt$EndTime))
-  
-  dtFill <- data.table(Day = seq(minDate, maxDate, by = "days"))
-  
-  dtFilled <-
-    dtFill[dt, on = .(Day >= DateStart, Day <= DateEnd), c(names(dt), "Day"), with = FALSE]
-  setorder(dtFilled, "StartTime")
-  #dtFilled[, I := .I, by = .(StartTime)]
-  dtFilled[, Day := Day + rowid(StartTime) - 1]
-  #dtFilled[, N := .N, by = .(StartTime)]
-  dtFilled[, AddressFull := ifelse(is.na(Address),
+  min_date <- min(as.Date(dt$StartTime))
+  max_date <- max(as.Date(dt$EndTime))
+
+  dt_fill <- data.table(Day = seq(min_date, max_date, by = "days"))
+
+  dt_filled <-
+    dt_fill[dt, on = .(Day >= DateStart, Day <= DateEnd), c(names(dt), "Day"), with = FALSE]
+  setorder(dt_filled, "StartTime")
+  #dt_filled[, I := .I, by = .(StartTime)]
+  dt_filled[, Day := Day + rowid(StartTime) - 1]
+  #dt_filled[, N := .N, by = .(StartTime)]
+  dt_filled[, AddressFull := ifelse(is.na(Address),
                                    AddressName,
                                    paste0(AddressName, " (", Address, ")"))]
-  
-  meanLong <- mean(dtFilled$Longitude)
-  meanLat <- mean(dtFilled$Latitude)
-  dtFilled[, DistanceFromMeanLocation := sqrt((Longitude - meanLong) ^ 2 + (Latitude - meanLat) ^
+
+  meanLong <- mean(dt_filled$Longitude)
+  meanLat <- mean(dt_filled$Latitude)
+  dt_filled[, DistanceFromMeanLocation := sqrt((Longitude - meanLong) ^ 2 + (Latitude - meanLat) ^
                                                 2)]
-  dtFilled[, POSTCODE := stringr::str_extract(Address, stringr::regex("[0-9]{5}"))]
+  dt_filled[, POSTCODE := stringr::str_extract(Address, stringr::regex("[0-9]{5}"))]
   # 4 digits and 2 letters for Dutch POSTCODE
-  dtFilled[is.na(POSTCODE), POSTCODE := stringr::str_extract(Address, stringr::regex("[0-9]{4} [a-zA-Z]{2}"))]
+  dt_filled[is.na(POSTCODE), POSTCODE := stringr::str_extract(Address, stringr::regex("[0-9]{4} [a-zA-Z]{2}"))]
   #View(DT_LOCATION[is.na(POSTCODE)])
-  dtFilled
+  dt_filled
 }
 
 DT_LOCATION <-
-  getLocationData("data/GoogleMaps/Semantic Location History/")
+  get_location_data("data/GoogleMaps/Semantic Location History/")
 
 if (nrow(DT_LOCATION) > 0) {
   POSTCODE_VISITED <- DT_LOCATION[!is.na(POSTCODE), .(
@@ -96,7 +94,7 @@ if (nrow(DT_LOCATION) > 0) {
     FirstVisit = min(Day),
     LastVisit = max(Day)
   ), by = .(POSTCODE)]
-  
+
   PLACES_VISITED <- DT_LOCATION[, .(
     Addressn = paste0(unique(Address), collapse = "; "),
     AddressName = paste0(unique(AddressName), collapse = "; "),
@@ -115,7 +113,7 @@ if (nrow(DT_LOCATION) > 0) {
     FirstVisit = NA_Date_,
     LastVisit = NA_Date_
   )
-  
+
   PLACES_VISITED <- data.table(
     Addressn = "",
     AddressName = "",
@@ -126,10 +124,7 @@ if (nrow(DT_LOCATION) > 0) {
   )
 }
 
-
-
-
-getMovementData <- function(directory) {
+get_movement_data <- function(directory) {
   tryFormats <- c(
     "%Y-%m-%dT%H:%M:%SZ",
     "%Y-%m-%dT%H:%M:%S.%OSZ",
@@ -139,9 +134,9 @@ getMovementData <- function(directory) {
     "%Y-%m-%d",
     "%Y/%m/%d"
   )
-  
-  getMovementSingleMonth <- function(fileName) {
-    df0 <- fromJSON(fileName, flatten = FALSE)[[1]]$activitySegment
+
+  get_movement_single_month <- function(file_name) {
+    df0 <- fromJSON(file_name, flatten = FALSE)[[1]]$activitySegment
     dt0 <- as.data.table(df0)
     if (!"startLocation.latitudeE7" %in% names(dt0))
       return(data.table())
@@ -157,7 +152,7 @@ getMovementData <- function(directory) {
       Distanz = distance,
       Fortbewegungsmittel = activityType,
       wayPoints = waypointPath.waypoints,
-      # TODO: Fix lazy hack (+3600): Time is off by one hour.
+    # TODO: Fix lazy hack (+3600): Time is off by one hour.
       StartTime = as.POSIXct(
         duration.startTimestamp,
         tz = "Europe/Berlin",
@@ -168,12 +163,12 @@ getMovementData <- function(directory) {
         tz = "Europe/Berlin",
         tryFormats = tryFormats
       )
-      #StartTime = as.POSIXct("1970-01-01", tz = "Europe/Berlin") + as.numeric(duration.startTimestampMs) / 1000 + 3600,
-      #EndTime = as.POSIXct("1970-01-01", tz = "Europe/Berlin") + as.numeric(duration.endTimestampMs) / 1000 + 3600
+    #StartTime = as.POSIXct("1970-01-01", tz = "Europe/Berlin") + as.numeric(duration.startTimestampMs) / 1000 + 3600,
+    #EndTime = as.POSIXct("1970-01-01", tz = "Europe/Berlin") + as.numeric(duration.endTimestampMs) / 1000 + 3600
     )]
     dt
   }
-  
+
   dt <- Reduce(
     f = function(x, y)
       rbindlist(list(x, y)),
@@ -183,14 +178,14 @@ getMovementData <- function(directory) {
         recursive = TRUE,
         full.names = TRUE
       ),
-      FUN = getMovementSingleMonth
+      FUN = get_movement_single_month
     ),
     init = data.table()
   )
-  
+
   if (nrow(dt) == 0)
     return(dt)
-  
+
   dt[, DateStart := as.Date(StartTime)]
   dt[, DateEnd := as.Date(EndTime)]
   dt[, StartLatitude := StartLatitude / 10 ^ 7]
@@ -198,30 +193,30 @@ getMovementData <- function(directory) {
   dt[, EndLatitude := EndLatitude / 10 ^ 7]
   dt[, EndLongitude := EndLongitude / 10 ^ 7]
   #View(dt[DateStart != DateEnd])
-  minDate <- min(as.Date(dt$StartTime))
-  maxDate <- max(as.Date(dt$EndTime))
-  
-  dtFill <- data.table(Day = seq(minDate, maxDate, by = "days"))
-  
-  dtFilled <-
-    dtFill[dt, on = .(Day >= DateStart, Day <= DateEnd), c(names(dt), "Day"), with = FALSE]
-  setorder(dtFilled, "StartTime")
-  #dtFilled[, I := .I, by = .(StartTime)]
-  dtFilled[, Day := Day + rowid(StartTime) - 1]
-  #dtFilled[, N := .N, by = .(StartTime)]
-  dtFilled
+  min_date <- min(as.Date(dt$StartTime))
+  max_date <- max(as.Date(dt$EndTime))
+
+  dt_fill <- data.table(Day = seq(min_date, max_date, by = "days"))
+
+  dt_filled <-
+    dt_fill[dt, on = .(Day >= DateStart, Day <= DateEnd), c(names(dt), "Day"), with = FALSE]
+  setorder(dt_filled, "StartTime")
+  #dt_filled[, I := .I, by = .(StartTime)]
+  dt_filled[, Day := Day + rowid(StartTime) - 1]
+  #dt_filled[, N := .N, by = .(StartTime)]
+  dt_filled
 }
 
 DT_MOVEMENT <-
-  getMovementData("data/GoogleMaps/Semantic Location History/")
+  get_movement_data("data/GoogleMaps/Semantic Location History/")
 
 if (nrow(DT_MOVEMENT) > 0) {
   DT_MOVEMENT[, a := sin(pi / 180 * (EndLatitude - StartLatitude) / 2) ^ 2 + cos(pi / 180 * StartLatitude) * cos(pi / 180 * EndLatitude) * sin(pi / 180 * (EndLongitude -
                                                                                                                                                              StartLongitude) / 2) ^ 2]
   DT_MOVEMENT[, c := 2 * atan2(sqrt(a), sqrt(1 - a))]
-  
+
   DT_MOVEMENT[, `Distance by LatLon` := 6371000 * c]
-  
+
 }
 
 
@@ -236,7 +231,7 @@ if (nrow(DT_MOVEMENT) > 0 & nrow(DT_LOCATION) > 0) {
                          Longitude = EndLongitude,
                          Time = EndTime)])
   ))
-  dtPlaceInformation <- unique(DT_LOCATION[!is.na(POSTCODE) |
+  dt_place_information <- unique(DT_LOCATION[!is.na(POSTCODE) |
                                              !is.na(Address),
                                            .(
                                              Address = Address[!is.na(Address)][1],
@@ -248,11 +243,11 @@ if (nrow(DT_MOVEMENT) > 0 & nrow(DT_LOCATION) > 0) {
   dtFirstLastVisit <-
     dtAllPlacesVisited[, .(`First Visit` = min(Time),
                            `Last Visit` = max(Time)), by = .(Latitude, Longitude)]
-  
+
   DT_ALL_PLACES_VISITED <-
     merge(
       unique(dtAllPlacesVisited[, .(Latitude, Longitude)]),
-      dtPlaceInformation,
+      dt_place_information,
       by = c("Latitude", "Longitude"),
       all.x = TRUE
     ) %>%
@@ -262,7 +257,7 @@ if (nrow(DT_MOVEMENT) > 0 & nrow(DT_LOCATION) > 0) {
   DT_ALL_PLACES_VISITED[, Standortinformationen := ifelse(is.na(AddressFull) &
                                                             is.na(POSTCODE), 0, 1)]
   DT_ALL_PLACES_VISITED[, Color := ifelse(Standortinformationen == 1, "blue", "black")]
-  
+
 } else {
   DT_ALL_PLACES_VISITED <- data.table(
     Latitude = NA_real_,

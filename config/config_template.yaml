@@ -1,0 +1,5 @@
+---
+  # one of "de" and "en"
+  LANGUAGE: 'de'
+  # Name of the .csv file that is to be read
+  FILENAME: 'data/mockdata.csv'

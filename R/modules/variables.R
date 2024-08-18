@@ -1,5 +1,5 @@
 
-WEEKDAYS <- if(LANGUAGE == "en") {
+WEEKDAYS <- if (LANGUAGE == "en") {
   c(
     "Monday",
     "Tuesday",
@@ -9,7 +9,7 @@ WEEKDAYS <- if(LANGUAGE == "en") {
     "Saturday",
     "Sunday"
   )
-} else if(LANGUAGE == "de") {
+} else if (LANGUAGE == "de") {
   c(
     "Montag",
     "Dienstag",
@@ -20,4 +20,3 @@ WEEKDAYS <- if(LANGUAGE == "en") {
     "Sonntag"
   )
 }
-
