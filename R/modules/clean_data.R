@@ -56,5 +56,6 @@ process_data <- function(file_name) {
   if (all(c("Yoga", "Sport", "Laufen", "Krankengymnastik Übung", "Schwimmen") %in% names(dt))) {
     dt[, `Koerperliche Taetigkeiten` := Yoga + Sport + Laufen + `Krankengymnastik Übung` + Schwimmen]
   }
-  fwrite(dt, file = paste0("data/", file_name, "_cleaned", ".csv"), sep = ";")
+  cleaned_file_name <- add_suffix_to_filename(file_name, "_cleaned")
+  fwrite(dt, file = cleaned_file_name, sep = ";")
 }
